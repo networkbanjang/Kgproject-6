@@ -528,7 +528,7 @@ a.gnb_service_all:hover, a.gnb_service_all:visited, a.gnb_service_all:active, a.
 				
 				
 					
-					<a href="#" class="nav__button_question _clickcode:LNB.q" onclick="nhn.Kin.checkRosAndGoUrl(event, '/qna/question.naver', '');" role="button"><span class="btn_inner"><i class="sp_gnb icon_pencil"></i>질문하기</span></a>
+					<a href="/KG-naver/board/write.jsp" class="nav__button_question _clickcode:LNB.q" role="button"><span class="btn_inner"><i class="sp_gnb icon_pencil"></i>질문하기</span></a>
 					
 				
 			

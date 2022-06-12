@@ -680,8 +680,6 @@ $Fn(function() {
 			</div>
 		</div>
 			
-	
-	
 </div>
 <!-- {{{ -->
 

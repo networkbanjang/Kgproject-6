@@ -12,7 +12,16 @@ public class BoardDTO {
 	String nick;
 	String time;
 	int point;
+	int hit;
 	
+	
+	public int getHit() {
+		return hit;
+	}
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
+
 	public int getNum() {
 		return num;
 	}

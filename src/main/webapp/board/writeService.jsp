@@ -66,7 +66,8 @@
 	
 	BoardDAO boardDao = new BoardDAO();
 	boardDao.write(board);
+	boardDao.close();
 	%>
-	<script>alert('게시글 작성 완료'); location.href='../index.jsp';</script>
+	<script>alert('게시글 작성 완료'); location.href='../question_list.jsp';</script>
 </body>
 </html>

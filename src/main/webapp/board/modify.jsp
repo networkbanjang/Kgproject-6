@@ -1,3 +1,5 @@
+<%@page import="Board.BoardDTO"%>
+<%@page import="Board.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -45,72 +47,35 @@ function uploadSummernoteImageFile(file, editor) {
 </script>
 </head>
 <body>
-	<%@include file="../header.jsp"%>
+	<%@include file="../header.jsp"
+	
+	%>
+	<%
+	
+	request.setCharacterEncoding("utf-8");
+	String originalnum = request.getParameter("num") ;
+	int num=Integer.parseInt(originalnum);
+	
+	BoardDAO boardDao=new BoardDAO(); 
+	BoardDTO board=boardDao.selectNum(num);
+	%>
 	<div class="question">
-		<form method="post" action="writeService.jsp" enctype="multipart/form-data" name="f">
+		<form method="post" action="modifyService.jsp?num=<%=num %>" enctype="multipart/form-data" name="f">
 			<table>
 				<tr id="write_row2">
 					<td class="col1"><img src="../images/question.png"></td>
-					<td class="col2"><input type="text" name="subject"
+					<td class="col2"><input type="text" name="subject" value="<%=board.getTitle() %>"
 						class="col2_input"></td>
 				</tr>
-				<tr id="write_row3">
-					<td class="col1"></td>
-					<td class="col3">카테고리 선택 
-					<select name="category" >
-							<option id="study" value="교육,학문">교육,학문</option>
-							<option id="computer" value="컴퓨터 통신">컴퓨터 통신</option>
-							<option id="game" value="게임">게임</option>
-							<option id="art" value="엔터테이먼트,예술">엔터테이먼트,예술</option>
-							<option id="life" value="생활">생활</option>
-							<option id="health" value="건강">건강</option>
-							<option id="social" value="사회,정치">사회,정치</option>
-							<option id="economy" value="경제">경제</option>
-							<option id="taravel" value="여행">여행</option>
-							<option id="sports" value="스포츠.레져">스포츠.레져</option>
-							<option id="shoping" value="쇼핑">쇼핑</option>
-							<option id="junior" value="쥬니버">쥬니버 Q&A</option>
-							<option id="place" value="지역,플레이스">지역&플레이스</option>
-							<option id="worry" value="고민">고민Q&A</option>
-					</select>
-					</td>
-				</tr>
+
 			</table>
 			<br>
 			<div class="container">
-				<textarea class="summernote" name="editordata"></textarea>
+				<textarea class="summernote" name="editordata"><%=board.getContent() %></textarea>
 			</div>
 			<div id="config">
-				<table class="config_table">
-					<tr>
-						<th>추가 내공 :</th>
-						<td class="plus"><select name="score">
-								<option id="zero" value="0">미설정</option>
-								<option id="10" value="10">10</option>
-								<option id="20" value="20">20</option>
-								<option id="30" value="30">30</option>
-								<option id="50" value="50">50</option>
-								<option id="100" value="100">100</option>
-						</select></td>
-					</tr>
-					<tr>
-						<th class="pub">별명 :</th>
-						<td><select name="nick">
-								<option id="pub" value="pub">공개</option>
-								<option id="pri" value="pri">비공개</option>
-						</select></td>
-						<th class="pub">미성년자열람 :</th>
-						<td><select name="children">
-								<option id="children" value="children">허용</option>
-								<option id="adult" value="adult">비허용</option>
-						</select></td>
-						<th class="pub">만 14세미만 답변 :</th>
-						<td><select name="children_answer">
-								<option id="children_answer" value="children_answer">허용</option>
-								<option id="adult_answer" value="adult_answer">비허용</option>
-						</select></td>
-					</tr>
-				</table>
+
+
 				<div id="center_button">
 					<input type="image" src="/KG-naver/images/ok.png">
 				</div>

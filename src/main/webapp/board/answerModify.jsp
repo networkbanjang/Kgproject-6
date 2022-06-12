@@ -1,3 +1,5 @@
+<%@page import="Board.answerDTO"%>
+<%@page import="Board.answerDAO"%>
 <%@page import="Board.BoardDTO"%>
 <%@page import="Board.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -34,7 +36,9 @@
 </head>
 <body>
 	<%@include file="../header.jsp"%>
-<% String originalnum = request.getParameter("num") ;
+<% 
+	request.setCharacterEncoding("utf-8");
+	String originalnum = request.getParameter("num") ;
 	int num=Integer.parseInt(originalnum);
 	BoardDAO boardDao = new BoardDAO();
 	BoardDTO board = boardDao.selectNum(num); %>
@@ -57,11 +61,16 @@
 			</tr>
 		</table>
 	</div>
+	<% String originalanswernum=request.getParameter("answernum");
+		int answernum=Integer.parseInt(originalanswernum);
+		answerDAO answerDao = new answerDAO();
+		answerDTO answer= answerDao.selectNum(answernum);
+	%>
 	<div class="answer">
-		<form method="post" action="answerService.jsp?num=<%=num %>" enctype="multipart/form-data">
+		<form method="post" action="answermodifyService.jsp?num=<%=num %>&answernum=<%=answer.getNum()%>" enctype="multipart/form-data">
 		<br>
 			<div class="container">
-				<textarea class="summernote" name="editordata">	</textarea>
+				<textarea class="summernote" name="editordata">	<%=answer.getContent() %></textarea>
 			</div>
 			<div id="config">
 				<table class="config_table">

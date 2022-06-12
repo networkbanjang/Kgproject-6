@@ -1,33 +1,36 @@
 @charset "UTF-8";
 
 #config{box-sizing: border-box; width: 900px;  margin-left:10px; padding : 10px;}
-
 .config_table{border: 1px solid; border-color: green; padding: 10px; width: 868px; margin-top: 15px;}
 .config_table th{height: 15px; width: 130px; padding:15px; margin:5px;}
-
-.question{width:  900px;  margin-left: 100px; }
 .col2{width: 775px; height: 25px; margin: 5px;}
 .col2_input{width: 700px; height:25px; margin:5px;}
 .col3{text-align:  right; float: right;}
 .pub{width: 35px;}
 #center_button{margin:10px ; text-align: center;}
-.question_table{padding: 2	0px; position: relative; left: 300px; margin-top: 10px;}
+.answer{width:  900px;  margin-left: 300px;}
+.question_table{padding: 20px; position: relative; left: 300px; margin-top: 10px; background-color: white;}
 .question_subject{font-size:24px; width:670px ;height: 30px; padding: 10px; margin: auto;}
 .question_content{font-size:16px; width:670px ; padding:10px; margin: 7px; }
 .aha{background-color: #00FF00; color:white; width: 80%; height: 80%; padding:17px; margin: 4px; font-size:15px;}
 .question_cate{color: blue; margin: 5px; padding: 7px;}
 .question_etc{margin: 2px; padding:7px; font-size:13px; color: #BDBDBD;}
-.middle_sector{font-size:16px; margin-left:300px; height:75px; padding: 15px;}
+.middle_sector{font-size:16px; margin-left:300px; height:75px; padding: 15px; width: 800px;}
 .middle_sector label{color: blue;}
-.answer_sector{width: 800px; border: 1px solid rgba(222, 222, 222, .5); position: relative; left:300px; margin: 10px;}
+.answer_sector{width: 800px; border: 1px solid rgba(222, 222, 222, .5); position: relative; left:300px; margin: 10px; background-color: white;}
 .answer_subject{font-size:15px;}
 .profile{height: 48px; width: 48px; overflow: hidden; border-radius: 70%; padding:5px;}
 .answer_score{color: blue; }
 .answer_etc{margin: 2px; padding:7px; font-size:11px; color: #BDBDBD;}
 .answer_table{padding: 7px;}
-.answer_conetent{font-size: 15px; padding:10px; font-weight: normal;}
-.content_main{padding:10px; margin: 5px;}
-.content_etc{margin: 2px; padding:7px; font-size:13px; color: #BDBDBD;}
+.answer_conetent{font-size: 15px; padding:10px; font-weight: normal; margin-bottom: 15px;}
+.delete_sector{color: red; margin: 0px 10px 3px 5px; padding: 2px;}
+.content_main{padding:10px; margin: 5px; width: 790px;}
+.content_etc{margin: 2px; padding:7px; font-size:13px; color: #BDBDBD; width:100 px; height: 50px;}
+.List-nick{color: blue; margin: 5px;}
 .re_content{width: 800px; height: 150px;}
 .re_textbar{width: 780px; height:130px; ;float:left;}
-.res{	margin: 10px; padding: 7px; position: relative; right: 80px; top:55px;}
+.res{	margin: 10px; padding: 7px; position: relative; right: 80px; top:48px;}
+.question_delete{color:red; margin: 5px;}
+.question_demo{float: right; position: relative; right:85px;}
+.answer_reg{float:right; background-color: #A9D0F5; color: white; width:70px; height:32px; padding: 4px; padding-top:13px;text-align: center; margin: 5px;}
