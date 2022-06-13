@@ -12,14 +12,7 @@
 <body>
 <%
 	request.setCharacterEncoding("utf-8");
-	String id= "tmddud73";
-	//String id = request.getParameter("subject");
-	//String category = request.getParameter("catagory");
-	//String content = request.getParameter("editordata");
-	
-	//out.print(id);
-	//out.print(category);
-	//out.print(content);
+	String id= (String)session.getAttribute("id");
 	
 	String saveFolder = "C:\\javas\\upload\\"+id;
 	File file = new File(saveFolder);
@@ -47,11 +40,12 @@
 	board.setCategory(category);
 	board.setPoint(score);
 	board.setTime(sdf.format(date));
+	board.setId(id);
 	
 	if(nick.equals("pri")){
 		board.setNick("비공개");
 	}else{
-		board.setNick("임시닉네임");
+		board.setNick((String)session.getAttribute("nickname"));
 	}
 	if(children.equals("adult")){
 		board.setMinor_v("1");

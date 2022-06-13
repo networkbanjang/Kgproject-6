@@ -1,3 +1,5 @@
+<%@page import="member.MemberDAO"%>
+<%@page import="member.MemberDTO"%>
 <%@page import="Page.PageService"%>
 <%@page import="Board.replyDTO"%>
 <%@page import="Board.replyDAO"%>
@@ -18,12 +20,17 @@
 
 </head>
 <body>
+	<%@include file="../header.jsp"%>
 	<%
 	String originalnum = request.getParameter("num");
 	int num = Integer.parseInt(originalnum);
 	BoardDAO boardDao = new BoardDAO();
 	BoardDTO board = boardDao.selectNum(num);
 	String hitcheck = request.getParameter("answernum");
+	MemberDTO member;
+	MemberDAO memberDao= new MemberDAO();
+	
+	
 	if (hitcheck == null || hitcheck.equals("null")) {
 		int hit = board.getHit() + 1;
 		boardDao.hitUP(num, hit);
@@ -56,16 +63,18 @@
 	int end = replynumber * 10;
 	int begin = end + 1 - 10;
 	%>
-	<%@include file="../header.jsp"%>
+
 	<div class=all>
 		<div class="qustion_sector">
 			<table class="question_table">
 				<tr>
 					<td><sapn class="aha">아하</sapn></td>
 					<td class="question_subject" colspan="2"><%=board.getTitle()%></td>
+					<%if (id.equals(board.getId())) {%>
 					<td class="question_demo"><a href="delete.jsp?num=<%=board.getNum()%>"><span class="question_delete">질문삭제</span> </a>
 					
 					<a href="modify.jsp?num=<%=board.getNum()%>"><span class="question_modify"> 질문수정</span></td></a>
+					<%} %>
 				</tr>
 				<tr>
 					<td class="question_content" colspan="3"><%=board.getContent()%></td>
@@ -88,15 +97,20 @@
 					class="answer_reg">답변하기</div></a>
 		</div>
 		<div class="answer_sector">
-			<table class="answer_title">
-				<%
+						<%
 				for (answerDTO a : answer) {
+					member=memberDao.selectId(a.getId());
 				%>
+			<table class="answer_title">
+
 				<tr>
 					<td rowspan="2" class="profile"><img class="profile"
 						src="/KG-naver/images/banner1.png"></td>
-					<td class="answer_subject">닉네임님의 답변</td>
+					<td class="answer_subject">
+					<%if (a.getRecommend()==1){ %> 채택됨!#나ㅓㅗㅇ<%} %>
+					<%=id %>님의 답변</td>
 				</tr>
+		
 				<tr>
 					<%
 					if (a.getPubl().equals("pri")) {
@@ -106,12 +120,13 @@
 					} else {
 					%>
 					<td class="answer_score"><%=a.getId()%></td>
-					<%
-					}
-					%>
-					<td class="answer_etc"><pre>채택답변수 7,669    받은감사수 22</pre></td>
+				
+					<td >채택된 답변 수:<%=member.getS_question() %></td>
 				</tr>
 			</table>
+				<%
+					}
+					%>
 			<table class="answer_conetent">
 				<tr>
 					<td class="content_main" colspan="3"><span><%=a.getContent()%></span></td>
@@ -119,7 +134,10 @@
 
 				<tr>
 					<td class="content_etc"><%=a.getTime()%></td>
-					<td class="content_etc">♡좋아요 <%=a.getRecommend()%></td>
+					<%if (a.getRecommend() ==0 && id.equals(board.getId())) {%>
+					<td class="content_etc"><a href="recommend.jsp?num=<%=a.getNum()%>&recommend=<%=a.getRecommend()%>&check=<%=board.getId()%>&tmp=<%=num%>&user=<%=a.getId()%>">♡채택하기</a></td><%} 
+					else if (a.getRecommend() ==1 && id.equals(board.getId())){%>
+					<td class="content_etc"><a href="recommend.jsp?num=<%=a.getNum()%>&recommend=<%=a.getRecommend()%>&check=<%=board.getId()%>&tmp=<%=num%>&user=<%=a.getId()%>">♥채택취소</a></td><%} %>
 					<td class="content_etc"><a
 						href="view.jsp?num=<%=num%>&answernum=<%=a.getNum()%>"> <%
  reply_count = replyDao.listselect(a.getNum());
@@ -129,8 +147,10 @@
 				</tr>
 
 				<br>
+				<%if (id.equals(a.getId())) { %>
 				<a href="answerDelete.jsp?num=<%=num%>&answernum=<%=a.getNum()%>"><span class="delete_sector">삭제하기</span></a>
 				<a href="answerModify.jsp?num=<%=num%>&answernum=<%=a.getNum()%>"><span class="modify_sector">수정하기</span></a>
+				<%} %>
 			</table>
 			<br>
 			<%
@@ -165,12 +185,14 @@
 			for (replyDTO re : reply) {
 			%>
 			<div class="c-opinion__item">
-				<span class="List-nick"><%=re.getId()%> </span> <a
+				<span class="List-nick"><%=re.getId()%> </span> 
+				<%if (id.equals(re.getId())){ %>
+				<a
 					href="replydelete.jsp?num=<%=num%>&answernum=<%=answernum%>&replynum=<%=re.getNum()%>"
 					class="_deleteBtn"><img height="9" width="9"
 					src="https://ssl.pstatic.net/static/kin/09renewal/btn_delete_list2.gif"
 					class="del"></a>
-
+<%} %>
 				<div class="list-text">
 					<p><%=re.getContent()%></p>
 				</div>

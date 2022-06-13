@@ -1,20 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String id = (String)session.getAttribute("id");
+%>
+<link href="/project_6/images/tab_icon.png" rel="icon" type="image/x-icon" />
 <html lang="ko">
 <head>
-
-
 <link rel="stylesheet" type="text/css" href="https://ssl.pstatic.net/static.kin/static/pc/20220511141354/css/min/common.css">
 <link rel="stylesheet" type="text/css" href="https://ssl.pstatic.net/static.kin/static/pc/20220511141354/css/min/components.css">
 <link rel="stylesheet" type="text/css" href="https://ssl.pstatic.net/static.kin/static/pc/20220511141354/css/min/other.css">
 <link rel="stylesheet" type="text/css" href="https://ssl.pstatic.net/static.kin/static/pc/20220511141354/css/min/main.css">
 <link rel="stylesheet" type="text/css" href="https://ssl.pstatic.net/static.kin/static/pc/20220511141354/css/min/c3p.datalab.theme.css">
 
-<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.2">
-<title>
-	네이버 지식iN
-</title>
+<script type="text/javascript" src="https://ssl.pstatic.net/static.kin/static/pc/20220511141354/js/min/kin.js"></script>
 
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.2">
 <style id="gnb_style" type="text/css">@charset "UTF-8";
 /* NTS UIT Development Office YJH 140717 */
 a.gnb_my, .gnb_icon, #gnb .gnb_my_interface, .gnb_my_li .gnb_my_content .gnb_membership, #gnb .gnb_my_membership, #gnb .gnb_ico_num .gnb_ico_new, #gnb .gnb_ico_num .gnb_ico_new .gnb_count, .gnb_lst .ico_arrow, a.gnb_my .filter_mask, .gnb_my_lyr, .gnb_my_li .gnb_my_content .gnb_mask, .gnb_my_li .gnb_my_content .gnb_change, .gnb_my_li .gnb_my_content .gnb_edit_lst li, .gnb_my_li .gnb_my_content .gnb_pay_check em, #gnb .gnb_my_li .gnb_my_community a.gnb_pay span, .gnb_notice_li .gnb_notice_lyr, .gnb_notice_li .svc_list .gnb_ico_mail, .gnb_notice_li .svc_list .gnb_btn_remove span, .gnb_notice_li .svc_list .gnb_btn_remove i, .gnb_notice_li .gnb_error .gnb_ico_error, .gnb_ly_alert .gnb_btn_close i, .gnb_first_visit, .gnb_search_box, .gnb_search_box .gnb_del_txt, .gnb_svc_more .gnb_svc_lstwrp li.gnb_event em.ic_gnb_new, .gnb_svc_more .svc_btnwrp button { background: url(https://ssl.pstatic.net/static/common/gnb/one/sp_gnb_v14.png) no-repeat -999px -999px;		background: url(https://ssl.pstatic.net/static/common/gnb/one/sp_gnb_v15.png?v=2006) no-repeat -999px -999px; /* background: url(../img/sp_gnb_v15.png) no-repeat -999px -999px; */}
@@ -349,14 +350,26 @@ a.gnb_service_all:hover, a.gnb_service_all:visited, a.gnb_service_all:active, a.
 #gnb.gnb_one_flat .gnb_my_li .gnb_my .gnb_name,
 #gnb.gnb_one_flat .gnb_login_li .gnb_btn_login .gnb_txt {color: #666;}
 
-
+.mymenu > li:hover .submenu { height:250px; transition-duration:1s; }
 </style>
+
+<script src="https://ssl.pstatic.net/static.gn/js/clickcrD.js" id="gnb_clickcrD" charset="utf-8"></script>
+<script type="text/javascript" src="https://ssl.pstatic.net/static.kin/static/kin-web-pc/20220511163235/js/min/message/MessageManager.js"></script><script>
+	
+	Array.prototype.forEach||(Array.prototype.forEach=function(r,o){if(null==this)throw new TypeError("Array.prototype.forEach called on null or undefined");var t,n,e=Object(this),a=e.length>>>0;if("function"!=typeof r)throw new TypeError(r+" is not a function");for(arguments.length>1&&(t=o),n=0;n<a;){var f;n in e&&(f=e[n],r.call(t,f,n,e)),n++}});
+	Array.from||(Array.from=function(){var r;try{r=Symbol.iterator?Symbol.iterator:"Symbol(Symbol.iterator)"}catch(t){r="Symbol(Symbol.iterator)"}var t=Object.prototype.toString,n=function(r){return"function"==typeof r||"[object Function]"===t.call(r)},o=Math.pow(2,53)-1,e=function(r){var t=function(r){var t=Number(r);return isNaN(t)?0:0!==t&&isFinite(t)?(t>0?1:-1)*Math.floor(Math.abs(t)):t}(r);return Math.min(Math.max(t,0),o)};return function(t){var o=Object(t),a=n(o[r]);if(null==t&&!a)throw new TypeError("Array.from requires an array-like object or iterator - not null or undefined");var i,u=arguments.length>1?arguments[1]:void 0;if(void 0!==u){if(!n(u))throw new TypeError("Array.from: when provided, the second argument must be a function");arguments.length>2&&(i=arguments[2])}var f=e(o.length);return function(r,t,n,o,e,a){for(var i=0;i<n||e;){var u=o(i),f=e?u.value:u;if(e&&u.done)return t;t[i]=a?void 0===r?a(f,i):a.call(r,f,i):f,i+=1}if(e)throw new TypeError("Array.from: provided arrayLike or iterator has length more then 2 ** 52 - 1");return t.length=n,t}(i,n(this)?Object(new this(f)):new Array(f),f,function(t,n){var o=t&&n[r]();return function(r){return t?o.next():n[r]}}(a,o),a,u)}}());
+	Object.defineProperty(Element.prototype,"dataset",{get:function(){for(var t=this.attributes,e={},r=0;r<t.length;r++){var n=t[r];if(n&&n.name&&/^data-\w[\w-]*$/.test(n.name)){var a=n.name,i=n.value,u=a.substr(5).replace(/-./g,function(t){return t.charAt(1).toUpperCase()});Object.defineProperty(e,u,{enumerable:!0,get:function(){return this.value}.bind({value:i||""}),set:function(t,e){void 0!==e?this.setAttribute(t,e):this.removeAttribute(t)}.bind(this,a)})}}return e}});
+
+	
+	Element.prototype.matches||(Element.prototype.matches=Element.prototype.msMatchesSelector||Element.prototype.webkitMatchesSelector);
+	Element.prototype.closest||(Element.prototype.closest=function(e){var t=this;do{if(Element.prototype.matches.call(t,e))return t;t=t.parentElement||t.parentNode}while(null!==t&&1===t.nodeType);return null});
+</script><script></script>
 
 </head>
 
 
 <body>
-<% String id = (String)session.getAttribute("id"); %>
+
 <div id="wrap" class="wrap wrap_home"> 
 
 <div class="header_wrap">
@@ -380,7 +393,7 @@ a.gnb_service_all:hover, a.gnb_service_all:visited, a.gnb_service_all:active, a.
 							<div class="search_area">
 								
 								<input role="combobox" type="text" name="query" onclick="nhn.Kin.Utility.nClicks('STA.search', '', '', event);return false;" class="search_input" accesskey="s" aria-haspopup="listbox" aria-expanded="false" aria-autocomplete="list" aria-controls="atcmpList" title="검색어 입력" maxlength="255" autocomplete="off" id="nx_query" value="">
-								<a href="#" class="search_auto">
+								<a href="#" class="search_auto"> <!-- 여기에 조건 걸어서 검색한 검색어 띄워주기 -->
 									<span class="sp_gnb icon_arrow" id="triangleBtn">자동완성 열기</span>
 								</a>
 								<div>
@@ -419,37 +432,76 @@ a.gnb_service_all:hover, a.gnb_service_all:visited, a.gnb_service_all:active, a.
 						</div>
 					</div>
 
-				
+					
 					<div class="gnb_common_area">
 						<div id="gnb" class="">
 						<strong class="blind">사용자 링크</strong>
-						<ul class="gnb_lst" id="gnb_lst" style="display: block;">
-							<%if (id != null){%>
+						
+						<ul class="gnb_lst" class="mymenu" style="display: block;">
+							<%if(id == "" || id == null) { %>
 							<li class="gnb_login_li" id="gnb_login_layer" style="display: inline-block;">
-								<a class="gnb_btn_login" href="/KG-naver/member/logout.jsp" id="gnb_logout_button">
-									<span class="gnb_bg"></span>
-									<span class="gnb_bdr"></span>
-									<span class="gnb_txt">로그아웃</span>
-								</a>
-							</li>
-							<%} else  {%>
-								<li class="gnb_login_li" id="gnb_login_layer" style="display: inline-block;">
-								<a class="gnb_btn_login" href="/KG-naver/member/loginForm.jsp" id="gnb_logout_button">
+								<a class="gnb_btn_login" href="/project_6/member/loginForm.jsp" id="gnb_login_button">
 									<span class="gnb_bg"></span>
 									<span class="gnb_bdr"></span>
 									<span class="gnb_txt">로그인</span>
 								</a>
 							</li>
-							<%} %>
 							<li class="gnb_reg_li" id="gnb_reg_layer" style="display: inline-block;">
-								<a class="gnb_btn_reg" href="/KG-naver/member/registForm.jsp" id="gnb_reg_button">
+								<a class="gnb_btn_reg" href="/project_6/member/agreeForm.jsp" id="gnb_reg_button">
 									<span class="gnb_bg2"></span>
 									<span class="gnb_bdr2"></span>
 									<span class="gnb_txt2">회원가입</span>
 								</a>
 							</li>
+							<%}else { %>
 						
+						<!-- 로그인 성공 시 보여주는 프로필 이미지와 닉네임	 -->
+						<li class="gnb_my_li" id="gnb_my_layer" style="display: inline-block;">
+							<div class="gnb_my_namebox" id="gnb_my_namebox">
+								<a href="javascript:;" class="gnb_my" onclick="gnbUserLayer.clickToggle(); return false;">
+								<!-- 이미지 경로 -->
+								<img id="gnb_profile_img" src="#" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAMAAAC5zwKfAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADNQTFRF8PDw5ubm+vr6+/v76enp+Pj47e3t5+fn9/f37Ozs9PT08vLy7+/v6urq9fX15OTk/f39pqwodgAAAQNJREFUeNrs11EOgyAMgOEWUAF19f6n3cMeplJHoSZbsv4H+DIWaCNsNwcGGmiggQZ+D/Q5reuasr8H9ID0CsHfALpA74JTgwPSPnRK0Ac6FrwOXOjcogIdlTkNuDDgogGRAVEBDsQ19IMzC879ILAgGNgAZhbMP3RttonxJs1Lgea/sDYcyreHXjW+oPUHVid2MWC1K+A0sqsDW7CksGmlCNZoFt9pIfjYgY8bwMMexUENQuOtqYCxfHtT7AddYodDcp0gIPEh9IBxous+nBuaTis4Nw/OSLVwloN+JEmjGJR5FyIDRpIWZeAoBkcZGMRgkIEkz0D7GjXQQAMN/GvwKcAAEGGHJh0mmaAAAAAASUVORK5CYII='" width="26" height="26" alt="내 프로필 이미지" style="display: inline-block;">
+								<span id="gnb_profile_filter_mask" class="filter_mask" style="display: inline-block;"></span> 
+								<%if(session.getAttribute("nickname") == null) {%>
+								<span class="gnb_name" id="gnb_name1"><%=session.getAttribute("id") %></span>
+								<%}else{ %>
+								<span class="gnb_name" id="gnb_name1"><%=session.getAttribute("nickname") %></span>
+								<%} %>
+								<em class="blind">내정보 보기</em>
+								<span class="ico_arrow"></span>
+								</a>
+								<a href="#" class="gnb_emp" id="gnb_emp" style="display: none;">(임직원혜택)</a>
+							</div>
+						<%-- <div class="gnb_my_lyr" id="gnb_my_lyr">
+							<div class="gnb_my_content">
+								<div class="gnb_img_area">
+									<span class="gnb_mask"></span>
+									<img src="https://phinf.pstatic.net/contact/20210722_202/1626965137370y8IiD_PNG/1385859094559.png?type=s160" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAMAAAC5zwKfAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADNQTFRF8PDw5ubm+vr6+/v76enp+Pj47e3t5+fn9/f37Ozs9PT08vLy7+/v6urq9fX15OTk/f39pqwodgAAAQNJREFUeNrs11EOgyAMgOEWUAF19f6n3cMeplJHoSZbsv4H+DIWaCNsNwcGGmiggQZ+D/Q5reuasr8H9ID0CsHfALpA74JTgwPSPnRK0Ac6FrwOXOjcogIdlTkNuDDgogGRAVEBDsQ19IMzC879ILAgGNgAZhbMP3RttonxJs1Lgea/sDYcyreHXjW+oPUHVid2MWC1K+A0sqsDW7CksGmlCNZoFt9pIfjYgY8bwMMexUENQuOtqYCxfHtT7AddYodDcp0gIPEh9IBxous+nBuaTis4Nw/OSLVwloN+JEmjGJR5FyIDRpIWZeAoBkcZGMRgkIEkz0D7GjXQQAMN/GvwKcAAEGGHJh0mmaAAAAAASUVORK5CYII='" width="80" height="80" alt="프로필 이미지">
+									<a href="https://nid.naver.com/user2/api/naverProfile?m=checkIdType" class="gnb_change">
+									<span class="blind">프로필 사진 변경</span>
+									</a>
+									</div>
+									<div class="gnb_txt_area">
+									<p class="gnb_account">
+									<span class="gnb_name" id="gnb_name2">
+									<a class="gnb_nick" href="https://nid.naver.com/user2/api/naverProfile?m=checkIdType">아몬드</a>님</span>
+									<a class="gnb_btn_login" href="https://nid.naver.com/nidlogin.logout?returl=https%3A%2F%2Fnid.naver.com%2Fnidlogin.logout" id="gnb_logout_button">
+									<span class="gnb_bg"></span>
+									<span class="gnb_bdr"></span>
+									<span class="gnb_txt">로그아웃</span>
+									</a>
+									</p>
+									<a href="https://mail.naver.com" class="gnb_mail_address"><%=session.getAttribute("email") %></a>
 						
+								</div>
+							</div>
+						</div> --%>
+						<ul class="submenu">
+							<!-- <li><a href="/project_6/main/profileForm.jsp"><img src="#">프로필</a></li> -->
+							<li><a href="/project_6/member/logout.jsp">로그아웃</a></li>
+						</ul>
+						</li>
+						<%} %>
 						</ul>
 						</div>
 					</div>
@@ -481,12 +533,12 @@ a.gnb_service_all:hover, a.gnb_service_all:visited, a.gnb_service_all:active, a.
 			<h3 class="blind">메인 메뉴</h3>
 			
 			<ul class="nav_list" id="au_lnb" role="menubar">
-				<li class="menu on" role="presentation">
-					<a href="/KG-naver/index.jsp" role="menuitem" class="item" id="au_lnb_home" tabindex="0" onclick="nhn.Kin.Utility.nClicks('LNB.home', '', '', event);" aria-current="page"><em>홈</em></a>
+				<li class="menu" role="presentation">
+					<a href="/project_6/main/main.jsp" role="menuitem" class="item" id="au_lnb_home" tabindex="0" onclick="nhn.Kin.Utility.nClicks('LNB.home', '', '', event);" aria-current="page"><em>홈</em></a>
 				</li>
 				<li class="menu" role="presentation">
 					
-					<a href="/KG-naver/question_list.jsp" role="menuitem" class="item" aria-haspopup="true" aria-expanded="false" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.qna', '', '', event);"><em>Q&amp;A</em></a>
+					<a href="/qna/list.naver" role="menuitem" class="item" aria-haspopup="true" aria-expanded="false" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.qna', '', '', event);"><em>Q&amp;A</em></a>
 					<ul class="nav_sub_list _lnbSubMenu" role="menu">
 						<li role="presentation" class="sub_menu"><a href="/qna/list.naver?dirId=11" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.kinlayer', '11', '1', event);">교육, 학문</a></li>
 						<li role="presentation" class="sub_menu"><a href="/qna/list.naver?dirId=1" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.kinlayer', '1', '2', event);">컴퓨터통신</a></li>
@@ -506,35 +558,39 @@ a.gnb_service_all:hover, a.gnb_service_all:visited, a.gnb_service_all:active, a.
 					</ul>
 				</li>
 				<li class="menu" role="presentation">
-					<a href="/KG-naver/question_list2.jsp" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.answer', '', '', event);"><em>답변하기</em></a>
+					<a href="#" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.answer', '', '', event);"><em>답변하기</em></a>
 				</li>
-
 				<li class="menu" role="presentation">
-					<a href="people/peopleMainForm.jsp" role="menuitem" tabindex="-1" class="item" id="peopleLnbBtn" onclick="nhn.Kin.Utility.nClicks('LNB.people', '', '', event);"><em>사람들</em></a>
+					<a href="#" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.donation', '', '', event);"><em>지식기부</em></a>
 				</li>
-				
+				<li class="menu" role="presentation">
+					<a href="#" role="menuitem" tabindex="-1" class="item" id="peopleLnbBtn" onclick="nhn.Kin.Utility.nClicks('LNB.people', '', '', event);"><em>사람들</em></a>
+				</li>
 				<li class="menu" role="presentation">
 					<a href="#" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.best', '', '', event);"><em>베스트</em></a>
 				</li>
 				<li class="menu" role="presentation">
-					<a href="/KG-naver/hall/index.jsp" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.honor', '', '', event);"><em>명예의전당</em></a>
+					<a href="/project_6/hall/index.jsp" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.honor', '', '', event);"><em>명예의전당</em></a>
 				</li>
 				<li class="menu" role="presentation">
 					<span class="lnb_bar">|</span>
-					<%if (id == null) {%>
-					<a href="/KG-naver/member/loginForm.jsp" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.profile', '', '', event);"><em>프로필</em></a>
-					<%} else { %>
-					<a href="/KG-naver/main/profile.jsp?id=<%=id %>" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.profile', '', '', event);"><em>프로필</em></a>
-					<%} %>
+					<a href="/project_6/main/profile.jsp" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.profile', '', '', event);"><em>프로필</em></a>
 				</li>
-
+				<li class="menu" role="presentation">
+					<a href="#" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.partner', '', '', event);"><em>파트너센터</em></a>
+				</li>
+				
+					<li class="menu" role="presentation">
+						<a href="#" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.roulette', '', '', event);"><em>룰렛</em></a>
+					</li>
+				
 				
 			</ul>
 			
 				
 				
 					
-					<a href="/KG-naver/board/write.jsp" class="nav__button_question _clickcode:LNB.q" role="button"><span class="btn_inner"><i class="sp_gnb icon_pencil"></i>질문하기</span></a>
+					<a href="#" class="nav__button_question _clickcode:LNB.q"role="button"><span class="btn_inner"><i class="sp_gnb icon_pencil"></i>질문하기</span></a>
 					
 				
 			

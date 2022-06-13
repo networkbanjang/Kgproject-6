@@ -10,9 +10,9 @@
 <html>
 <meta charset="UTF-8">
 <body>
+<%@include file="../header.jsp"%>
 <%
 	request.setCharacterEncoding("utf-8");
-	String id= "tmddud73";
 	
 	String saveFolder = "C:\\javas\\upload\\"+id;
 	File file = new File(saveFolder);

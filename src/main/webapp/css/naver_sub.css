@@ -34,3 +34,5 @@
 .question_delete{color:red; margin: 5px;}
 .question_demo{float: right; position: relative; right:85px;}
 .answer_reg{float:right; background-color: #A9D0F5; color: white; width:70px; height:32px; padding: 4px; padding-top:13px;text-align: center; margin: 5px;}
+.list_sel{width:800px; height: 190px; font-size: 14px; background-color: #EFFBF8; border: 1px solid; font-size:11px; table-layout: fixed;}
+.list_top{border-bottom: 1px solid rgba(222, 222, 222, .1); font-size: 16px; color: green; padding: 0px; background-color: #E0F8EC;margin: 0px; box-sizing: border-box;}

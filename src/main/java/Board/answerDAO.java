@@ -52,7 +52,7 @@ public class answerDAO {
 	}
 
 	public ArrayList<answerDTO> answer_list(int slave) {
-		String sql = "SELECT * FROM naver_answer where slave=?";
+		String sql = "SELECT * FROM naver_answer where slave=? order by recommend desc";
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		ArrayList<answerDTO> list = new ArrayList<>();
@@ -67,6 +67,7 @@ public class answerDAO {
 				answer.setContent(rs.getString("content"));
 				answer.setTime(rs.getString("time"));
 				answer.setPubl(rs.getString("publ"));
+				answer.setRecommend(rs.getInt("recommend"));
 				list.add(answer);
 
 			}
@@ -214,4 +215,24 @@ public class answerDAO {
 				}
 			}
 		}
+
+public void recommend(int bool,int num) {
+	String sql = "UPDATE naver_answer SET recommend=? WHERE num=?";
+	
+	PreparedStatement ps = null;
+	try {
+		ps = con.prepareStatement(sql);
+		ps.setInt(1, bool);
+		ps.setInt(2, num);
+		ps.executeUpdate();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}finally {
+		try {
+			if(ps != null) ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
+}
+}

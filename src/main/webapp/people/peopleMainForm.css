@@ -1,0 +1,239 @@
+ol {
+    display: block;
+    list-style-type: decimal;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+ul, li {
+    list-style: none;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+.category_kin_history {
+    overflow: hidden;
+    border-bottom: 1px solid #ccc;
+}
+.tab_module+.category_kin_history {
+    margin-top: 6px;
+}
+.category_kin_history .category_kin_year {
+    float: left;
+    padding-left: 6px;
+}
+.category_kin_year>li {
+    float: left;
+}
+.category_kin_year .category_kin_year__item {
+    display: block;
+    padding: 14px 19px 14px 20px;
+    font-size: 14px;
+    line-height: 1;
+    font-weight: bold;
+    font-family: Helvetica;
+    color: #444;
+    text-decoration: none;
+}
+.category_kin_year .category_kin_year__item:hover, .category_kin_year .category_kin_year__item.is_active {
+    color: #00c73c;
+}
+
+.category_dropdown {
+    position: relative;
+}
+.category_kin_top5 .category_dropdown {
+    margin-top: 23px;
+}
+.category_dropdown__menu {
+    display: inline-block;
+    padding: 11px 0;
+    font-size: 15px;
+    line-height: 1;
+    font-weight: bold;
+    color: #111;
+}
+
+strong {
+    font-weight: bold;
+}
+.category_dropdown__menu:after {
+    display: inline-block;
+    margin: 5px 0 0 10px;
+    width: 9px;
+    height: 5px;
+    vertical-align: top;
+    background: url(https://ssl.pstatic.net/static/kin/people/sp_category_kin.png) -26px -59px;
+    content: '';
+}
+.category_dropdown__list {
+    z-index: 100;
+    position: absolute;
+    box-sizing: border-box;
+    width: 145px;
+    padding: 5px 0;
+    border: 1px solid #8c8c8c;
+    background: #fff;
+}
+.category_dropdown__list.is_hidden {
+    display: none;
+}
+.category_dropdown__anchor {
+    display: block;
+    padding: 0 13px;
+    font-size: 12px;
+    line-height: 22px;
+    color: #444;
+}
+.category_kin_list:before {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    display: block;
+    width: 1px;
+    height: 100%;
+    background: #f2f2f2;
+    content: '';
+}
+ol {
+    display: block;
+    list-style-type: decimal;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+.category_kin_list {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #e3e3e3;
+}
+.category_kin_list__item {
+    float: left;
+    margin-bottom: -1px;
+    width: 359px;
+    height: 96px;
+    padding: 20px 20px 20px;
+    border-bottom: 1px solid #f2f2f2;
+}
+.category_kin_list__item:first-child, .category_kin_list__item:first-child+.category_kin_list__item {
+    margin-top: -1px;
+}
+.category_kin_list__thumbnail {
+    float: left;
+    position: relative;
+    overflow: hidden;
+    margin-right: 16px;
+    width: 94px;
+    height: 94px;
+    border: 1px solid #e9e9e9;
+    border-radius: 50%;
+}
+img[Attributes] {
+    width: 94px;
+    aspect-ratio: auto 94 / 94;
+    height: 94px;
+}
+img, fieldset, button {
+    border: 0;
+}
+.category_kin_list__thumbnail>img {
+    display: block;
+}
+.category_kin_list__usernick>strong {
+    overflow: hidden;
+    display: inline-block;
+    max-width: 195px;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: bold;
+    color: #111;
+    vertical-align: middle;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.category_kin_list__userlevel {
+    margin-left: 7px;
+    font-size: 13px;
+    line-height: 16px;
+    color: #3867e8;
+    vertical-align: middle;
+}
+.category_kin_list__category {
+    overflow: hidden;
+    display: block;
+    margin-top: 7px;
+    max-width: 240px;
+    font-size: 12px;
+    line-height: 14px;
+    color: #444;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.category_kin_list__category a {
+    color: #444;
+}
+.category_kin_list__stats {
+    margin-top: 7px;
+}
+.category_kin_list__stats .bar {
+    display: inline-block;
+    width: 1px;
+    height: 12px;
+    background: #d6d6d6;
+    margin: 0 8px;
+    vertical-align: middle;
+}
+.category_kin_list__status {
+    overflow: hidden;
+    margin-top: 10px;
+    font-size: 0;
+}
+.category_kin_list__progress_bar {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    margin-top: 4px;
+    width: 120px;
+    height: 4px;
+    border-radius: 1px;
+    background: #e5e7e9;
+    vertical-align: top;
+}
+.category_kin_list__status {
+    overflow: hidden;
+    margin-top: 10px;
+    font-size: 0;
+}
+.category_kin_list__progress_bar>span {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background: #31cb51;
+}
+.category_kin_list__progress_count {
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 11px;
+    color: #00c73c;
+    line-height: 13px;
+    vertical-align: middle;
+}
+.category_kin_list__number {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: bold;
+    font-family: Helvetica;
+    vertical-align: top;
+}

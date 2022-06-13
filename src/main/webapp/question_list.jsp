@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>네이버 지식IN</title>
 <link href="/KG-naver/css/naver_main.css" type="text/css"
@@ -83,6 +84,7 @@ ArrayList<answerDTO> a;
 </head>
 
 <body>
+
 	<%@ include file="header.jsp"%>
 
 	<div id="wrap" class="wrap wrap_qna_list">
@@ -221,7 +223,7 @@ ArrayList<answerDTO> a;
 
 													<strong><%=category%></strong>
 												</h5>
-
+			
 
 
 
@@ -261,6 +263,7 @@ ArrayList<answerDTO> a;
 
 													%>
 													<%=result %>
+													
 												
 </body>
 </html>

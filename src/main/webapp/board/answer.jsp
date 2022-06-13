@@ -28,16 +28,19 @@
 	href="/KG-naver/css/summernote/summernote-lite.css">
 
 
-<script>
 
-</script>
 </head>
 <body>
 	<%@include file="../header.jsp"%>
 <% String originalnum = request.getParameter("num") ;
 	int num=Integer.parseInt(originalnum);
 	BoardDAO boardDao = new BoardDAO();
-	BoardDTO board = boardDao.selectNum(num); %>
+	BoardDTO board = boardDao.selectNum(num); 
+	
+	if (board.getId().equals(id)){
+		out.print("	<script>alert('본인의 질문에 본인이 답변 할 수 없습니다.'); location.href='/KG-naver/index.jsp';</script>");
+	}
+	%>
 	<div class="qustion_sector">
 		<table class="question_table">
 			<tr>

@@ -1,0 +1,440 @@
+div {
+    display: block;
+}
+.container-fluid-content__right {
+    position: relative;
+    float: right;
+}
+.wrap_people .container-fluid-content__right {
+    width: 800px;
+}
+h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+h3.h_line {
+    margin-top: 20px;
+    margin-bottom: 25px;
+    padding-bottom: 3px;
+    background: url(https://ssl.pstatic.net/static/kin/09renewal/bg_h_line.gif) no-repeat left bottom;
+}
+h3 {
+    font-size: 1.17em;
+    font-weight: bold;
+}
+img[Attributes] {
+    width: 341px;
+    aspect-ratio: auto 341 / 17;
+    height: 17px;
+}
+.pro_answer .h_line img {
+    padding: 11px 0 12px 0;
+}
+.expert_profile {
+    clear: both;
+    width: 800px;
+    overflow: hidden;
+    padding-bottom: 24px;
+    border-top: 1px solid #ccc;
+    background: url(https://ssl.pstatic.net/static/kin/09renewal/bg_expert_profile.gif) bottom left no-repeat;
+    color: #000;
+}
+.expert_profile .profile_photo {
+    float: left;
+    width: 195px;
+}
+.expert_profile .photo_frame {
+    position: relative;
+    left: 51px;
+    top: 21px;
+    width: 123px;
+    padding: 7px 5px 10px 7px;
+    background: url(https://ssl.pstatic.net/static/kin/09renewal/bg_profile_photo.gif) top left no-repeat;
+}
+a {
+    color: #000;
+    text-decoration: none;
+}
+.expert_profile a {
+    color: #101010;
+}
+.expert_profile .mark_taxacc {
+    position: relative;
+    left: 20px;
+    top: -118px;
+    width: 68px;
+    height: 68px;
+    background: url(https://ssl.pstatic.net/static/kin/09renewal/bg_bestmark_taxacc.png) no-repeat;
+}
+
+.expert_profile .profile_text {
+    float: left;
+    width: 544px;
+    padding: 21px 39px 20px 21px;
+}
+
+.expert_profile .profile_name {
+    float: left;
+    width: 420px;
+    padding: 8px 0 4px 0;
+}
+.expert_profile .profile_text h5 {
+    display: inline;
+    padding-right: 6px;
+    font-size: 18px;
+    line-height: 20px;
+    letter-spacing: -1px;
+}
+.expert_profile a {
+    color: #101010;
+}
+.expert_profile .profile_text h5 span {
+    margin: 0 3px 0 5px;
+    font-weight: normal;
+    font-size: 14px;
+    color: #909090;
+}
+.expert_profile .profile_text h6 {
+    display: inline;
+    font-size: 12px;
+    font-weight: normal;
+}
+.expert_profile .profile_text .profile_info {
+    padding: 6px 0 4px;
+}
+.expert_profile .profile_logo {
+    float: right;
+    height: 29px;
+    margin-top: 4px;
+}
+.expert_profile a {
+    color: #101010;
+}
+.blind, legend {
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    clip: rect(0 0 0 0);
+}
+.expert_profile ul {
+    clear: both;
+    border-top: 1px solid #ededed;
+    margin-top: 18px;
+    padding-top: 20px;
+    height: 30px;
+    *zoom: 1;
+}
+.expert_profile li {
+    float: left;
+    margin-right: 9px;
+    height: 16px;
+}
+.expert_profile li img {
+    position: relative;
+    top: -2px;
+    display: block;
+    float: left;
+    background: url(https://ssl.pstatic.net/static/kin/09renewal/bg_sprite_num.gif) no-repeat;
+    padding-top: 2px;
+    height: 16px;
+    text-indent: -10000px;
+}
+.expert_profile li .tit {
+    height: 13px;
+    margin-top: 2px;
+    background: 0;
+    text-indent: 0;
+}
+.expert_profile li {
+    float: left;
+    margin-right: 9px;
+    height: 16px;
+}
+.expert_profile li.beforesep {
+    padding-right: 15px;
+    border-right: 1px solid #eaeaea;
+}
+.expert_profile ul:after {
+    display: block;
+    clear: both;
+    content: " ";
+}
+.expert_profile .num1 {
+    top: 0;
+    width: 11px;
+    background-position: -200px 0;
+}
+.expert_profile .num3 {
+    top: 0;
+    width: 11px;
+    background-position: -200px -40px;
+}
+.expert_profile .num2 {
+    top: 0; 
+    width: 11px;
+    background-position: -200px -20px;
+}
+.expert_profile .num6 {
+    top: 0;
+    width: 11px;
+    background-position: -200px -100px;
+}
+.expert_profile .num_comma {
+    top: 0;
+    background-position: -200px -200px;
+    width: 6px;
+} 
+.expert_profile .num4 {
+    top: 0;
+    width: 11px;
+    background-position: -200px -60px;
+}
+.expert_profile .num5 {
+    top: 0;
+    width: 11px; 
+    background-position: -200px -80px;
+}
+.expert_profile .num7 {  
+    top: 0;
+    width: 11px;
+    background-position: -200px -120px;
+}
+.expert_profile .num8 {
+    top: 0;
+    width: 11px;
+    background-position: -200px -140px;
+}
+.expert_profile .num9 {
+    top: 0;
+    width: 11px;
+    background-position: -200px -160px;
+}
+.expert_profile .num0 {
+    top: 0;
+    width: 11px;
+    background-position: -200px -180px;
+}
+.expert_profile dl {
+    clear: both;
+}
+
+.expert_profile dl dt {
+    letter-spacing: -1px;
+}
+.expert_profile dt {
+    padding: 11px 0 0 20px;
+    background: url(https://ssl.pstatic.net/static/kin/09renewal/bg_sprite_qna_170227.png) 0 -289px no-repeat;
+    font-weight: bold;
+    font-size: 13px;
+    height: 16px;
+}
+.expert_profile dl dt a {
+    color: #303030;
+}
+.expert_profile dt span {
+    margin-left: 10px;
+    color: #838383;
+    font-size: 11px;
+    font-weight: normal;
+    font-family: Tahoma,sans-serif;
+    letter-spacing: 0;
+}
+.expert_profile dd {
+    padding: 8px 0 0 20px;
+    background: url(https://ssl.pstatic.net/static/kin/09renewal/bg_sprite_qna_170227.png) 0 -340px no-repeat;
+    font-size: 12px;
+    line-height: 18px;
+}
+.expert_profile dl dd a {
+    color: #4e4e4e;
+}
+.kinexpert2 {
+    position: relative;
+}
+.kinexpert2 .exp_tab {
+    height: 35px;
+    border-bottom: 1px solid #626262;
+    zoom: 1;
+}
+.kinexpert2 .exp_tab li {
+    float: left;
+    position: relative;
+    top: 1px;
+    height: 33px;
+    background: url(https://ssl.pstatic.net/static/kin/09renewal/bg_exp_tab.gif) repeat-x;
+    border: 1px solid #484848;
+}
+.kinexpert2 .exp_tab li a {
+    display: block;
+    padding: 10px 16px;
+    font-weight: bold;
+    color: #fff;
+}
+.kinexpert2 .exp_tab li.on {
+    background-position: 0 -33px;
+    border-color: #2597ac;
+}
+.kinexpert2 .info {
+    overflow: hidden;
+    position: absolute;
+    top: 9px;
+    right: -9px;
+    height: 17px;
+}
+.kinexpert2 .info li {
+    float: left;
+}
+.kinexpert2 .info li a {
+    padding: 0 9px;
+    border-left: 1px solid #d5d5d5;
+    font-size: 11px;
+    line-height: 17px;
+    color: #2c2c2c;
+}
+.kinexpert2 .info li.first {
+    padding-left: 11px;
+    background: url(https://ssl.pstatic.net/static/kin/09renewal/bg_exp_info.gif) no-repeat;
+}
+.pro_listbox {
+    padding: 51px 39px 2px 39px;
+    background: url(https://ssl.pstatic.net/static/kin/09renewal/bg_pro_list_top.gif) -1px top no-repeat;
+    border-right: 1px solid #e6e6e6;
+    border-left: 1px solid #e6e6e6;
+}
+.pro_listbox .list_options {
+    overflow: hidden;
+    background-color: white;
+    height: 14px;
+}
+.medical_list_order {
+    margin-right: -9px;
+}
+.pro_listbox .medical_list_order {
+    float: right;
+}
+.medical_list_order li {
+    float: left;
+    padding: 0 9px 0 2px;
+    background: url(https://ssl.pstatic.net/static/kin/09renewal/bg_order_seperator.gif) right 2px no-repeat;
+}
+.medical_list_order li a {
+    display: inline-block;
+    color: #989898;
+    font-size: 11px;
+    letter-spacing: -1px;
+    background: url(https://ssl.pstatic.net/static/kin/09renewal/bg_sprite_ico_171013.png) right -1314px no-repeat;
+    padding: 0 9px 0 5px;
+}
+.medical_list_order li.on a {
+    color: #101010; 
+    background: url(https://ssl.pstatic.net/static/kin/09renewal/bg_sprite_ico_171013.png) right -1854px no-repeat;
+}
+.pro_listbox .list_summary {
+    clear: both;
+    margin-top: 13px;
+    padding-top: 18px;
+    border-top: 1px solid #eaeaea;
+    color: #101010;
+    font-size: 12px;
+}
+.pro_listbox .list_summary strong {
+    color: #138400;
+}
+.pro_list {
+    color: #101010;
+    width: 720px;
+    margin-top: 29px;
+}
+.pro_list li {
+    float: left;
+    width: 361px;
+    padding-top: 36px;
+    margin-bottom: 30px;
+    background: url(https://ssl.pstatic.net/static/kin/09renewal/bg_pro_list_shadow.gif) left top no-repeat;
+}
+.pro_list dl dt {
+    float: left;
+    margin-top: 0;
+    padding-right: 19px;
+    margin-left: -1px;
+}
+.pro_list li.even {
+    padding-left: 39px;
+    width: 320px;
+    background-position: -360px 0;
+}
+.pro_list li.even dl dd {
+    width: 187px;
+    padding-right: 0;
+    border: 0;
+}
+.pro_list dl dd {
+    float: left;
+    width: 194px;
+    padding: 6px 33px 0 0;
+    border-right: 1px solid #eaeaea;
+}
+.pro_list dl dd h5 {
+    padding-right: 5px;
+    font-size: 16px;
+    line-height: 20px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.pro_list dl dd h6 {
+    margin-top: 3px;
+    font-size: 12px;
+    font-weight: normal;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.pro_list a {
+    color: #101010;
+}
+.pro_list dl dd .ext {
+    margin: 4px 0 0;
+}
+.pro_list dl dd .ext a {
+    margin-right: 4px;
+}
+.pro_list dl dd table {
+    margin-left: -1px;
+    margin-top: 8px;
+    clear: both;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+.pro_list dl dd th {
+    width: 55px;
+    background: url(https://ssl.pstatic.net/static/kin/09renewal/bg_label_seperator.gif) right 2px no-repeat;
+    color: #7a7a7a;
+    font-weight: normal;
+    text-align: left;
+}
+.pro_list dl dd td {
+    padding-left: 7px;
+}
+.pro_list dl dd em {
+    font-weight: bold;
+    text-decoration: none;
+}
+.pro_list dl dd div {
+    margin-left: 1px;
+    margin-top: 10px;
+}

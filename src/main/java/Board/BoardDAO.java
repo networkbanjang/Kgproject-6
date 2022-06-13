@@ -73,6 +73,7 @@ public class BoardDAO {
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				BoardDTO board = new BoardDTO();
+				board.setId(rs.getString("id"));
 				board.setNum(rs.getInt("num"));
 				board.setTitle(rs.getString("title"));
 
@@ -261,8 +262,8 @@ public class BoardDAO {
 		}
 		return list;
 	}
-	
-	public ArrayList<BoardDTO> listselect(String category, int begin, int end,String search) {
+
+	public ArrayList<BoardDTO> listselect(String category, int begin, int end, String search) {
 		String sql = "select * from (select rownum rn, B.* from (select A.* from "
 				+ "(select * from naver_view where category= ? ORDER BY num desc)A where title like ?)B)where rn between ? and ?";
 		PreparedStatement ps = null;
@@ -271,7 +272,7 @@ public class BoardDAO {
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, category);
-			ps.setString(2, "%"+search+"%");
+			ps.setString(2, "%" + search + "%");
 			ps.setInt(3, begin);
 			ps.setInt(4, end);
 			rs = ps.executeQuery();
@@ -354,7 +355,8 @@ public class BoardDAO {
 		}
 		return cnt;
 	}
-	public int count(String category,String search) {
+
+	public int count(String category, String search) {
 		String sql = "select count(*) as cnt from (SELECT * FROM naver_view where category=?) where title like ?";
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -362,7 +364,7 @@ public class BoardDAO {
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, category);
-			ps.setString(2, "%"+search+"%");		
+			ps.setString(2, "%" + search + "%");
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
@@ -391,7 +393,7 @@ public class BoardDAO {
 		int cnt = 0;
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setString(1, "%"+search+"%");		
+			ps.setString(1, "%" + search + "%");
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				cnt = rs.getInt("cnt");
@@ -410,6 +412,7 @@ public class BoardDAO {
 		}
 		return cnt;
 	}
+
 	public void delete(int num) {
 
 		String sql = "delete from(select A.* from  (select * from naver_answer where slave=?)A inner join (reply) B on a.num = b.slave)";
@@ -461,9 +464,10 @@ public class BoardDAO {
 				e.printStackTrace();
 			}
 		}
-		
+
 	}
-	public ArrayList<BoardDTO> listAll(int begin, int end ,String search) {
+
+	public ArrayList<BoardDTO> listAll(int begin, int end, String search) {
 		String sql = "select B.* from(select rownum rn,A.* from (SELECT * FROM naver_view WHERE title like ? ORDER BY num DESC)A)B where rn between ? and ?";
 
 		PreparedStatement ps = null;
@@ -472,7 +476,7 @@ public class BoardDAO {
 		ArrayList<BoardDTO> list = new ArrayList<>();
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setString(1,"%"+search+"%");
+			ps.setString(1, "%" + search + "%");
 			ps.setInt(2, begin);
 			ps.setInt(3, end);
 			rs = ps.executeQuery();
@@ -501,10 +505,10 @@ public class BoardDAO {
 		return list;
 
 	}
-	
+
 	public void modify(BoardDTO board) {
 		String sql = "UPDATE naver_view SET content=?, title=? WHERE num=?";
-		
+
 		PreparedStatement ps = null;
 		try {
 			ps = con.prepareStatement(sql);
@@ -514,12 +518,83 @@ public class BoardDAO {
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
-				if(ps != null) ps.close();
+				if (ps != null)
+					ps.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public ArrayList<BoardDTO> keyword(String keyword,int begin,int end) {
+		String sql = "SELECT B.* FROM (SELECT rownum rn, A.* FROM (SELECT * FROM  naver_view where content like ?)A)B WHERE rn BETWEEN ? and ?";
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<BoardDTO> key = new ArrayList<>();
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, "%" + keyword + "%");
+			ps.setInt(2, begin);
+			ps.setInt(3, end);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				BoardDTO board = new BoardDTO();
+				board.setId(rs.getString("id"));
+				board.setContent(rs.getString("content"));
+				board.setTitle(rs.getString("title"));
+				board.setCategory(rs.getString("category"));
+				board.setPoint(rs.getInt("point"));
+				board.setMinor_v(rs.getString("minor_v"));
+				board.setMinor_an(rs.getString("minor_an"));
+				board.setHit(rs.getInt("hit"));
+				board.setNick(rs.getString("nick"));
+				board.setTime(rs.getString("time"));
+				board.setNum(rs.getInt("num"));
+				key.add(board);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return key;
+	}
+	public int keyowrdcount(String keyword) {
+		String sql = "SELECT count(*) as cnt FROM naver_view where content like ?";
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int cnt = 0;
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, "%"+keyword+"%");
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				cnt = rs.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return cnt;
 	}
 }
