@@ -1,24 +1,116 @@
-<%@page import="member.MemberDTO"%>
-<%@page import="member.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	String id = (String)session.getAttribute("id");
-	MemberDAO memberDao_1 = new MemberDAO();
-	MemberDTO member_1 = memberDao_1.selectId(id);
-%>
-<link href="/project_6/images/tab_icon.png" rel="icon" type="image/x-icon" />
 <html lang="ko">
 <head>
-<link rel="stylesheet" type="text/css" href="https://ssl.pstatic.net/static.kin/static/pc/20220511141354/css/min/common.css">
-<link rel="stylesheet" type="text/css" href="https://ssl.pstatic.net/static.kin/static/pc/20220511141354/css/min/components.css">
-<link rel="stylesheet" type="text/css" href="https://ssl.pstatic.net/static.kin/static/pc/20220511141354/css/min/other.css">
-<link rel="stylesheet" type="text/css" href="https://ssl.pstatic.net/static.kin/static/pc/20220511141354/css/min/main.css">
-<link rel="stylesheet" type="text/css" href="https://ssl.pstatic.net/static.kin/static/pc/20220511141354/css/min/c3p.datalab.theme.css">
+<title>비밀번호 찾기 : 네이버</title>
 
+<link rel="stylesheet" type="text/css" href="/KG-naver/css/find/help_inquiry.css">
+<link href="https://nid.naver.com/favicon_1024.png" rel="apple-touch-icon-precomposed" sizes="1024x1024"> 
+<link rel="stylesheet" type="text/css" href="/KG-naver/css/find/non_sign.css">
+<link rel="stylesheet" type="text/css" href="/KG-naver/css/find/header_footer.css">
+<script type="text/javascript" src="/inc/user/js/idPwInquiryAjax.js?20140106"></script>
+<script type="text/javascript" src="https://nid.naver.com/js/clickcr.js"></script>
+<script type="text/javascript" src="https://nid.naver.com/inc/common/js/commonUtil.js?20170214"></script>
+<script type="text/javascript" src="https://nid.naver.com/inc/common/js/authUi.js?20130321"></script>
+<script type="text/javascript" src="/inc/common/js/lcs_nclicks.js?r=20220411"></script>
+<script type="text/javascript" src="https://nid.naver.com/inc/user/js/browser.js?20220411"></script>
+<script type="text/javascript" src="https://nid.naver.com/inc/common/js/lua.js?r=20220411"></script>
+<script type="text/JavaScript">
+var gnb_option = { 
+	gnb_service : "nid", 
+	gnb_template : "gnb_utf8", 
+	gnb_logout : encodeURIComponent("https://nid.naver.com/user2/help/idInquiry"),
+	gnb_brightness : 2, 
+	gnb_item_hide_option : 0  
+}
 
+lcs_do();
 
-<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.2">
+function gnbClose(){
+    $('#wrap').click(function(e){
+        if( !$('#gnb').has(e.target).length ){
+            gnbAllLayerClose();
+        }
+    });
+} 
+//120919 win8 이슈 대응 : capslock 자동설정해제
+document.msCapsLockWarningOff = true;
+function setContainerHeight(height) {}
+function showMenu(obj, obj2){
+	document.getElementById(obj).className = "on";
+	document.getElementById(obj2).className = "";
+}
+
+var menuList = "idinquiry pwinquiry ";
+function hideMenu(obj){
+	var otherMenu = menuList.split(" ");
+	for (var i = 0; i < otherMenu.length - 1; i++) {
+		document.getElementById(otherMenu[i]).className = "";
+	}
+	
+	document.getElementById(obj).className = "on";
+}
+function goPage(obj, obj2){
+	var url = "https://nid.naver.com/user2/help/" + obj + "?menu=" + obj2;
+	location.href = url;
+}
+
+function clearDocs(){}
+</script>
+<style type="text/css">
+/* GNB Common */
+body,p,h1,h2,h3,h4,h5,h6,menu,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-family:'돋움',Dotum,AppleGothic,sans-serif;font-size:12px}
+img,fieldset{border:0}
+menu,ul,ol{list-style:none}
+em,address{font-style:normal}
+a{text-decoration:none}
+a:hover,a:active,a:focus{text-decoration:underline}
+button{cursor:pointer}
+button.disabled{cursor:default}
+.blind{display:block;overflow:hidden;*position:absolute;top:0;left:0;width:0;height:0;border:0;background:none;font-size:0;line-height:0}
+#gnb{float:right;right:3px} 
+</style> 
+<meta name="decorator" content="USER_INQUIRY">
+<script type="text/javascript" src="https://nid.naver.com/inc/user/js/soundCaptcha.js?20220411"></script>
+<script type="text/javascript">
+//<![CDATA[
+//nClicks 전역변수
+ var nsc = "my.pwinqury";
+ var ccsrv = "cc.naver.com";
+ //]]>
+ 
+<!--
+function mainSubmit() {
+	id = document.getElementById("userId").value;
+	if(id == "" || id.length < 3){
+		alert("아이디를 정확하게 입력해 주세요");
+		document.getElementById("userId").focus();
+		return false;
+	}
+	document.fm.submit();
+}
+
+function idInquiry(){
+	document.location.href="https://nid.naver.com/user2/help/idInquiry?menu=idinquiry";
+}
+
+function convertDiv(obj, obj2, obj3, stat){
+	e = document.getElementById(obj2);
+	if(stat == "none"){
+		document.getElementById(obj).style.display="none";
+		if(e.className.indexOf(" focus") == -1) {
+			e.className = e.className + " focus";
+		}
+	}else{
+		e.className = e.className.replace(" focus", "");
+		if(document.getElementById(obj3).value == ""){
+			document.getElementById(obj).style.display = "";
+		}
+	}
+}
+-->
+</script>
 <style id="gnb_style" type="text/css">@charset "UTF-8";
 /* NTS UIT Development Office YJH 140717 */
 a.gnb_my, .gnb_icon, #gnb .gnb_my_interface, .gnb_my_li .gnb_my_content .gnb_membership, #gnb .gnb_my_membership, #gnb .gnb_ico_num .gnb_ico_new, #gnb .gnb_ico_num .gnb_ico_new .gnb_count, .gnb_lst .ico_arrow, a.gnb_my .filter_mask, .gnb_my_lyr, .gnb_my_li .gnb_my_content .gnb_mask, .gnb_my_li .gnb_my_content .gnb_change, .gnb_my_li .gnb_my_content .gnb_edit_lst li, .gnb_my_li .gnb_my_content .gnb_pay_check em, #gnb .gnb_my_li .gnb_my_community a.gnb_pay span, .gnb_notice_li .gnb_notice_lyr, .gnb_notice_li .svc_list .gnb_ico_mail, .gnb_notice_li .svc_list .gnb_btn_remove span, .gnb_notice_li .svc_list .gnb_btn_remove i, .gnb_notice_li .gnb_error .gnb_ico_error, .gnb_ly_alert .gnb_btn_close i, .gnb_first_visit, .gnb_search_box, .gnb_search_box .gnb_del_txt, .gnb_svc_more .gnb_svc_lstwrp li.gnb_event em.ic_gnb_new, .gnb_svc_more .svc_btnwrp button { background: url(https://ssl.pstatic.net/static/common/gnb/one/sp_gnb_v14.png) no-repeat -999px -999px;		background: url(https://ssl.pstatic.net/static/common/gnb/one/sp_gnb_v15.png?v=2006) no-repeat -999px -999px; /* background: url(../img/sp_gnb_v15.png) no-repeat -999px -999px; */}
@@ -53,19 +145,12 @@ a.gnb_my, .gnb_icon{position:relative}
 .gnb_lst .ico_arrow{display:none;position:absolute;left:50%;top:27px;width:10px;height:8px;margin-left:-5px;background-position:-175px -10px}
 .gnb_lyr_opened .gnb_my_lyr, .gnb_lyr_opened .gnb_service_lyr, .gnb_lyr_opened .gnb_notice_lyr, .gnb_lyr_opened .ico_arrow{display:block !important}
 .gnb_login_li{height:23px;padding:5px 7px 0 0}
-.gnb_reg_li{height:23px;padding:5px 7px 0 0}
 .gnb_btn_login, .gnb_bg, .gnb_bdr{display:inline-block;width:46px;height:20px;font-size:12px}
-.gnb_btn_reg, .gnb_bg2, .gnb_bdr2{display:inline-block;width:46px;height:20px;font-size:12px}
-.gnb_btn_login {position:relative}
-.gnb_btn_reg {position:relative}
+.gnb_btn_login{position:relative}
 .gnb_bg{background-color: #fff;opacity: 0.05;filter: alpha(opacity=5);}
-.gnb_bg2{background-color: #fff;opacity: 0.05;filter: alpha(opacity=5);}
 .gnb_bdr{position:absolute;top: -1px;left: -1px;width: 46px;height: 20px;border: 1px solid #000;opacity: 0.12;filter: alpha(opacity=12);}
-.gnb_bdr2{position:absolute;top: -1px;left: -3px;width: 55px;height: 20px;border: 1px solid #000;opacity: 0.12;filter: alpha(opacity=12);}
 .gnb_txt{position:absolute;top:0;left:0;width:45px;height:20px;padding-left:1px;line-height:21px;color:#666;text-align:center}
-.gnb_txt2{position:absolute;top:0;left:0;width:48px;height:20px;padding-left:1px;line-height:21px;color:#666;text-align:center}
 .gnb_btn_login:hover{text-decoration:none !important}
-.gnb_btn_reg:hover{text-decoration:none !important}
 .gnb_account .gnb_btn_login{width:54px;margin:-1px 0 0 8px;vertical-align:top}
 .gnb_account a.gnb_btn_login .gnb_txt {padding-left: 0;}
 .gnb_account .gnb_bdr{width:52px}
@@ -351,208 +436,141 @@ a.gnb_service_all:hover, a.gnb_service_all:visited, a.gnb_service_all:active, a.
 #gnb.gnb_one_flat .gnb_notice_li a.gnb_notice .gnb_icon,
 #gnb.gnb_one_flat .gnb_notice_li a.gnb_notice:hover .gnb_icon {background-image: url(https://ssl.pstatic.net/static/common/gnb/one/sp_gnb_4b16e6.png);background-position: -84px 0px;background-repeat: no-repeat;width: 16px;height: 18px;vertical-align: top;margin: 0 1px;}
 #gnb.gnb_one_flat .gnb_my_li .gnb_my .gnb_name,
-#gnb.gnb_one_flat .gnb_login_li .gnb_btn_login .gnb_txt {color: #666;}
-
-.mymenu > li:hover .submenu { height:250px; transition-duration:1s; }
-</style>
-
-<script src="https://ssl.pstatic.net/static.gn/js/clickcrD.js" id="gnb_clickcrD" charset="utf-8"></script>
-<script type="text/javascript" src="https://ssl.pstatic.net/static.kin/static/kin-web-pc/20220511163235/js/min/message/MessageManager.js"></script>
-
-
-</head>
-
-
-<body>
-
-<div id="wrap" class="wrap wrap_home"> 
-
-<div class="header_wrap">
-
-	
-	<div class="header_gnb">
-		<div class="header_gnb_inner">
-			<div class="header_gnb__cell">
-				<h1 class="header_logo">
-					<a class="logo_naver" href="http://www.naver.com" title="나의 경쟁력, 네이버" onclick="nhn.Kin.Utility.nClicks('STA.naverlogo', '', '', event);"><span class="logo_kin sp_common">NAVER</span></a>
-				</h1>
-				<div class="header_search">
-					<h2 class="logo_wrap">
-						<a href="/KG-naver/index.jsp" class="sp_gnb icon_logo_kin">지식iN</a>
-						
-					</h2>
-					<h3 class="blind">검색영역</h3>
-					<form name="topSearch" id="topSearch" method="get"  action="/KG-naver/search/list.jsp">
-						<fieldset>
-							<legend>지식인 검색</legend>
-							<div class="search_area">
-								
-								<input type="text" name="keyword" class="search_input" accesskey="s" aria-haspopup="listbox" aria-expanded="false" aria-autocomplete="list" aria-controls="atcmpList" title="검색어 입력" maxlength="255" autocomplete="off" >
-								<div>
-									<iframe id="autoFrame" class="auto_complete_box" title="검색어 자동완성" frameborder="0" width="290" height="193px" marginwidth="0" marginheight="0" scrolling="no" src="/static/reatcmp.html?v=4.1" style="display: none;"></iframe>
-								</div>
-								<a href="/KG-naver/search/list.jsp"  class="search_btn"><span class="sp_gnb icon_search"><span class="sp_gnb icon_search"><input type="image" src="/KG-naver/images/searchicon.png"></span></span></a>
-							</div>
-						</fieldset>
-					</form>
-				</div>
-			</div>
-			<div class="header_gnb__cell">
-				<div class="gnb_wrap">
-					<div class="gnb_eXpertLogo">
-						<a href="https://expert.naver.com" target="_blank" id="bannerLink" class="link" aria-haspopup="true" aria-expanded="true" aria-controls="bannerExpert">
-							<span class="logo"><span class="blind">eXpert</span></span>
-						</a>
-					</div>
-
-					
-					<div class="gnb_chat _chatButtonArea">
-						<button id="chatButton" type="button" class="button_chat" aria-haspopup="true" aria-expanded="false" aria-pressed="false" aria-controls="chatMenu">
-							<span class="blind">상담 목록</span>
-							<span class="icon_chat"></span>
-							<i class="icon_new" style="display: none"><span class="blind">NEW</span></i>
-						</button>
-						<div role="menu" id="chatMenu" class="chat_popup" aria-hidden="true">
-							<a href="/expert/center/counseling/list" role="menuitem" class="link_chat" target="_blank">
-								판매한 상품
-								<i class="_counselorNewIcon icon_new" style="display: none"><span class="blind">NEW</span></i>
-							</a>
-							<a href="/counseling/purchases" role="menuitem" class="link_chat" target="_blank">
-								구매한 상품
-								<i class="_counseleeNewIcon icon_new" style="display: none"><span class="blind">NEW</span></i>
-							</a>
-						</div>
-					</div>
-
-					
-					<div class="gnb_common_area">
-						<div id="gnb" class="">
-						<strong class="blind">사용자 링크</strong>
-						
-						<ul class="gnb_lst" class="mymenu" style="display: block;">
-							<%if(id == "" || id == null) { %>
-							<li class="gnb_login_li" id="gnb_login_layer" style="display: inline-block;">
-								<a class="gnb_btn_login" href="/KG-naver/member/loginForm.jsp" id="gnb_login_button">
-									<span class="gnb_bg"></span>
-									<span class="gnb_bdr"></span>
-									<span class="gnb_txt">로그인</span>
-								</a>
-							</li>
-							<li class="gnb_reg_li" id="gnb_reg_layer" style="display: inline-block;">
-								<a class="gnb_btn_reg" href="/KG-naver/member/agreeForm.jsp" id="gnb_reg_button">
-									<span class="gnb_bg2"></span>
-									<span class="gnb_bdr2"></span>
-									<span class="gnb_txt2">회원가입</span>
-								</a>
-							</li>
-							<%}else { %>
-						
-						<!-- 로그인 성공 시 보여주는 프로필 이미지와 닉네임	 -->
-						<li class="gnb_my_li" id="gnb_my_layer" style="display: inline-block;">
-							<div class="gnb_my_namebox" id="gnb_my_namebox">
-								<a href="javascript:;" class="gnb_my" onclick="gnbUserLayer.clickToggle(); return false;">
-								<!-- 이미지 경로 -->
-								<!-- 회원 기본 이미지 설정하기 -->
-								<%if (member_1.getPic() != null){ %>
-								<img src="/KG-naver/up/<%=id %>/<%=member_1.getPic() %>" width="26" height="26" alt="내 프로필 이미지" style="display: inline-block;">
-								<%} else{%>
-								<img src="/KG-naver/images/default.png" width="26" height="26" alt="내 프로필 이미지" style="display: inline-block;">
-								<%} %>
-								<span id="gnb_profile_filter_mask" class="filter_mask" style="display: inline-block;"></span> 
-								<%if(session.getAttribute("nickname") == null) {%>
-								<span class="gnb_name" id="gnb_name1"><%=session.getAttribute("id") %></span>
-								<%}else{ %>
-								<span class="gnb_name" id="gnb_name1"><%=session.getAttribute("nickname") %></span>
-								<%} %>
-								<em class="blind">내정보 보기</em>
-								<span class="ico_arrow"></span>
-								</a>
-								<a href="#" class="gnb_emp" id="gnb_emp" style="display: none;">(임직원혜택)</a>
-							</div>
-						</li>
-						<li class="gnb_reg_li" id="gnb_reg_layer" style="display: inline-block;">
-								<a class="gnb_btn_reg" href="/KG-naver/member/logout.jsp" id="gnb_reg_button">
-									<span class="gnb_bg2"></span>
-									<span class="gnb_bdr2"></span>
-									<span class="gnb_txt2">로그아웃</span>
-								</a>
-						</li>
-						<%} %>
-						</ul>
-						</div>
-					</div>
-					
-				</div>
-
-				
-					<div class="header__rolling rolling-notice">
-						<i class="icon_speaker"><span class="blind">실시간 공지사항</span></i>
-						<ul id="listNotice" class="rolling-notice__list _rolling_banner">
-							
-								<li class="rolling-notice__item _rollingItem" data-start-time="2021-10-26 00:00:00" style="display: list-item;">
-									<a href="https://expert.naver.com/expert/introduction?tab=guide#join" class="rolling-notice__link" onclick="nhn.Kin.Utility.nClicks('STA.event', '', '', event);">
-										<i class="icon_new_red _newMark" style="display:none;"><span class="blind">새소식</span></i>
-											<span class="text-color--secondary">전문가라면 엑스퍼트로 모십니다.</span>
-									</a>
-								</li>
-							
-						</ul>
-					</div>
-				
+#gnb.gnb_one_flat .gnb_login_li .gnb_btn_login .gnb_txt {color: #666;}</style><script src="https://ssl.pstatic.net/static.gn/js/clickcrD.js" id="gnb_clickcrD" charset="utf-8"></script></head>
+<body onclick="clearDocs();gnbClose();">
+<div id="wrap" class="wrap_leave">
+	<!-- 스킵네비게이션 : 웹접근성대응-->
+	<div id="u_skip">
+		<!-- [D] 주메뉴가 존재하는 페이지에 적용 -->
+		<a href="#lnb" onclick="document.getElementById('lnb').tabIndex=-1;document.getElementById('lnb').focus();return false;"><span>주메뉴로 바로가기</span></a>
+		<a href="#content" onclick="document.getElementById('content').tabIndex=-1;document.getElementById('content').focus();return false;"><span>본문으로 바로가기</span></a>
+	</div>
+	<!-- //스킵네비게이션 -->
+	<div id="header" class="header_type2">
+		<div class="top">
+			<h1> <a href="http://www.naver.com" onclick="clickcr(this,'STA.naver','','',event)" class="logo"><span class="blind">NAVER</span></a> <a href="#" class="logo_sub"><span class="blind">내정보</span></a></h1>
+			<div id="gnb" class="gnb_dark"><strong class="blind">사용자 링크</strong><ul class="gnb_lst" id="gnb_lst" style="display: block;"><li class="gnb_login_li" id="gnb_login_layer" style="display: inline-block;"><a class="gnb_btn_login" href="/KG-naver/member/loginForm.jsp" id="gnb_login_button"><span class="gnb_bg"></span><span class="gnb_bdr"></span><span class="gnb_txt">로그인</span></a></li><li class="gnb_my_li" id="gnb_my_layer" style="display:none"><div class="gnb_my_namebox" id="gnb_my_namebox" style="background-image: url(&quot;https://ssl.pstatic.net/static/common/gnb/2014/ico_arrow_wh.gif&quot;);"><a href="javascript:;" class="gnb_my" onclick="gnbUserLayer.clickToggle(); return false;"><img id="gnb_profile_img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAMAAAC5zwKfAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADNQTFRF8PDw5ubm+vr6+/v76enp+Pj47e3t5+fn9/f37Ozs9PT08vLy7+/v6urq9fX15OTk/f39pqwodgAAAQNJREFUeNrs11EOgyAMgOEWUAF19f6n3cMeplJHoSZbsv4H+DIWaCNsNwcGGmiggQZ+D/Q5reuasr8H9ID0CsHfALpA74JTgwPSPnRK0Ac6FrwOXOjcogIdlTkNuDDgogGRAVEBDsQ19IMzC879ILAgGNgAZhbMP3RttonxJs1Lgea/sDYcyreHXjW+oPUHVid2MWC1K+A0sqsDW7CksGmlCNZoFt9pIfjYgY8bwMMexUENQuOtqYCxfHtT7AddYodDcp0gIPEh9IBxous+nBuaTis4Nw/OSLVwloN+JEmjGJR5FyIDRpIWZeAoBkcZGMRgkIEkz0D7GjXQQAMN/GvwKcAAEGGHJh0mmaAAAAAASUVORK5CYII='" width="26" height="26" alt="내 프로필 이미지"><span id="gnb_profile_filter_mask" class="filter_mask"></span> <span class="gnb_name" id="gnb_name1"></span><em class="blind">내정보 보기</em><span class="ico_arrow"></span></a><a href="#" class="gnb_emp" id="gnb_emp">(임직원혜택)</a></div><div class="gnb_my_lyr" id="gnb_my_lyr"><div class="gnb_my_content"><div class="gnb_img_area"><span class="gnb_mask"></span><img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAMAAAC5zwKfAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADNQTFRF8PDw5ubm+vr6+/v76enp+Pj47e3t5+fn9/f37Ozs9PT08vLy7+/v6urq9fX15OTk/f39pqwodgAAAQNJREFUeNrs11EOgyAMgOEWUAF19f6n3cMeplJHoSZbsv4H+DIWaCNsNwcGGmiggQZ+D/Q5reuasr8H9ID0CsHfALpA74JTgwPSPnRK0Ac6FrwOXOjcogIdlTkNuDDgogGRAVEBDsQ19IMzC879ILAgGNgAZhbMP3RttonxJs1Lgea/sDYcyreHXjW+oPUHVid2MWC1K+A0sqsDW7CksGmlCNZoFt9pIfjYgY8bwMMexUENQuOtqYCxfHtT7AddYodDcp0gIPEh9IBxous+nBuaTis4Nw/OSLVwloN+JEmjGJR5FyIDRpIWZeAoBkcZGMRgkIEkz0D7GjXQQAMN/GvwKcAAEGGHJh0mmaAAAAAASUVORK5CYII='" width="80" height="80" alt="프로필 이미지"><a href="https://nid.naver.com/user2/api/naverProfile?m=checkIdType" class="gnb_change"><span class="blind">프로필 사진 변경</span></a></div><div class="gnb_txt_area"><p class="gnb_account"><span class="gnb_name" id="gnb_name2"><a class="gnb_nick" href="https://nid.naver.com/user2/api/naverProfile?m=checkIdType">_</a>님</span><a class="gnb_btn_login" href="https://nid.naver.com/nidlogin.logout?returl=https%3A%2F%2Fnid.naver.com%2Fuser2%2Fhelp%2FidInquiry" id="gnb_logout_button"><span class="gnb_bg"></span><span class="gnb_bdr"></span><span class="gnb_txt">로그아웃</span></a></p><a href="https://mail.naver.com" class="gnb_mail_address">@naver.com</a><ul class="gnb_edit_lst"><li class="gnb_info"><a href="https://nid.naver.com/user2/help/myInfo?menu=home">네이버ID</a></li><li class="gnb_secure" id="gnb_secure_lnk"><a href="https://nid.naver.com/user2/help/myInfo?m=viewSecurity&amp;menu=security">보안설정</a></li><li class="gnb_cert" id="gnb_cert_lnk"><a href="https://nid.naver.com/user2/eSign/v1/home/land">내인증서</a></li></ul><div class="gnb_pay_check" id="gnb_pay_check"><p class="gnb_membership" style="display: none;" id="gnb_membership"><a href="https://nid.naver.com/membership/my" class="gnb_my_membership"><i class="blind">네이버 멤버쉽</i></a></p><em>N Pay</em><a href="https://pay.naver.com" id="gnb_pay_point"><span style="display: none">내 페이포인트</span></a></div></div></div><div class="gnb_my_community"><a href="https://blog.naver.com/MyBlog.naver" class="gnb_blog">내 블로그</a><a href="https://section.cafe.naver.com" class="gnb_cafe">가입한 카페</a><a href="https://pay.naver.com" class="gnb_pay"><span>N Pay</span></a></div><a href="#" class="gnb_my_interface" style="display:none"><span class="blind">환경설정</span></a></div><iframe id="gnb_my_lyr_iframe" title="빈 프레임" class="gnb_pad_lyr" name="padding" width="0" height="0" scrolling="no" frameborder="0" style="top:34px;right:-4px;width:320px;height:158px;display:none;opacity:0;-ms-filter:alpha(opacity=0)"></iframe></li><li class="gnb_notice_li" id="gnb_notice_layer" style="display:none"><a href="javascript:;" class="gnb_notice" onclick="gnbNaverMeLayer.clickToggle(); return false;"><span class="blind">알림</span><span class="gnb_icon"></span><em class="gnb_ico_num" id="gnb_me_menu" style="display:none"><span class="gnb_ico_new"><span class="gnb_count" id="gnb_me_count"></span></span></em><span class="ico_arrow"></span></a><div class="gnb_notice_lyr" id="gnb_notice_lyr"><div class="svc_noti svc_panel"><div class="svc_scroll"><div class="svc_head"><strong class="gnb_tit">전체 알림</strong><div class="task_right"><button onclick="gnbNaverMeLayer.deleteReadList(this, event);" id="gnb_btn_read_noti_del">읽은 알림 삭제</button><button onclick="gnbNaverMeLayer.showDeleteAlert();" id="gnb_btn_all_noti_del">모두 삭제</button></div></div><div class="svc_body" id="gnb_naverme_layer"></div></div><div class="gnb_ly_alert" id="gnb_ly_alert" style="display: none;"><p class="gnb_msg"><strong>알림을 모두 삭제하시겠습니까?</strong></p><div class="gnb_btns"><button id="ly_alert_confirm" onclick="gnbNaverMeLayer.deleteAllList(this, event);">확인</button><button onclick="gnbNaverMeLayer.hideDeleteAlert();">취소</button></div><button class="gnb_btn_close" onclick="gnbNaverMeLayer.hideDeleteAlert();"><i>레이어 닫기</i></button></div><a href="https://noti.naver.com/index.nhn" class="gnb_notice_all">내 알림 전체보기</a></div></div><iframe id="gnb_notice_lyr_iframe" title="빈 프레임" class="gnb_pad_lyr" name="padding" width="0" height="0" scrolling="no" frameborder="0" style="top:34px;right:-4px;width:299px;height:332px;display:none;opacity:0;-ms-filter:alpha(opacity=0)"></iframe></li><li class="mail_li" id="gnb_mail_layer" style="display:none"><a href="https://mail.naver.com" class="gnb_mail"><span class="blind">메일</span><span class="gnb_icon"></span><em class="gnb_ico_num" id="gnb_mail_menu" style="display:none"><span class="gnb_ico_new"><span class="gnb_count" id="gnb_mail_count"></span></span></em></a></li><li class="gnb_service_li" id="gnb_service_layer" style="display: inline-block;"><a href="javascript:;" class="gnb_service" onclick="gnbMoreLayer.clickToggle(); return false;"><span class="blind">서비스 더보기</span><span class="gnb_icon"></span><span class="ico_arrow"></span></a><div class="gnb_service_lyr" id="gnb_service_lyr"><div class="gnb_favorite_search" id="gnb_favorite_search"><div class="gnb_favorite_area"><div class="gnb_favorite_lstwrp"><div class="gnb_first_visit" style="display:none"><span class="blind">나만의 즐겨찾기를 추가해 보세요!</span><a href="#" class="gnb_close"><span class="blind">닫기</span></a></div><strong class="blind">즐겨찾는 서비스</strong><ul class="gnb_favorite_lst" id="gnb_favorite_lst"><li class="gnb_add"><a href="#"><span class="ic_add"></span>추가</a></li><li class="gnb_add"><a href="#"><span class="ic_add"></span>추가</a></li><li class="gnb_add"><a href="#"><span class="ic_add"></span>추가</a></li><li class="gnb_add"><a href="#"><span class="ic_add"></span>추가</a></li></ul><a href="#" class="gnb_my_interface" onclick="gnbMoreLayer.clickToggleWhole(); return false;"><span class="blind">즐겨찾기 설정</span></a></div></div><div class="gnb_search_area"><div class="gnb_search_box" onmouseover="gnb_search.mouseOver(this);" onmouseout="gnb_search.mouseOut(this);"><input id="gnb_svc_search_input" type="text" title="서비스 검색" value="더 많은 서비스를 간편하게 시작하세요!" onfocus="gnb_search.clearInput(this);" onblur="gnb_search.resetInput(this);" onkeydown="gnb_search.keyDown(event);" onkeyup="gnb_search.keyUp(event);"><a href="#" class="gnb_del_txt" id="gnb_del_txt" style="display:none"><span class="blind">삭제</span></a><div class="gnb_pop_input" id="gnb_pop_input" tabindex="0" onfocus="gnb_search.searchPopOnMouse = true; return false;" onfocusout="gnb_search.searchPopOnMouse = false; return false;" onmouseover="gnb_search.searchPopOnMouse = true; return false;" onmouseout="gnb_search.searchPopOnMouse = false; return false;" style="display:none"><ul class="gnb_pop_lst"></ul></div></div><div id="gnb_search_lstwrp" class="gnb_search_lstwrp"><ul class="gnb_search_lst gnb_first"><li class="gnb_first"><a id="gnb_search_lst_first_item" href="https://cafe.naver.com/">카페</a></li><li><a href="https://news.naver.com/">뉴스</a></li><li><a href="https://map.naver.com/">지도</a></li><li><a href="https://sports.news.naver.com/">스포츠</a></li><li><a href="https://game.naver.com/">게임</a></li></ul><ul class="gnb_search_lst"><li class="gnb_first"><a href="https://section.blog.naver.com/">블로그</a></li><li><a href="https://post.naver.com/main.nhn">포스트</a></li><li><a href="https://dict.naver.com/">사전</a></li><li><a href="https://kin.naver.com/">지식iN</a></li><li><a href="https://weather.naver.com/">날씨</a></li></ul><ul class="gnb_search_lst"><li class="gnb_first"><a href="https://mail.naver.com/">메일</a></li><li><a href="https://stock.naver.com/">증권</a></li><li><a href="https://land.naver.com/">부동산</a></li><li><a href="https://vibe.naver.com/today/">VIBE</a></li><li><a href="https://book.naver.com">책</a></li></ul><ul class="gnb_search_lst"><li class="gnb_first"><a href="https://shopping.naver.com/">쇼핑</a></li><li><a href="https://comic.naver.com/">웹툰</a></li><li><a href="https://movie.naver.com/">영화</a></li><li><a href="https://mybox.naver.com/">MYBOX</a></li><li><a href="https://auto.naver.com/">자동차</a></li></ul></div></div><div class="gnb_banner"><a href="https://campaign.naver.com/npay/rediret/index.nhn" class="gnb_service_event"><img id="gnb_promo" alt="N페이, 이벤트 참여하면 포인트 적립!" width="265" height="47" src="https://ssl.pstatic.net/static/common/gnb/banner/promo_npay_200108.png"></a></div><div class="gnb_linkwrp"><a href="https://www.naver.com/more.html" class="gnb_service_all" id="gnb_service_all">전체 서비스 보기</a></div></div><div class="gnb_svc_more" id="gnb_svc_more" style=""><strong class="blind">네이버 주요 서비스</strong><div class="gnb_bg_top"></div><div class="gnb_svc_hd" id="gnb_svc_hd" tabindex="0"><strong class="gnb_svc_tit">바로가기 설정</strong><span class="link"><a href="https://www.naver.com/more.html">전체 서비스 보기</a></span></div><div class="gnb_svc_lstwrp"><div class="gnb_svc_lst1"><ul class="gnb_first"><li><input type="checkbox" id="nsvc_game" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_game">게임</label></li><li><input type="checkbox" id="nsvc_weather" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_weather">날씨</label></li><li><input type="checkbox" id="nsvc_shopping" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_shopping">네이버쇼핑</label></li><li><input type="checkbox" id="nsvc_navercast" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_navercast">네이버캐스트</label></li><li class="gnb_event"><input type="checkbox" id="nsvc_naverpay" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_naverpay">네이버페이<em class="ic_gnb_new">New</em></label></li><li><input type="checkbox" id="nsvc_mybox" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_mybox">네이버 MYBOX</label></li><li><input type="checkbox" id="nsvc_news" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_news">뉴스</label></li><li><input type="checkbox" id="nsvc_comic" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_comic">웹툰</label></li><li><input type="checkbox" id="nsvc_memo" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_memo">메모</label></li><li><input type="checkbox" id="nsvc_mail" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_mail">메일</label></li><li><input type="checkbox" id="nsvc_music" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_music">뮤직</label></li><li><input type="checkbox" id="nsvc_land" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_land">부동산</label></li><li><input type="checkbox" id="nsvc_bookmark" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_bookmark">북마크</label></li></ul><ul class=""><li><input type="checkbox" id="nsvc_blog" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_blog">블로그</label></li><li><input type="checkbox" id="nsvc_dic" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_dic">사전</label></li><li><input type="checkbox" id="nsvc_software" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_software">소프트웨어</label></li><li><input type="checkbox" id="nsvc_smartboard" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_smartboard">스마트보드</label></li><li><input type="checkbox" id="nsvc_sports" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_sports">스포츠</label></li><li><input type="checkbox" id="nsvc_series" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_series">시리즈</label></li><li><input type="checkbox" id="nsvc_serieson" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_serieson">시리즈on</label></li><li><input type="checkbox" id="nsvc_ya9" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_ya9">야구9단</label></li><li><input type="checkbox" id="nsvc_movie" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_movie">영화</label></li><li><input type="checkbox" id="nsvc_office" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_office">오피스</label></li><li><input type="checkbox" id="nsvc_novel" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_novel">웹소설</label></li><li><input type="checkbox" id="nsvc_auto" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_auto">자동차</label></li><li><input type="checkbox" id="nsvc_contact" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_contact">주소록</label></li></ul><ul class=""><li><input type="checkbox" id="nsvc_finance" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_finance">증권(금융)</label></li><li><input type="checkbox" id="nsvc_map" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_map">지도</label></li><li><input type="checkbox" id="nsvc_kin" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_kin">지식iN</label></li><li><input type="checkbox" id="nsvc_terms" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_terms">지식백과</label></li><li><input type="checkbox" id="nsvc_book" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_book">책</label></li><li><input type="checkbox" id="nsvc_cafe" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_cafe">카페</label></li><li><input type="checkbox" id="nsvc_calendar" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_calendar">캘린더</label></li><li><input type="checkbox" id="nsvc_navertv" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_navertv">네이버TV</label></li></ul></div><div class="svc_lst2"><div class="svc_spc gnb_first"><strong><a href="https://dict.naver.com/">어학사전</a></strong><ul class=""><li><input type="checkbox" id="nsvc_krdic" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_krdic">국어사전</label></li><li><input type="checkbox" id="nsvc_endic" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_endic">영어/영영사전</label></li><li><input type="checkbox" id="nsvc_hanja" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_hanja">한자사전</label></li><li><input type="checkbox" id="nsvc_jpdic" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_jpdic">일어사전</label></li><li><input type="checkbox" id="nsvc_cndic" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_cndic">중국어사전</label></li><li><input type="checkbox" id="nsvc_frdic" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_frdic">프랑스어사전</label></li><li><input type="checkbox" id="nsvc_dedic" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_dedic">독일어사전</label></li><li><input type="checkbox" id="nsvc_rudic" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_rudic">러시아어사전</label></li><li><input type="checkbox" id="nsvc_vndic" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_vndic">베트남어사전</label></li><li><input type="checkbox" id="nsvc_spdic" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_spdic">스페인어사전</label></li><li><input type="checkbox" id="nsvc_papago" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_papago">파파고</label></li></ul></div><div class="svc_spc"><strong>인기/신규서비스</strong><ul class=""><li><input type="checkbox" id="nsvc_grafolio" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_grafolio">그라폴리오</label></li><li><input type="checkbox" id="nsvc_post" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_post">포스트</label></li><li><input type="checkbox" id="nsvc_band" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_band">밴드</label></li><li><input type="checkbox" id="nsvc_line" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_line">라인</label></li><li class="gnb_event"><input type="checkbox" id="nsvc_vibe" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_vibe">VIBE<em class="ic_gnb_new">New</em></label></li><li><input type="checkbox" id="nsvc_pcontents" name="selmenu" class="gnb_input_check" value=""> <label for="nsvc_pcontents">프리미엄콘텐츠</label></li></ul></div></div></div><div class="svc_btnwrp"><div class="svc_btns"><button class="gnb_save" onclick="if(gnbFavorite.addService()){gnbMoreLayer.clickToggleWhole()} return false;"><strong class="blind">확인</strong></button><button class="gnb_close" onclick="gnbFavorite.cancel(); return false;"><span class="blind">취소</span></button><button class="gnb_return" onclick="gnbFavorite.resetService(); return false;"><span class="blind">초기 설정으로 변경</span></button></div></div><div class="gnb_bg_btm"></div></div></div><iframe id="gnb_service_lyr_iframe" title="빈 프레임" class="gnb_pad_lyr" name="padding" width="0" height="0" scrolling="no" frameborder="0" style="display:none;top:34px;right:297px;width:585px;height:385px;opacity:0;-ms-filter:alpha(opacity=0)"></iframe><iframe id="gnb_svc_more_iframe" title="빈 프레임" class="gnb_pad_lyr" name="padding" width="0" height="0" scrolling="no" frameborder="0" style="display:none;top:34px;right:-4px;width:295px;height:385px;opacity:0;-ms-filter:alpha(opacity=0)"></iframe></li></ul>
 			</div>
 		</div>
-	</div>
-	
-	<!-- nav -->
-	<div class="nav" role="navigation">
-		<div class="nav_inner">
-			<h3 class="blind">메인 메뉴</h3>
-			
-			<ul class="nav_list" id="au_lnb" role="menubar">
-				<li class="menu" role="presentation">
-					<a href="/KG-naver/index.jsp" role="menuitem" class="item" id="au_lnb_home" tabindex="0" onclick="nhn.Kin.Utility.nClicks('LNB.home', '', '', event);" aria-current="page"><em>홈</em></a>
-				</li>
-				<li class="menu" role="presentation">
-					<a href="/KG-naver/question_list2.jsp" role="menuitem" class="item" aria-haspopup="true" aria-expanded="false" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.qna', '', '', event);"><em>Q&amp;A</em></a>
-				</li>
-				<li class="menu" role="presentation">
-					<a href="/KG-naver/question_list.jsp" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.answer', '', '', event);"><em>답변하기</em></a>
-				</li>
-
-				<li class="menu" role="presentation">
-			<a href="/KG-naver/people/peopleRankForm.jsp" role="menuitem" tabindex="-1" class="item" id="peopleLnbBtn" onclick="nhn.Kin.Utility.nClicks('LNB.people', '', '', event);"><em>사람들</em></a>
-				</li>
-
-				<li class="menu" role="presentation">
-					<a href="/KG-naver/hall/index.jsp" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.honor', '', '', event);"><em>명예의전당</em></a>
-				</li>
-				<li class="menu" role="presentation">
-					<span class="lnb_bar">|</span>
-					<%if(id == null){ %>
-					<a href="/KG-naver/member/loginForm.jsp" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.profile', '', '', event);"><em>프로필</em></a>
-					<%}else{ %>
-					<a href="/KG-naver/main/profile.jsp?id=<%=id %>" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.profile', '', '', event);"><em>프로필</em></a>
-					<%} %>
-				</li>
-				<li class="menu" role="presentation">
-					<a href="/KG-naver/people/peoplePartnerForm.jsp" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.partner', '', '', event);"><em>파트너센터</em></a>
-				</li>
-				
-					
-				
-				
+		<div id="lnb" class="lnb_wrap">
+			<ul class="lnb lnb_type3">
+				<li class="m5"><a href="#" id="idinquiry" onmouseover="showMenu('idinquiry','pwinquiry');" onmouseout="hideMenu('pwinquiry');" onclick="showMenu('idinquiry','pwinquiry');goPage('idInquiry','idinquiry');clickcr(this,'LNB.idinquiry','','',event);return false;" class=""><span class="blind">아이디 찾기</span></a></li>
+				<li class="m6"><a href="#" id="pwinquiry" onmouseover="showMenu('pwinquiry','idinquiry');" onmouseout="hideMenu('pwinquiry');" onclick="showMenu('pwinquiry','idinquiry');goPage('pwInquiry','pwinquiry');clickcr(this,'LNB.pwinquiry','','',event);return false;" class="on"><span class="blind">비밀번호 재설정</span></a></li>
 			</ul>
-			<%memberDao_1.close(); %>
-				
-					
-					<%if(id == null){ %>
-					<a href="/KG-naver/member/loginForm.jsp" class="nav__button_question _clickcode:LNB.q"role="button"><span class="btn_inner" onclick="alert('로그인 후 이용해주세요.')"><i class="sp_gnb icon_pencil"></i>질문하기</span></a>
-					<%}else{ %>
-					<a href="/KG-naver/board/write.jsp" class="nav__button_question _clickcode:LNB.q"role="button"><span class="btn_inner"><i class="sp_gnb icon_pencil"></i>질문하기</span></a>
-					<%} %>
+			<h2 class="blind">현재페이지는 "비밀번호재설정"</h2>
 		</div>
 	</div>
+	
+	<div id="container" style="height: 853px;">
+		<!-- CONTENTS -->
+<form id="fm" name="f" action="findPw2.jsp" method="post">
+		<div id="content" class="non_sign inquiry">
+			<div class="content_header">
+				<h2><img src="https://static.nid.naver.com/images/web/user/h_find_pw2.gif" width="84" height="16" alt="비밀번호 찾기"></h2>
+				<ol class="process">
+				<li class="on">01. 아이디 입력<span>&gt;</span></li>
+				<li>02. 비밀번호 재설정</li>
+				</ol>
+			</div>
+			<p class="content_summary">비밀번호를 찾고자 하는 아이디를 입력해 주세요.</p>
+			<div class="section section_find">
+				<div class="box6">
+					<div id="divUserId" class="input_box">				
+						<input type="text" name="userId" placeholder="네이버 아이디 또는 단체 아이디" class="input_txt">
+					</div>
+					<div id="divUserId" class="input_box">			
+						<input type="text" name="tel" maxlength="40" placeholder="전화번호" class="input_txt">
+					</div>
+				</div>
+				<div class="btn_area">
+					<button type="submit">다음</button>
+				</div>
+				<!-- [D] 상세내용 펼쳤을때 클래스 open 추가 -->
+				<div class="find_dsc">
+					<h3>아이디가 기억나지 않는다면? <a href="#" >아이디 찾기 바로가기<em class="ico_arr2"></em></a></h3>
+				</div>
+			</div>
+			 
+		</div>
+		<hr>
+</form>	
+		<!-- //CONTENTS -->
+		<div class="aside"></div>
+	</div>
+	
+	<div class="aside_bg"><div class="aside_bg_min"></div><div class="aside_bg_r"></div></div>
+	<div id="footer">
+		<ul class="guides fl">
+		<li class="first"><a href="https://pay.naver.com/npoint/pay/terms-of-electronic-financecontract_20140701.html" target="_blank" onclick="clickcr(this,'fot.ecommerce','','',event);">전자금융거래 이용약관</a></li>
+		<li><a href="http://policy.naver.com/policy/privacy.html" target="_blank" onclick="clickcr(this,'fot.privacy','','',event);"><strong>개인정보처리방침</strong></a></li>
+		<li><a href="http://policy.naver.com/rules/disclaimer.html" target="_blank" onclick="clickcr(this,'fot.disclaimer','','',event);">책임의 한계와 법적고지</a></li>
+		</ul>
+		<address class="copyright">
+		Copyright <em>©</em> <a href="https://www.navercorp.com/" target="_blank" onclick="clickcr(this,'fot.navercorp','','',event);"><strong>NAVER Corp.</strong></a> All Rights Reserved.
+		</address>
+		<ul class="guides fr">
+		<li><a href="https://help.naver.com/support/alias/membership/p.membership/p.membership_26.naver" target="_blank" title="새창" onclick="clickcr(this,'fot.help','','',event);"> 회원정보 고객센터 </a></li>
+		</ul>
+	</div>
+	<div id="divMobileYn" style="display:none">
+		<p style="clear:both;margin:0;padding:42px 0 0"><a href="https://nid.naver.com/mobile/user/help/pwInquiry" style="display:block;padding:31px 0 30px;border-top:1px solid #dbdde1;border-bottom:1px solid #c2c4c8;background:#ebeded url(https://static.nid.naver.com/images/web/user/bg_mobileversionbutton.gif) repeat-x 0 0;text-align:center;text-decoration:none"><img src="https://static.nid.naver.com/images/web/user/btn_mobileversionbutton.png" width="305" height="30" alt="모바일 버전으로 보기" style="vertical-align:top"></a></p>;		
+	</div>
 </div>
-</div>
-</body>
-</html>
+
+<script type="text/javascript" src="https://nid.naver.com/inc/mobile/js/m.jquery.js?20140912"></script>
+<script type="text/javascript"> 
+var ua = window.navigator.userAgent.toLowerCase();
+var result = (/android+\s+((\d)\.(\d))(?:\.(\d))?/igm).exec(ua);
+var uad = navigator.userAgentData;
+var isMobile = (uad && uad.mobile) || (ua.indexOf('Mobi') !== -1) || (/windows ce/.test( ua ) && /polar/.test( ua )) || ( /mozilla/.test( ua ) && /natebrowser/.test( ua ) ) || ( /opera/.test( ua ) && (/windows ce/.test( ua ) || /skt/.test( ua )) ) || ( /iphone/.test( ua ) || /ipod/.test( ua ) ) || ( /android/.test( ua ) && !( /.*shw-m180(s|k|l|w).*/.test( ua ) ) && !( result != null && result.length > 0 && result[1] >=3.0 ) ) || ( /dolfin/.test( ua )) || ( /windows ce/.test( ua ) && /iemobile/.test( ua ) ) || ( /mozilla/.test( ua ) &&  /(wv[0-9]+)/.test( ua ) && /lgtelecom/.test( ua ) ) || ( (/mozilla/.test( ua ) && /((010|011|016|017|018|019)\d{3,4}\d{4}$)/.test( ua )) ) || ( /windows phone os/.test( ua ) && /iemobile/.test( ua ) );
+if(isMobile){
+	document.getElementById('divMobileYn').style.display = "block";
+}else{
+	document.getElementById('divMobileYn').style.display = "none";
+}
+
+getGNB();
+document.getElementById('pwinquiry').className = "on";
+
+var cur_container_height = Number(document.getElementById("container").clientHeight); // container 높이
+var min_container_height = 647;
+var header_height = 86;
+var footer_height = isMobile ? 160: 30;
+
+window.onload   = changeContentSize; // Window 창 로드시
+window.onresize = changeContentSize; // Window 창 크기를 조정할때마다
+
+function changeContentSize() {
+	var container_height = min_container_height;
+	var window_height = Number(document.documentElement.clientHeight) - header_height - footer_height; // Window 창 높이
+	if (window_height > cur_container_height) {
+		if (window_height > min_container_height) {
+			container_height = window_height;
+		}
+	} else {
+		if (cur_container_height > min_container_height) {
+			container_height = cur_container_height;
+		}
+	}
+	
+    if (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1) { // ie11 추가
+        document.getElementById("container").style.height = container_height + "px";
+    }else if (window.navigator.userAgent.indexOf("MSIE") == -1 || (document.all && window.XMLHttpRequest)) { // ie6 제외
+        document.getElementById("container").style.height = container_height + "px";
+    } else {
+        document.getElementById("container").style.height ="100%";
+    }
+}
+
+function setContainerHeight(height) {
+	if (height >= 0) {
+		cur_container_height = height;
+	} else {
+		cur_container_height = Number(document.getElementById("container").clientHeight);
+	}
+	changeContentSize();
+}
+</script>
+
+
+</body></html>

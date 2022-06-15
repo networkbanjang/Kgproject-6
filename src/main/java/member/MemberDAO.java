@@ -269,4 +269,52 @@ public class MemberDAO {
 		}
 		return first;
 	}
+	public void updatePw(MemberDTO member) {
+		String sql = "UPDATE member SET pw=? WHERE id=?";
+		
+		PreparedStatement ps = null;
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, member.getPw());
+			ps.setString(2, member.getId());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	
+	public String findId(String name, String tel) {
+		String sql = "SELECT * FROM member WHERE name=? and tel=?";
+		String id = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, name);
+			ps.setString(2, tel);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				id = rs.getString("id");
+			}
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} 
+		}
+		return id;
+	}
+
 }

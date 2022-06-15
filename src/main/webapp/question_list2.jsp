@@ -16,7 +16,7 @@
 	rel="stylesheet">
 
 <%
-int i=1;
+int i = 1;
 int pagenumber = 0;
 try {
 	pagenumber = Integer.parseInt(request.getParameter("pageNumber"));
@@ -102,31 +102,35 @@ ArrayList<answerDTO> a;
 							<div class="tc-panel tc-selected"></div>
 
 							<div class="list_seldiv">
-								<table class="list_sel" >
-								<tr>
-								<td colspan="3" class="list_top">Q&A</td>
-								</tr>
+								<table class="list_sel">
 									<tr>
-									<td>	<a href="question_list2.jsp?category=교육,학문">교육,학문 (<%=boardDao.count("교육,학문") %>)</a></td>
-									<td>	<a href="question_list2.jsp?category=컴퓨터 통신">컴퓨터 통신</a>(<%=boardDao.count("컴퓨터 통신") %>)</td>
-										<td>	<a href="question_list2.jsp?category=게임">게임</a>(<%=boardDao.count("게임") %>)</td>
+										<td colspan="3" class="list_top">Q&A</td>
 									</tr>
 									<tr>
-										<td>	<a href="question_list2.jsp?category=엔터테이먼트,예술">엔터테이먼트,예술</a>(<%=boardDao.count("엔터테이먼트,예술") %>)</td>
-										<td>	<a href="question_list2.jsp?category=생활">생활</a>(<%=boardDao.count("생활") %>)</td>
-										<td>	<a href="question_list2.jsp?category=건강">건강</a>(<%=boardDao.count("건강") %>)</td>
+										<td><a href="question_list2.jsp?category=교육,학문">교육,학문
+												(<%=boardDao.count("교육,학문")%>)
+										</a></td>
+										<td><a href="question_list2.jsp?category=컴퓨터 통신">컴퓨터
+												통신</a>(<%=boardDao.count("컴퓨터 통신")%>)</td>
+										<td><a href="question_list2.jsp?category=게임">게임</a>(<%=boardDao.count("게임")%>)</td>
 									</tr>
 									<tr>
-										<td>	<a href="question_list2.jsp?category=사회,정치">사회,정치</a>(<%=boardDao.count("사회,정치") %>)</td>
-										<td>	<a href="question_list2.jsp?category=경제">경제</a>(<%=boardDao.count("경제") %>)</td>
-										<td>	<a href="question_list2.jsp?category=여행">여행</a>(<%=boardDao.count("여행") %>)</td>
+										<td><a href="question_list2.jsp?category=엔터테이먼트,예술">엔터테이먼트,예술</a>(<%=boardDao.count("엔터테이먼트,예술")%>)</td>
+										<td><a href="question_list2.jsp?category=생활">생활</a>(<%=boardDao.count("생활")%>)</td>
+										<td><a href="question_list2.jsp?category=건강">건강</a>(<%=boardDao.count("건강")%>)</td>
 									</tr>
 									<tr>
-										<td>	<a href="question_list2.jsp?category=스포츠,레저">스포츠,레저</a> (<%=boardDao.count("스포츠,레저") %>)</td>
-										<td>	<a href="question_list2.jsp?category=쇼핑">쇼핑</a>(<%=boardDao.count("쇼핑") %>)</td>
-										<td>	<a href="question_list2.jsp?category=쥬니버">쥬니버Q&A</a>(<%=boardDao.count("쥬니버") %>)</td>
+										<td><a href="question_list2.jsp?category=사회,정치">사회,정치</a>(<%=boardDao.count("사회,정치")%>)</td>
+										<td><a href="question_list2.jsp?category=경제">경제</a>(<%=boardDao.count("경제")%>)</td>
+										<td><a href="question_list2.jsp?category=여행">여행</a>(<%=boardDao.count("여행")%>)</td>
 									</tr>
-								</table>					
+									<tr>
+										<td><a href="question_list2.jsp?category=스포츠,레저">스포츠,레저</a>
+											(<%=boardDao.count("스포츠,레저")%>)</td>
+										<td><a href="question_list2.jsp?category=쇼핑">쇼핑</a>(<%=boardDao.count("쇼핑")%>)</td>
+										<td><a href="question_list2.jsp?category=쥬니버">쥬니버Q&A</a>(<%=boardDao.count("쥬니버")%>)</td>
+									</tr>
+								</table>
 							</div>
 							<div class="content_wrap _noanswer_wrap">
 
@@ -161,23 +165,62 @@ ArrayList<answerDTO> a;
 													class="info"><%=b.getTime()%></span>
 											</div>
 										</div>
-										</div>
+									</div>
 
-										<%
-										}
-										boardDao.close();
-										answerDao.close();
-										%>
-												<%=result %>
-													<div class="search">
-	<form name="bottom_search" id="bottom_search" method="get" action="/KG-naver/search/list.jsp">
-	<fieldset>
-		<legend>검색영역</legend>            
-		
-		<input type="text" name="keyword" title="검색어" class="keyword" id="au_input_query">
-		<input type="image" alt="검색" title="키워드 검색" src="https://ssl.pstatic.net/static/kin/09renewal/btn_search.gif" id="au_search_submit">
-	</fieldset>
-	</form>
+									<%
+									}
+									boardDao.close();
+									answerDao.close();
+									%>
+									<%=result%>
+
+									<div class="search">
+										<form name="bottom_search" id="bottom_search" method="get"
+											action="/KG-naver/search/list.jsp">
+											<fieldset>
+												<legend>검색영역</legend>
+
+												<input type="text" name="keyword" title="검색어"
+													class="keyword" id="au_input_query"> <input
+													type="image" alt="검색" title="키워드 검색"
+													src="https://ssl.pstatic.net/static/kin/09renewal/btn_search.gif"
+													id="au_search_submit">
+											</fieldset>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 </div>
+		<div class="footer">
+			<h2 class="blind">하위영역</h2>
+			<div class="footer_menu">
+				<a href="http://www.naver.com/rules/service.html" target="_blank"
+					class="_nclicks:fot.agreement">네이버 이용약관</a> <span class="f_bar">|</span>
+				<a href="/common/guide.naver?query=p1" target="_blank"
+					class="_nclicks:fot.policy">지식iN 서비스 운영정책</a> <span class="f_bar">|</span>
+				<a href="http://www.naver.com/rules/privacy.html" target="_blank"
+					class="_nclicks:fot.privacy"><strong>개인정보처리방침</strong></a> <span
+					class="f_bar">|</span> <a
+					href="http://inoti.naver.com/inoti/main.nhn" target="_blank"
+					class="_nclicks:fot.claim">게시중단요청서비스</a> <span class="f_bar">|</span>
+				<a
+					href="https://help.naver.com/support/service/main.nhn?serviceNo=1003"
+					target="_blank" class="_nclicks:fot.help">지식iN 고객센터</a>
+			</div>
+			<p class="copyright">
+				<a href="http://www.naver.com" class="footer_logo sp_common"
+					target="_blank">NAVER</a>Copyright © <strong><a
+					href="https://www.navercorp.com" target="_blank"
+					class="logo _nclicks:fot.nhncorp">NAVER Corp.</a></strong> All Rights
+				Reserved.
+			</p>
+		</div>
+	</div>
+
 </body>
 </html>

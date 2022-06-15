@@ -116,7 +116,7 @@
 					<%if(member.getPic() == null) { %>
 						<a href="/KG-naver/main/profile.jsp?id=<%=a.getId()%>"><img class="profile" src="/KG-naver/images/default.png"></a>
 					<%} else{%>
-							<a href="/KG-naver/main/profile.jsp?id=<%=a.getId()%>"><img class="profile" src="/KG-naver/images/banner1.png"></a>
+							<a href="/KG-naver/main/profile.jsp?id=<%=a.getId()%>"><img class="profile" src="/KG-naver/up/<%=a.getId() %>/<%=member.getPic() %>"></a>
 					<%} %>
 					</td>
 					<td class="answer_subject">
@@ -188,7 +188,7 @@
 
 
 							<td><input type="text" class="re_textbar" name="reply"
-								id="reply" placeholder="개인정보를 공유 및 요청하거나 어쩌구저쩌구 저쩌구저쩌구"></td>
+								id="reply" placeholder="개인정보를 공유 및 요청하거나, 명예훼손,무단광고 불법정보 유포시 모니터링 후 삭제될 수있으며 이에대한 민형사상 책임은 게시자에게 있습니다."></td>
 							<td><input class="res" type="image"
 								src="/KG-naver/images/ok2.png"></td>
 

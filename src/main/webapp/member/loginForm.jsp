@@ -60,6 +60,14 @@
                                     </button>
 
                                 </div>
+<ul class="find_wrap" id="find_wrap">
+
+                <li><a target="_blank" href="/KG-naver/member/findPwForm.jsp" class="find_text">비밀번호 찾기</a></li>
+                <li><a target="_blank" href="/KG-naver/member/findIdForm.jsp" class="find_text">아이디 찾기</a></li>
+                <li><a target="_blank" href="/KG-naver/member/registForm.jsp" class="find_text">회원가입</a>
+                </li>
+
+            </ul>
                             </div>
                         </li>
                     </ul>

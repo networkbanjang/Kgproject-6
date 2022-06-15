@@ -336,21 +336,13 @@ ArrayList<answerDTO> count;
 
 
 
-							<span id="answer_wrap_top"></span>
-
-							<div class="answer_wrap" id="main_content">
-
-								<div
-									class="container-fluid-content-inner _containerFluidContentInner">
-
+						
 									<div class="container-fluid-content__left">
 
 										<span id="answer_wrap_top"></span>
 
 										<div class="answer_wrap" id="main_content">
 
-											<div>
-							
 										
 													<div class="content_wrap _noanswer_wrap">
 														<div class="directory_area _qna_menu">
@@ -476,6 +468,7 @@ ArrayList<answerDTO> count;
 
 															<div class="heading_area _dir_content_title"
 																style="display: block;">
+
 
 																<h5 class="tit ellipsis _heading_title">
 

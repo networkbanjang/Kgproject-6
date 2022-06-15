@@ -221,7 +221,7 @@ String result="";
 												<img src="/KG-naver/images/default.png" alt="프로필 이미지" class="u_cbox_img_profile" onerror="cbox.Util.onImageError(this);">
 												<span class="u_cbox_thumb_mask"></span>
 												<%} else{%>
-													<img src="/KG-naver/images/default.png" alt="프로필 이미지" class="u_cbox_img_profile" onerror="cbox.Util.onImageError(this);">
+													<img src="/KG-naver/up/<%=l.getId() %>/<%=l.getPic() %>" alt="프로필 이미지" class="u_cbox_img_profile" onerror="cbox.Util.onImageError(this);">
 													<span class="u_cbox_thumb_mask"></span>													
 													
 												<%}%>

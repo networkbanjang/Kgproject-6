@@ -101,7 +101,12 @@ ArrayList<answerDTO> a;
 
 						<div class="answer_wrap" id="main_content">
 
-							<div>
+							<div id="noanswer_tab" class="title_area">
+			<ul>
+				<li class="tc-tab tc-selected"><a href="#answer_wrap_top" class="title on" onclick="nhn.Kin.Utility.nClicks('ldl.qna', '', '', event);" id="contentsOfMain">답변을 기다리는 질문<span class="blind _selected">선택됨</span></a></li>
+				<li class="tc-tab"><a href="#answer_wrap_top" class="title" onclick="nhn.Kin.Utility.nClicks('ldl.con', '', '', event);">게시글을 선택해주세요</a></li>
+			</ul>
+		</div>
 								<div class="tc-panel tc-selected">
 
 									<h4 class="blind">답변을 기다리는 질문</h4>
@@ -213,11 +218,14 @@ ArrayList<answerDTO> a;
 												</ul>
 											</div>
 										</div>
+										
 										<span class="border"></span>
+										
 										<div class="content_area _dir_content" style="display: block;">
 
 											<div class="heading_area _dir_content_title"
 												style="display: block;">
+
 
 												<h5 class="tit ellipsis _heading_title">
 
@@ -256,6 +264,7 @@ ArrayList<answerDTO> a;
 															<span class="info"><%=b.getTime()%></span>
 														</div>
 													</div>
+															</div>
 													<%
 													}
 													boardDao.close();
@@ -263,7 +272,20 @@ ArrayList<answerDTO> a;
 
 													%>
 													<%=result %>
-													
+									
+
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div><%@include file="footer.jsp" %>
+
 												
 </body>
 </html>

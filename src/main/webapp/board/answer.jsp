@@ -83,7 +83,7 @@
 
 					</tr>
 				</table>
-				<div id="center_button">
+				<div class="center_button">
 					<input type="image" src="/KG-naver/images/answer.png">
 				</div>
 			</div>

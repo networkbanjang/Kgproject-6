@@ -56,7 +56,7 @@
 	BoardDAO boardDao = new BoardDAO();
 	BoardDTO board = boardDao.selectNum(num);
 	%>
-	<div class="question">
+	<div class="question_sector">
 		<form method="post" action="modifyService.jsp?num=<%=num%>"
 			enctype="multipart/form-data" name="f">
 			<div class="modisub">
@@ -73,22 +73,17 @@
 			<div class="container">
 				<textarea class="summernote" name="editordata"><%=board.getContent()%></textarea>
 			</div>
-				<div class="modi_upload">
-			<table>
-								<tr>
-						<th>
-							이미지 첨부 :
-						</th>
-						<td> <input type="file" accept=".gif, .jpg, .png" name="upimage"></td>
+			<div class="modi_upload">
+				<table>
+					<tr>
+						<th>이미지 첨부 :</th>
+						<td><input type="file" accept=".gif, .jpg, .png"
+							name="upimage"></td>
 					</tr>
-			</table>
+				</table>
 			</div>
-			<div id="config">
-
-
-				<div id="center_button">
-					<input type="image" src="/KG-naver/images/ok.png">
-				</div>
+			<div id="center_button">
+				<input type="image" src="/KG-naver/images/ok.png">
 			</div>
 
 		</form>
@@ -100,6 +95,7 @@
 		$('.summernote').summernote(
 				{ // 에디터 높이
 					height : 450,
+					width : 800,
 					lang : "ko-KR",
 					toolbar : [
 							// 글꼴 설정
