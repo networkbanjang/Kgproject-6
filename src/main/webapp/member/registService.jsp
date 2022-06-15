@@ -5,8 +5,8 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String id = request.getParameter("id");
-	String pw = request.getParameter("pw");
-	String confirmPw = request.getParameter("confirmPw");
+	String pw = request.getParameter("pswd1");
+	String confirmPw = request.getParameter("pswd12");
 	String name = request.getParameter("name");
 	String yy = request.getParameter("yy");
 	String mm = request.getParameter("mm");
@@ -21,7 +21,7 @@
 		return;
 	} 
 	
-	if(!pw.equals(confirmPw)) {
+	if(pw == confirmPw) {
 		out.print("<script>alert('두 패스워드가 일치하지 않습니다.'); history.back();</script>");
 		return;
 	}

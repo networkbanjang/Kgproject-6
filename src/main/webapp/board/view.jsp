@@ -21,7 +21,9 @@
 </head>
 <body>
 	<%@include file="../header.jsp"%>
-	<%
+	<%if(id == null){
+		response.sendRedirect("/KG-naver/member/loginForm.jsp");
+	}
 	String originalnum = request.getParameter("num");
 	int num = Integer.parseInt(originalnum);
 	BoardDAO boardDao = new BoardDAO();
@@ -29,8 +31,8 @@
 	String hitcheck = request.getParameter("answernum");
 	MemberDTO member;
 	MemberDAO memberDao= new MemberDAO();
-	
-	
+	String savefolder = "/KG-naver/up/"+board.getId()+"/"+board.getPhoto();
+
 	if (hitcheck == null || hitcheck.equals("null")) {
 		int hit = board.getHit() + 1;
 		boardDao.hitUP(num, hit);
@@ -42,7 +44,7 @@
 	<%
 	answerDAO answerDao = new answerDAO();
 	ArrayList<answerDTO> answer = answerDao.answer_list(num);
-	ArrayList<BoardDTO> hitDesc = answerDao.hitDesc();
+	ArrayList<BoardDTO> hitDesc = answerDao.hitDesc(1,4);
 	ArrayList<answerDTO> count;
 	%>
 
@@ -76,7 +78,13 @@
 					<a href="modify.jsp?num=<%=board.getNum()%>"><span class="question_modify"> 질문수정</span></td></a>
 					<%} %>
 				</tr>
+									<% if (board.getPhoto() != null) { %>
+					<tr>
+					<td class="question_content" colspan="3"><img src=<%=savefolder %>></td>
+					</tr>
+					<%} %>
 				<tr>
+
 					<td class="question_content" colspan="3"><%=board.getContent()%></td>
 				</tr>
 
@@ -104,11 +112,16 @@
 			<table class="answer_title">
 
 				<tr>
-					<td rowspan="2" class="profile"><img class="profile"
-						src="/KG-naver/images/banner1.png"></td>
+					<td rowspan="2" class="profile">
+					<%if(member.getPic() == null) { %>
+					<img class="profile" src="/KG-naver/images/default.png">
+					<%} else{%>
+						<img class="profile" src="/KG-naver/images/banner1.png">
+					<%} %>
+					</td>
 					<td class="answer_subject">
-					<%if (a.getRecommend()==1){ %> 채택됨!#나ㅓㅗㅇ<%} %>
-					<%=id %>님의 답변</td>
+					<%if (a.getRecommend()==1){ %> <img src="/KG-naver/images/check.png"><%} %>
+					<%=a.getId() %>님의 답변</td>
 				</tr>
 		
 				<tr>
@@ -128,6 +141,13 @@
 					}
 					%>
 			<table class="answer_conetent">
+				<%if (a.getFile_root() != null) {
+					String fileroot=a.getFile_root();
+					%> 
+				<tr>
+					 <a class="filefile" href="fileDown.jsp?filename=<%=fileroot%>&writeid=<%=a.getId()%>">첨부파일: <%=a.getFile_root() %></a></td>
+				</tr>
+				<%} %>
 				<tr>
 					<td class="content_main" colspan="3"><span><%=a.getContent()%></span></td>
 				</tr>
@@ -293,6 +313,7 @@
 		answerDao.close();
 		boardDao.close();
 		replyDao.close();
+		memberDao.close();
 		%>
 		<%@
 	include file="../footer.jsp"%>

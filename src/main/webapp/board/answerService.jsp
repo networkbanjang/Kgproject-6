@@ -12,7 +12,13 @@
 <body>
 <%@include file="../header.jsp"%>
 <%
+	if(id == null){
+		out.print("	<script>alert('로그인후 사용해주세요'); location.href='/KG-naver/index.jsp';</script>");
+	}
+
+
 	request.setCharacterEncoding("utf-8");
+	
 	
 	String saveFolder = "C:\\javas\\upload\\"+id;
 	File file = new File(saveFolder);
@@ -27,6 +33,7 @@
 	
 	String content = multi.getParameter("editordata");
 	String publ=multi.getParameter("pubid");
+	String upfile = multi.getOriginalFileName("upfile");
 
 	Date date = new Date();
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -38,6 +45,7 @@
 	answer.setContent(content);
 	answer.setTime(sdf.format(date));
 	answer.setPubl(publ);
+	answer.setFile_root(upfile);
 	answerDao.write(answer);
 	answerDao.close();
 	%>

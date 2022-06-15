@@ -71,7 +71,7 @@
 					<tr>
 						<th>파일첨부 :</th>
 						<td class="plus">
-							<input type="file">
+							<input type="file" name="upfile">
 						</td>
 					</tr>
 					<tr>
@@ -121,8 +121,7 @@
 							[ 'para', [ 'ul', 'ol', 'paragraph' ] ],
 							// 줄간격
 							[ 'height', [ 'height' ] ],
-							// 그림
-							[ 'insert', [ 'picture' ] ],
+
 							// 코드보기, 확대해서보기, 도움말
 							[ 'view', [ 'codeview', 'fullscreen', 'help' ] ] ],
 					// 추가한 글꼴

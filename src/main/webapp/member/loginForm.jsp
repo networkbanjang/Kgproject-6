@@ -12,7 +12,7 @@
 <div id="wrap" class="wrap">
     <header class="header" role="banner">
         <div class="header_inner">
-            <a href="https://www.naver.com" class="logo" style="margin-left:30px;">
+            <a href="/KG-naver/index.jsp" class="logo" style="margin-left:30px;">
                 <h1 class="blind">NAVER</h1>
             </a>
         </div>
@@ -53,14 +53,7 @@
                                             </span>
                                         </span>
                                     </div>
-                                </div>
-                                <div class="login_keep_wrap" id="login_keep_wrap">
-                                    <div class="keep_check">
-                                        <input type="checkbox" id="keep" name="nvlong" class="input_keep" value="off">
-                                        <label for="keep" class="keep_text">로그인 상태 유지</label>
-                                    </div>
-                            
-                                </div>                            
+                                </div>                           
                                 <div class="btn_login_wrap">
                                     <button type="submit" class="btn_login" id="log.login">
                                         <span class="btn_text">로그인</span>
@@ -75,8 +68,8 @@
             </div>
             <ul class="find_wrap" id="find_wrap">
 
-                <li><a target="_blank" href="https://nid.naver.com/user2/api/route?m=routePwInquiry&amp;lang=ko_KR" class="find_text">비밀번호 찾기</a></li>
-                <li><a target="_blank" href="https://nid.naver.com/user2/api/route?m=routeIdInquiry&amp;lang=ko_KR" class="find_text">아이디 찾기</a></li>
+                <li><a target="_blank" href="/KG-naver/member/findPwForm.jsp" class="find_text">비밀번호 찾기</a></li>
+                <li><a target="_blank" href="/KG-naver/member/findIdForm.jsp" class="find_text">아이디 찾기</a></li>
                 <li><a target="_blank" href="/KG-naver/member/agreeForm.jsp" class="find_text">회원가입</a>
                 </li>
 

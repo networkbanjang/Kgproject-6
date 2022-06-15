@@ -80,7 +80,7 @@ String result=PageService.getNavi(url, pagenumber, pageBlock, totalCount);
 		<h2>
 			<img src="https://ssl.pstatic.net/static/kin/09renewal/h_search_kin_all.gif" alt="전체 지식iN" width="67" height="15">
 
-			<span class="number">(<em>1-10/1,470</em>)</span>
+			<span class="number">(<em><%=begin %>-<%=end %>/<%=totalCount %></em>)</span>
 		</h2>
 										
 		<div class="option_search">

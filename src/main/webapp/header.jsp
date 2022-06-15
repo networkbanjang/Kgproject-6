@@ -1,20 +1,25 @@
+<%@page import="member.MemberDTO"%>
+<%@page import="member.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String id = (String)session.getAttribute("id");
+	MemberDAO memberDao_1 = new MemberDAO();
+	MemberDTO member_1 = memberDao_1.selectId(id);
+%>
+<link href="/project_6/images/tab_icon.png" rel="icon" type="image/x-icon" />
 <html lang="ko">
 <head>
-
-
 <link rel="stylesheet" type="text/css" href="https://ssl.pstatic.net/static.kin/static/pc/20220511141354/css/min/common.css">
 <link rel="stylesheet" type="text/css" href="https://ssl.pstatic.net/static.kin/static/pc/20220511141354/css/min/components.css">
 <link rel="stylesheet" type="text/css" href="https://ssl.pstatic.net/static.kin/static/pc/20220511141354/css/min/other.css">
 <link rel="stylesheet" type="text/css" href="https://ssl.pstatic.net/static.kin/static/pc/20220511141354/css/min/main.css">
 <link rel="stylesheet" type="text/css" href="https://ssl.pstatic.net/static.kin/static/pc/20220511141354/css/min/c3p.datalab.theme.css">
 
-<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.2">
-<title>
-	네이버 지식iN
-</title>
+<script type="text/javascript" src="https://ssl.pstatic.net/static.kin/static/pc/20220511141354/js/min/kin.js"></script>
 
+
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.2">
 <style id="gnb_style" type="text/css">@charset "UTF-8";
 /* NTS UIT Development Office YJH 140717 */
 a.gnb_my, .gnb_icon, #gnb .gnb_my_interface, .gnb_my_li .gnb_my_content .gnb_membership, #gnb .gnb_my_membership, #gnb .gnb_ico_num .gnb_ico_new, #gnb .gnb_ico_num .gnb_ico_new .gnb_count, .gnb_lst .ico_arrow, a.gnb_my .filter_mask, .gnb_my_lyr, .gnb_my_li .gnb_my_content .gnb_mask, .gnb_my_li .gnb_my_content .gnb_change, .gnb_my_li .gnb_my_content .gnb_edit_lst li, .gnb_my_li .gnb_my_content .gnb_pay_check em, #gnb .gnb_my_li .gnb_my_community a.gnb_pay span, .gnb_notice_li .gnb_notice_lyr, .gnb_notice_li .svc_list .gnb_ico_mail, .gnb_notice_li .svc_list .gnb_btn_remove span, .gnb_notice_li .svc_list .gnb_btn_remove i, .gnb_notice_li .gnb_error .gnb_ico_error, .gnb_ly_alert .gnb_btn_close i, .gnb_first_visit, .gnb_search_box, .gnb_search_box .gnb_del_txt, .gnb_svc_more .gnb_svc_lstwrp li.gnb_event em.ic_gnb_new, .gnb_svc_more .svc_btnwrp button { background: url(https://ssl.pstatic.net/static/common/gnb/one/sp_gnb_v14.png) no-repeat -999px -999px;		background: url(https://ssl.pstatic.net/static/common/gnb/one/sp_gnb_v15.png?v=2006) no-repeat -999px -999px; /* background: url(../img/sp_gnb_v15.png) no-repeat -999px -999px; */}
@@ -349,14 +354,18 @@ a.gnb_service_all:hover, a.gnb_service_all:visited, a.gnb_service_all:active, a.
 #gnb.gnb_one_flat .gnb_my_li .gnb_my .gnb_name,
 #gnb.gnb_one_flat .gnb_login_li .gnb_btn_login .gnb_txt {color: #666;}
 
-
+.mymenu > li:hover .submenu { height:250px; transition-duration:1s; }
 </style>
+
+<script src="https://ssl.pstatic.net/static.gn/js/clickcrD.js" id="gnb_clickcrD" charset="utf-8"></script>
+<script type="text/javascript" src="https://ssl.pstatic.net/static.kin/static/kin-web-pc/20220511163235/js/min/message/MessageManager.js"></script>
+
 
 </head>
 
 
 <body>
-<% String id = (String)session.getAttribute("id"); %>
+
 <div id="wrap" class="wrap wrap_home"> 
 
 <div class="header_wrap">
@@ -370,7 +379,7 @@ a.gnb_service_all:hover, a.gnb_service_all:visited, a.gnb_service_all:active, a.
 				</h1>
 				<div class="header_search">
 					<h2 class="logo_wrap">
-						<a href="/" onclick="nhn.Kin.Utility.nClicks('STA.kin', '', '', event);" class="sp_gnb icon_logo_kin">지식iN</a>
+						<a href="/KG-naver/index.jsp" class="sp_gnb icon_logo_kin">지식iN</a>
 						
 					</h2>
 					<h3 class="blind">검색영역</h3>
@@ -380,7 +389,7 @@ a.gnb_service_all:hover, a.gnb_service_all:visited, a.gnb_service_all:active, a.
 							<div class="search_area">
 								
 								<input role="combobox" type="text" name="query" onclick="nhn.Kin.Utility.nClicks('STA.search', '', '', event);return false;" class="search_input" accesskey="s" aria-haspopup="listbox" aria-expanded="false" aria-autocomplete="list" aria-controls="atcmpList" title="검색어 입력" maxlength="255" autocomplete="off" id="nx_query" value="">
-								<a href="#" class="search_auto">
+								<a href="#" class="search_auto"> <!-- 여기에 조건 걸어서 검색한 검색어 띄워주기 -->
 									<span class="sp_gnb icon_arrow" id="triangleBtn">자동완성 열기</span>
 								</a>
 								<div>
@@ -419,37 +428,60 @@ a.gnb_service_all:hover, a.gnb_service_all:visited, a.gnb_service_all:active, a.
 						</div>
 					</div>
 
-				
+					
 					<div class="gnb_common_area">
 						<div id="gnb" class="">
 						<strong class="blind">사용자 링크</strong>
-						<ul class="gnb_lst" id="gnb_lst" style="display: block;">
-							<%if (id != null){%>
+						
+						<ul class="gnb_lst" class="mymenu" style="display: block;">
+							<%if(id == "" || id == null) { %>
 							<li class="gnb_login_li" id="gnb_login_layer" style="display: inline-block;">
-								<a class="gnb_btn_login" href="/KG-naver/member/logout.jsp" id="gnb_logout_button">
-									<span class="gnb_bg"></span>
-									<span class="gnb_bdr"></span>
-									<span class="gnb_txt">로그아웃</span>
-								</a>
-							</li>
-							<%} else  {%>
-								<li class="gnb_login_li" id="gnb_login_layer" style="display: inline-block;">
-								<a class="gnb_btn_login" href="/KG-naver/member/loginForm.jsp" id="gnb_logout_button">
+								<a class="gnb_btn_login" href="/KG-naver/member/loginForm.jsp" id="gnb_login_button">
 									<span class="gnb_bg"></span>
 									<span class="gnb_bdr"></span>
 									<span class="gnb_txt">로그인</span>
 								</a>
 							</li>
-							<%} %>
 							<li class="gnb_reg_li" id="gnb_reg_layer" style="display: inline-block;">
-								<a class="gnb_btn_reg" href="/KG-naver/member/registForm.jsp" id="gnb_reg_button">
+								<a class="gnb_btn_reg" href="/KG-naver/member/agreeForm.jsp" id="gnb_reg_button">
 									<span class="gnb_bg2"></span>
 									<span class="gnb_bdr2"></span>
 									<span class="gnb_txt2">회원가입</span>
 								</a>
 							</li>
+							<%}else { %>
 						
-						
+						<!-- 로그인 성공 시 보여주는 프로필 이미지와 닉네임	 -->
+						<li class="gnb_my_li" id="gnb_my_layer" style="display: inline-block;">
+							<div class="gnb_my_namebox" id="gnb_my_namebox">
+								<a href="javascript:;" class="gnb_my" onclick="gnbUserLayer.clickToggle(); return false;">
+								<!-- 이미지 경로 -->
+								<!-- 회원 기본 이미지 설정하기 -->
+								<%if (member_1.getPic() != null){ %>
+								<img src="/KG-naver/up/<%=id %>/<%=member_1.getPic() %>" width="26" height="26" alt="내 프로필 이미지" style="display: inline-block;">
+								<%} else{%>
+								<img src="/KG-naver/images/default.png" width="26" height="26" alt="내 프로필 이미지" style="display: inline-block;">
+								<%} %>
+								<span id="gnb_profile_filter_mask" class="filter_mask" style="display: inline-block;"></span> 
+								<%if(session.getAttribute("nickname") == null) {%>
+								<span class="gnb_name" id="gnb_name1"><%=session.getAttribute("id") %></span>
+								<%}else{ %>
+								<span class="gnb_name" id="gnb_name1"><%=session.getAttribute("nickname") %></span>
+								<%} %>
+								<em class="blind">내정보 보기</em>
+								<span class="ico_arrow"></span>
+								</a>
+								<a href="#" class="gnb_emp" id="gnb_emp" style="display: none;">(임직원혜택)</a>
+							</div>
+						</li>
+						<li class="gnb_reg_li" id="gnb_reg_layer" style="display: inline-block;">
+								<a class="gnb_btn_reg" href="/KG-naver/member/logout.jsp" id="gnb_reg_button">
+									<span class="gnb_bg2"></span>
+									<span class="gnb_bdr2"></span>
+									<span class="gnb_txt2">로그아웃</span>
+								</a>
+						</li>
+						<%} %>
 						</ul>
 						</div>
 					</div>
@@ -481,63 +513,48 @@ a.gnb_service_all:hover, a.gnb_service_all:visited, a.gnb_service_all:active, a.
 			<h3 class="blind">메인 메뉴</h3>
 			
 			<ul class="nav_list" id="au_lnb" role="menubar">
-				<li class="menu on" role="presentation">
+				<li class="menu" role="presentation">
 					<a href="/KG-naver/index.jsp" role="menuitem" class="item" id="au_lnb_home" tabindex="0" onclick="nhn.Kin.Utility.nClicks('LNB.home', '', '', event);" aria-current="page"><em>홈</em></a>
 				</li>
 				<li class="menu" role="presentation">
-					
 					<a href="/KG-naver/question_list.jsp" role="menuitem" class="item" aria-haspopup="true" aria-expanded="false" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.qna', '', '', event);"><em>Q&amp;A</em></a>
-					<ul class="nav_sub_list _lnbSubMenu" role="menu">
-						<li role="presentation" class="sub_menu"><a href="/qna/list.naver?dirId=11" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.kinlayer', '11', '1', event);">교육, 학문</a></li>
-						<li role="presentation" class="sub_menu"><a href="/qna/list.naver?dirId=1" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.kinlayer', '1', '2', event);">컴퓨터통신</a></li>
-						<li role="presentation" class="sub_menu"><a href="/qna/list.naver?dirId=2" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.kinlayer', '2', '3', event);">게임</a></li>
-						<li role="presentation" class="sub_menu"><a href="/qna/list.naver?dirId=3" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.kinlayer', '3', '4', event);">엔터테인먼트, 예술</a></li>
-						<li role="presentation" class="sub_menu"><a href="/qna/list.naver?dirId=8" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.kinlayer', '8', '5', event);">생활</a></li>
-						<li role="presentation" class="sub_menu"><a href="/qna/list.naver?dirId=7" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.kinlayer', '7', '6', event);">건강</a></li>
-						<li role="presentation" class="sub_menu"><a href="/qna/list.naver?dirId=6" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.kinlayer', '6', '7', event);">사회, 정치</a></li>
-						<li role="presentation" class="sub_menu"><a href="/qna/list.naver?dirId=4" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.kinlayer', '4', '8', event);">경제</a></li>
-						<li role="presentation" class="sub_menu"><a href="/qna/list.naver?dirId=9" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.kinlayer', '9', '9', event);">여행</a></li>
-						<li role="presentation" class="sub_menu"><a href="/qna/list.naver?dirId=10" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.kinlayer', '10', '10', event);">스포츠, 레저</a></li>
-						<li role="presentation" class="sub_menu"><a href="/qna/list.naver?dirId=5" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.kinlayer', '5', '11', event);">쇼핑</a></li>
-						<li role="presentation" class="sub_menu"><a href="/qna/list.naver?dirId=13" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.jun', '', '', event);">쥬니버Q&amp;A</a></li>
-						<li role="presentation" class="sub_menu"><a href="/qna/list.naver?dirId=12" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.loc', '', '', event);">지역&amp;플레이스</a></li>
-						<li role="presentation" class="sub_menu"><a href="/qna/list.naver?dirId=20" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.talk', '', '', event);">고민Q&amp;A</a></li>
-						<li role="presentation" class="sub_menu"><a href="/opendic/index.naver" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.open', '', '', event);">오픈사전</a></li>
-					</ul>
 				</li>
 				<li class="menu" role="presentation">
-					<a href="/KG-naver/question_list2.jsp" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.answer', '', '', event);"><em>답변하기</em></a>
+					<a href="/KG-naver/question_list.jsp" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.answer', '', '', event);"><em>답변하기</em></a>
 				</li>
 
 				<li class="menu" role="presentation">
 					<a href="people/peopleMainForm.jsp" role="menuitem" tabindex="-1" class="item" id="peopleLnbBtn" onclick="nhn.Kin.Utility.nClicks('LNB.people', '', '', event);"><em>사람들</em></a>
 				</li>
-				
-				<li class="menu" role="presentation">
-					<a href="#" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.best', '', '', event);"><em>베스트</em></a>
-				</li>
+
 				<li class="menu" role="presentation">
 					<a href="/KG-naver/hall/index.jsp" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.honor', '', '', event);"><em>명예의전당</em></a>
 				</li>
 				<li class="menu" role="presentation">
 					<span class="lnb_bar">|</span>
-					<%if (id == null) {%>
+					<%if(id == null){ %>
 					<a href="/KG-naver/member/loginForm.jsp" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.profile', '', '', event);"><em>프로필</em></a>
-					<%} else { %>
+					<%}else{ %>
 					<a href="/KG-naver/main/profile.jsp?id=<%=id %>" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.profile', '', '', event);"><em>프로필</em></a>
 					<%} %>
 				</li>
-
+				<li class="menu" role="presentation">
+					<a href="/KG-naver/people/peoplePartnerForm.jsp" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.partner', '', '', event);"><em>파트너센터</em></a>
+				</li>
+				
+					
+				
 				
 			</ul>
 			
 				
-				
 					
-					<a href="/KG-naver/board/write.jsp" class="nav__button_question _clickcode:LNB.q" role="button"><span class="btn_inner"><i class="sp_gnb icon_pencil"></i>질문하기</span></a>
-					
-				
-			
+					<%if(id == null){ %>
+					<a href="/KG-naver/member/loginForm.jsp" class="nav__button_question _clickcode:LNB.q"role="button"><span class="btn_inner" onclick="alert('로그인 후 이용해주세요.')"><i class="sp_gnb icon_pencil"></i>질문하기</span></a>
+					<%}else{ %>
+					<a href="/KG-naver/board/write.jsp" class="nav__button_question _clickcode:LNB.q"role="button"><span class="btn_inner"><i class="sp_gnb icon_pencil"></i>질문하기</span></a>
+					<%} %>
+					<%memberDao_1.close(); %>
 		</div>
 	</div>
 </div>

@@ -77,7 +77,7 @@
 					<tr>
 						<th>파일첨부 :</th>
 						<td class="plus">
-							<input type="file">
+							<input type="file" name="upfile">
 						</td>
 					</tr>
 					<tr>

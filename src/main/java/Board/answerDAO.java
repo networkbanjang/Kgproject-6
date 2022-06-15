@@ -68,6 +68,7 @@ public class answerDAO {
 				answer.setTime(rs.getString("time"));
 				answer.setPubl(rs.getString("publ"));
 				answer.setRecommend(rs.getInt("recommend"));
+				answer.setFile_root(rs.getString("file_root"));
 				list.add(answer);
 
 			}
@@ -86,13 +87,15 @@ public class answerDAO {
 		return list;
 	}
 
-	public ArrayList<BoardDTO> hitDesc() {
-		String sql = "select b.* from (select rownum rn, A.* FROM (select * from naver_view order by hit desc) A)B where rn between 1 and 4";
+	public ArrayList<BoardDTO> hitDesc(int begin,int end) {
+		String sql = "select b.* from (select rownum rn, A.* FROM (select * from naver_view order by hit desc) A)B where rn between ? and ?";
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		ArrayList<BoardDTO> list = new ArrayList<>();
 		try {
 			ps = con.prepareStatement(sql);
+			ps.setInt(1, begin);
+			ps.setInt(2, end);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				BoardDTO board = new BoardDTO();
@@ -196,14 +199,16 @@ public class answerDAO {
 		}
 	}
 	public void modify(answerDTO answer) {
-			String sql = "UPDATE naver_answer SET content=?, publ=? WHERE num=?";
+			String sql = "UPDATE naver_answer SET content=?, publ=?, file_root=? WHERE num=?";
+	
 			
 			PreparedStatement ps = null;
 			try {
 				ps = con.prepareStatement(sql);
 				ps.setString(1, answer.getContent());
 				ps.setString(2, answer.getPubl());
-				ps.setInt(3, answer.getNum());
+				ps.setString(3, answer.getFile_root());
+				ps.setInt(4, answer.getNum());
 				ps.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -234,5 +239,31 @@ public void recommend(int bool,int num) {
 			e.printStackTrace();
 		}
 	}
+}
+public int count() {
+	String sql = "SELECT count(*) as cnt FROM naver_answer";
+
+	PreparedStatement ps = null;
+	ResultSet rs = null;
+	int cnt = 0;
+	try {
+		ps = con.prepareStatement(sql);
+		rs = ps.executeQuery();
+		if (rs.next()) {
+			cnt = rs.getInt("cnt");
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			if (rs != null)
+				rs.close();
+			if (ps != null)
+				ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	return cnt;
 }
 }

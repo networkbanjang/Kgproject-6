@@ -15,6 +15,45 @@ body {position:relative; background:#f5f6f7;}
     cursor: pointer;
 }
 
+h1 {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+#u_skip a {
+    position: absolute;
+    top: -30px;
+    left: 0;
+    width: 128px;
+    text-align: center;
+    border: 1px solid #4ec53d;
+    outline: 0;
+    background: url(https://static.nid.naver.com/images/web/user/sp_u_skip.png) repeat-x 0 -11px;
+}
+#header .h_logo {
+    display: block;
+    margin: 0 auto;
+    width: 240px;
+    height: 44px;
+    background-image: url(https://static.nid.naver.com/images/ui/join/m_naver_logo_20191126.png);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 240px auto;
+    color: transparent;
+    font-size: 0;
+}
+#header .h_logo {
+    width: 165px;
+    height: 32px;
+    background-image: url(https://ssl.pstatic.net/static/nid/join/m_logo_naver.png);
+    background-size: 165px auto;
+}
+
 #header{margin:0 auto; padding-top:59px;}
 #header {
     position: relative;

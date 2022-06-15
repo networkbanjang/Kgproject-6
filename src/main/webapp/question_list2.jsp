@@ -16,7 +16,7 @@
 	rel="stylesheet">
 
 <%
-//현재 페이지 번호
+int i=1;
 int pagenumber = 0;
 try {
 	pagenumber = Integer.parseInt(request.getParameter("pageNumber"));
@@ -107,24 +107,24 @@ ArrayList<answerDTO> a;
 								<td colspan="3" class="list_top">Q&A</td>
 								</tr>
 									<tr>
-									<td>	<a href="question_list2.jsp?category=교육,학문">교육,학문</a></td>
-									<td>	<a href="question_list2.jsp?category=컴퓨터 통신">컴퓨터 통신</a></td>
-										<td>	<a href="question_list2.jsp?category=게임">게임</a></td>
+									<td>	<a href="question_list2.jsp?category=교육,학문">교육,학문 (<%=boardDao.count("교육,학문") %>)</a></td>
+									<td>	<a href="question_list2.jsp?category=컴퓨터 통신">컴퓨터 통신</a>(<%=boardDao.count("컴퓨터 통신") %>)</td>
+										<td>	<a href="question_list2.jsp?category=게임">게임</a>(<%=boardDao.count("게임") %>)</td>
 									</tr>
 									<tr>
-										<td>	<a href="question_list2.jsp?category=엔터테이먼트,예술">엔터테이먼트,예술</a></td>
-										<td>	<a href="question_list2.jsp?category=생활">생활</a></td>
-										<td>	<a href="question_list2.jsp?category=건강">건강</a></td>
+										<td>	<a href="question_list2.jsp?category=엔터테이먼트,예술">엔터테이먼트,예술</a>(<%=boardDao.count("엔터테이먼트,예술") %>)</td>
+										<td>	<a href="question_list2.jsp?category=생활">생활</a>(<%=boardDao.count("생활") %>)</td>
+										<td>	<a href="question_list2.jsp?category=건강">건강</a>(<%=boardDao.count("건강") %>)</td>
 									</tr>
 									<tr>
-										<td>	<a href="question_list2.jsp?category=사회,정치">사회,정치</a></td>
-										<td>	<a href="question_list2.jsp?category=경제">경제</a></td>
-										<td>	<a href="question_list2.jsp?category=여행">여행</a></td>
+										<td>	<a href="question_list2.jsp?category=사회,정치">사회,정치</a>(<%=boardDao.count("사회,정치") %>)</td>
+										<td>	<a href="question_list2.jsp?category=경제">경제</a>(<%=boardDao.count("경제") %>)</td>
+										<td>	<a href="question_list2.jsp?category=여행">여행</a>(<%=boardDao.count("여행") %>)</td>
 									</tr>
 									<tr>
-										<td>	<a href="question_list2.jsp?category=스포츠,레저">스포츠,레저</a></td>
-										<td>	<a href="question_list2.jsp?category=쇼핑">쇼핑</a></td>
-										<td>	<a href="question_list2.jsp?category=쥬니버">쥬니버Q&A</a></td>
+										<td>	<a href="question_list2.jsp?category=스포츠,레저">스포츠,레저</a> (<%=boardDao.count("스포츠,레저") %>)</td>
+										<td>	<a href="question_list2.jsp?category=쇼핑">쇼핑</a>(<%=boardDao.count("쇼핑") %>)</td>
+										<td>	<a href="question_list2.jsp?category=쥬니버">쥬니버Q&A</a>(<%=boardDao.count("쥬니버") %>)</td>
 									</tr>
 								</table>					
 							</div>

@@ -3,29 +3,42 @@
 <!DOCTYPE html>
 <html> 
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="agreeForm.css" type="text/css">
-<script type="text/javascript" src="js/checkIcon.js"></script>
-<title>네이버 : 회원가입</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>네이버 : 회원가입</title> 
+	<link rel="stylesheet" href="/KG-naver/member/AgreeForm.css" type="text/css">
+	<script type="text/javascript" src="/KG-naver/js/clickcr.js"></script>
+	<script type="text/javascript" src="KG-naver/js/nclicks.js"></script>
+	<script type="text/javascript">lcs_do();</script>
+	<meta name="decorator" content="V2_JOIN">
 </head>
-<style>
-</style>
 <body>
-	<div id="wrap">
-		<div class="header" id="header">
-			<img src="/KG-naver/images/naver_logo.png">
-		</div>
-	</div>
-	<div id="container" role="main">
+<div id="wrap">
+
+	<!-- 스킵네비게이션 : 웹접근성대응-->
+<div id="u_skip">
+    <a href="#content" onclick="document.getElementById('content').tabIndex=-1;document.getElementById('content').focus();return false;"><span>본문으로 바로가기</span></a>
+</div>
+<!-- //스킵네비게이션 -->
+<!-- header -->
+<div id="header" role="banner">
+    <h1><a href="http://www.naver.com" class="h_logo"><span class="blind">NAVER</span></a></h1>
+</div>
+<!-- //header -->
+<!-- container -->
+<div id="container" role="main">
     <!-- content -->
     <div id="content">
         <!-- tg-text=title -->
+        <h2 class="blind">네이버 회원가입</h2>
         <div class="join_content">
             <div class="join_form">
                 <form id="join_form" method="GET" action="/user2/V2Join?m=begin">
-
+                    <input type="hidden" id="token_sjoin" name="token_sjoin" value="NWDgbDOGOTqw3Lc1">
+                    <input type="hidden" id="langSelect" name="langSelect" value="ko_KR">
                     <!-- 약관동의 -->
-                    <div class="terms_p" id="terms_p">
+                    <div class="terms_p">
                         <p class="terms_chk_all">
 								<span class="input_chk">
 									<input type="checkbox" id="chk_all" name="chk_all">
@@ -39,108 +52,104 @@
 										<input type="checkbox" id="termsService" name="termsService" class="chk">
 										<label for="termsService">네이버 이용약관 동의<span class="terms_necessary">(필수)</span></label>
 									</span>
-                                	<div class="terms_box" tabindex="0" id="divService">
-	                                    <!-- 네이버 이용약관 동의 -->
-										<div class="article">
-										    <h3 class="article__title">여러분을 환영합니다.</h3>
-										    <p class="article__text">
-										        네이버 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다.
-										        본 약관은 다양한 네이버 서비스의 이용과 관련하여 네이버 서비스를 제공하는 네이버 주식회사(이하 ‘네이버’)와
-										        이를 이용하는 네이버 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며,
-										        아울러 여러분의 네이버 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
-										    </p>
-										    <p class="article__text">
-										        네이버 서비스를 이용하시거나 네이버 서비스 회원으로 가입하실 경우 여러분은 본 약관 및 관련 운영 정책을 확인하거나 동의하게 되므로,
-										        잠시 시간을 내시어 주의 깊게 살펴봐 주시기 바랍니다.
-										    </p>
-										</div>
-										<div class="article">
-										    <h3 class="article__title">다양한 네이버 서비스를 즐겨보세요.</h3>
-										    <p class="article__text">
-										        네이버는 <a href="https://www.naver.com/" target="_blank">www.naver.com</a>을 비롯한 네이버 도메인의 웹사이트 및 응용프로그램(어플리케이션, 앱)을 통해 정보 검색,
-										        다른 이용자와의 커뮤니케이션, 콘텐츠 제공, 상품 쇼핑 등 여러분의 생활에 편리함을 더할 수 있는 다양한 서비스를 제공하고 있습니다.<br>
-										        여러분은 PC, 휴대폰 등 인터넷 이용이 가능한 각종 단말기를 통해 각양각색의 네이버 서비스를 자유롭게 이용하실 수 있으며,
-										        개별 서비스들의 구체적인 내용은 각 서비스 상의 안내, 공지사항, <a href="https://help.naver.com/support/home.nhn" target="_blank">네이버 웹고객센터(이하 ‘고객센터’)</a> 도움말 등에서 쉽게 확인하실 수 있습니다.
-										    </p>
-										    <p class="article__text">
-										        네이버는 기본적으로 여러분 모두에게 동일한 내용의 서비스를 제공합니다.
-										        다만, '청소년보호법' 등 관련 법령이나 기타 개별 서비스 제공에서의 특별한 필요에 의해서 연령 또는 일정한 등급을 기준으로 이용자를 구분하여 제공하는 서비스의 내용, 이용 시간, 이용 횟수 등을 다르게 하는 등 일부 이용을 제한하는 경우가 있습니다.
-										        자세한 내용은 역시 각 서비스 상의 안내, 공지사항, 고객센터 도움말 등에서 확인하실 수 있습니다.
-										    </p>
-										    <p class="article__text">
-										        네이버 서비스에는 기본적으로 본 약관이 적용됩니다만 네이버가 다양한 서비스를 제공하는 과정에서 부득이 본 약관 외 별도의 약관, 운영정책 등을 적용하는 경우(예, 네이버페이, V LIVE 등)가 있습니다.
-										        그리고 네이버 계열사가 제공하는 특정 서비스의 경우에도(예, LINE, SNOW등) 해당 운영 회사가 정한 고유의 약관, 운영정책 등이 적용될 수 있습니다.
-										        이러한 내용은 각각의 해당 서비스 초기 화면에서 확인해 주시기 바랍니다.
-										    </p>
-										</div>
-										<div class="article">
-										    <h3 class="article__title">회원으로 가입하시면 네이버 서비스를 보다 편리하게 이용할 수 있습니다.</h3>
-										    <p class="article__text">
-										        여러분은 본 약관을 읽고 동의하신 후 회원 가입을 신청하실 수 있으며,
-										        네이버는 이에 대한 승낙을 통해 회원 가입 절차를 완료하고 여러분께 네이버 서비스 이용 계정(이하 ‘계정’)을 부여합니다.
-										        계정이란 회원이 네이버 서비스에 로그인한 이후 이용하는 각종 서비스 이용 이력을 회원 별로 관리하기 위해 설정한 회원 식별 단위를 말합니다.
-										        회원은 자신의 계정을 통해 좀더 다양한 네이버 서비스를 보다 편리하게 이용할 수 있습니다.
-										        이와 관련한 상세한 내용은 <em>계정 운영정책</em> 및 고객센터 내 <a href="https://help.naver.com/support/contents/contents.nhn?serviceNo=532&amp;categoryNo=1441" target="_blank">네이버 회원가입 방법</a> 등에서 확인해 주세요.
-										    </p>
-										    <p class="article__text">
-										        네이버는 단체에 속한 여러 구성원들이 공동의 계정으로 네이버 서비스를 함께 이용할 수 있도록 단체회원 계정도 부여하고 있습니다.
-										        단체회원 구성원들은 하나의 계정 및 아이디(ID)를 공유하되 각자 개별적으로 설정한 비밀번호를 입력하여 계정에 로그인하고 각종 서비스를 이용하게 됩니다.
-										        단체회원은 관리자와 멤버로 구성되며, 관리자는 구성원 전부로부터 권한을 위임 받아 단체회원을 대표하고 단체회원 계정을 운용합니다.<br>
-										        따라서 관리자는 단체회원 계정을 통해 별도 약관 또는 기존 약관 개정에 대해 동의하거나 단체회원에서 탈퇴할 수 있고,
-										        멤버들의 단체회원 계정 로그인 방법 및 이를 통한 게시물 게재 등 네이버 서비스 이용을 관리(게시물 삭제 포함)할 수 있습니다.
-										        본 약관에서 규정한 사항은 원칙적으로 구성원 모두에게 적용되며, 각각의 구성원은 다른 구성원들의 단체회원 계정 및 아이디(ID)를 통한 서비스 이용에 관해 연대책임을 부담합니다.
-										    </p>
-										    <p class="article__text">
-										        단체회원 계정 사용에서의 관리자, 멤버 등의 권한 및 (공동)책임에 관한 사항 등은 <em>계정 운영정책</em> 및
-										        고객센터 내 <a href="https://help.naver.com/support/contents/contents.nhn?serviceNo=532&amp;categoryNo=16952" target="_blank">네이버 단체회원(단체 아이디) 소개</a> 등에서 확인해 주시기 바랍니다.
-										    </p>
-										</div>
-										<div class="article">
-										    <h3 class="article__title">여러분이 제공한 콘텐츠를 소중히 다룰 것입니다.</h3>
-										    <p class="article__text">
-										        네이버는 여러분이 게재한 게시물이 네이버 서비스를 통해 다른 이용자들에게 전달되어 우리 모두의 삶을 더욱 풍요롭게 해줄 것을 기대합니다.
-										        게시물은 여러분이 타인 또는 자신이 보게 할 목적으로 네이버 서비스 상에 게재한 부호, 문자, 음성, 음향, 그림, 사진, 동영상, 링크 등으로
-										        구성된 각종 콘텐츠 자체 또는 파일을 말합니다.
-										    </p>
-										    <p class="article__text">
-										        네이버는 여러분의 생각과 감정이 표현된 콘텐츠를 소중히 보호할 것을 약속 드립니다.
-										        여러분이 제작하여 게재한 게시물에 대한 지식재산권 등의 권리는 당연히 여러분에게 있습니다.
-										    </p>
-										    <p class="article__text">
-										        한편, 네이버 서비스를 통해 여러분이 게재한 게시물을 적법하게 제공하려면 해당 콘텐츠에 대한 저장, 복제, 수정, 공중 송신, 전시, 배포,
-										        2차적 저작물 작성(단, 번역에 한함) 등의 이용 권한(기한과 지역 제한에 정함이 없으며, 별도 대가 지급이 없는 라이선스)이 필요합니다.<br>
-										        게시물 게재로 여러분은 네이버에게 그러한 권한을 부여하게 되므로, 여러분은 이에 필요한 권리를 보유하고 있어야 합니다.
-										    </p>
-										    <p class="article__text">
-										        네이버는 여러분이 부여해 주신 콘텐츠 이용 권한을 저작권법 등 관련 법령에서 정하는 바에 따라 네이버 서비스 내 노출, 서비스 홍보를 위한 활용,
-										        서비스 운영, 개선 및 새로운 서비스 개발을 위한 연구, 웹 접근성 등 법률상 의무 준수, 외부 사이트에서의 검색, 수집 및 링크 허용을 위해서만
-										        제한적으로 행사할 것입니다.<br>
-										        만약, 그 밖의 목적을 위해 부득이 여러분의 콘텐츠를 이용하고자 할 경우엔 사전에 여러분께 설명을 드리고 동의를 받도록 하겠습니다.
-										    </p>
-										    <p class="article__text">
-										        또한 여러분이 제공한 소중한 콘텐츠는 네이버 서비스를 개선하고 새로운 네이버 서비스를 제공하기 위해 인공지능 분야 기술 등의 연구 개발 목적으로 네이버 및 네이버 계열사에서 사용될 수 있습니다.
-										        네이버는 지속적인 연구 개발을 통해 여러분께 좀 더 편리하고 유용한 서비스를 제공해 드릴 수 있도록 최선을 다하겠습니다.
-										    </p>
-										    <p class="article__text">
-										        네이버는 여러분이 자신이 제공한 콘텐츠에 대한 네이버 또는 다른 이용자들의 이용 또는 접근을 보다 쉽게 관리할 수 있도록 다양한 수단을 제공하기 위해 노력하고 있습니다.
-										        여러분은 네이버 서비스 내에 콘텐츠 삭제, 비공개 등의 관리기능이 제공되는 경우 이를 통해 직접 타인의 이용 또는 접근을 통제할 수 있고,
-										        고객센터를 통해서도 콘텐츠의 삭제, 비공개, 검색결과 제외 등의 조치를 요청할 수 있습니다.<br>
-										        다만, 일부 네이버 서비스의 경우 삭제, 비공개 등의 처리가 어려울 수 있으며,
-										        이러한 내용은 각 서비스 상의 안내, 공지사항, 고객센터 도움말 등에서 확인해 주시길 부탁 드립니다.
-										    </p>
-										</div>
-										<div class="article">
-										    <h3 class="article__title">여러분의 개인정보를 소중히 보호합니다.</h3>
-										    <p class="article__text">
-										        네이버는 서비스의 원활한 제공을 위하여 회원이 동의한 목적과 범위 내에서만 개인정보를 수집∙이용하며, 개인정보 보호 관련 법령에 따라 안전하게 관리합니다.
-										        네이버가 이용자 및 회원에 대해 관련 개인정보를 안전하게 처리하기 위하여 기울이는 노력이나
-										        기타 상세한 사항은 <a href="http://policy.naver.com/policy/privacy.html" target="_blank">개인정보 처리방침</a>에서 확인하실 수 있습니다.
-										    </p>
-										    <p class="article__text">
-										        네이버는 여러분이 서비스를 이용하기 위해 일정 기간 동안 로그인 혹은 접속한 기록이 없는 경우, 전자메일, 서비스 내 알림 또는 기타 적절한 전자적 수단을 통해 사전에 안내해 드린 후 여러분의 정보를 파기하거나 분리 보관할 수 있으며,
-										        만약 이로 인해 서비스 제공을 위해 필수적인 정보가 부족해질 경우 부득이 관련 서비스 이용계약을 해지할 수 있습니다.
-										    </p>
-										</div>
+                                <div class="terms_box" tabindex="0" id="divService">
+                                    <!-- 네이버 이용약관 동의 -->
+<div class="article">
+    <h3 class="article__title">여러분을 환영합니다.</h3>
+    <p class="article__text">
+        네이버 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다.
+        본 약관은 다양한 네이버 서비스의 이용과 관련하여 네이버 서비스를 제공하는 네이버 주식회사(이하 ‘네이버’)와
+        이를 이용하는 네이버 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며,
+        아울러 여러분의 네이버 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
+    </p>
+    <p class="article__text">
+        네이버 서비스를 이용하시거나 네이버 서비스 회원으로 가입하실 경우 여러분은 본 약관 및 관련 운영 정책을 확인하거나 동의하게 되므로,
+        잠시 시간을 내시어 주의 깊게 살펴봐 주시기 바랍니다.
+    </p>
+</div>
+<div class="article">
+    <h3 class="article__title">다양한 네이버 서비스를 즐겨보세요.</h3>
+    <p class="article__text">
+        네이버는 <a href="https://www.naver.com/" target="_blank">www.naver.com</a>을 비롯한 네이버 도메인의 웹사이트 및 응용프로그램(어플리케이션, 앱)을 통해 정보 검색,
+        다른 이용자와의 커뮤니케이션, 콘텐츠 제공, 상품 쇼핑 등 여러분의 생활에 편리함을 더할 수 있는 다양한 서비스를 제공하고 있습니다.<br>
+        여러분은 PC, 휴대폰 등 인터넷 이용이 가능한 각종 단말기를 통해 각양각색의 네이버 서비스를 자유롭게 이용하실 수 있으며,
+        개별 서비스들의 구체적인 내용은 각 서비스 상의 안내, 공지사항, <a href="https://help.naver.com/support/home.nhn" target="_blank">네이버 웹고객센터(이하 ‘고객센터’)</a> 도움말 등에서 쉽게 확인하실 수 있습니다.
+    </p>
+    <p class="article__text">
+        네이버는 기본적으로 여러분 모두에게 동일한 내용의 서비스를 제공합니다.
+        다만, '청소년보호법' 등 관련 법령이나 기타 개별 서비스 제공에서의 특별한 필요에 의해서 연령 또는 일정한 등급을 기준으로 이용자를 구분하여 제공하는 서비스의 내용, 이용 시간, 이용 횟수 등을 다르게 하는 등 일부 이용을 제한하는 경우가 있습니다.
+        자세한 내용은 역시 각 서비스 상의 안내, 공지사항, 고객센터 도움말 등에서 확인하실 수 있습니다.
+    </p>
+    <p class="article__text">
+        네이버 서비스에는 기본적으로 본 약관이 적용됩니다만 네이버가 다양한 서비스를 제공하는 과정에서 부득이 본 약관 외 별도의 약관, 운영정책 등을 적용하는 경우(예, 네이버페이, V LIVE 등)가 있습니다.
+        그리고 네이버 계열사가 제공하는 특정 서비스의 경우에도(예, LINE, SNOW등) 해당 운영 회사가 정한 고유의 약관, 운영정책 등이 적용될 수 있습니다.
+        이러한 내용은 각각의 해당 서비스 초기 화면에서 확인해 주시기 바랍니다.
+    </p>
+</div>
+<div class="article">
+    <h3 class="article__title">회원으로 가입하시면 네이버 서비스를 보다 편리하게 이용할 수 있습니다.</h3>
+    <p class="article__text">
+        여러분은 본 약관을 읽고 동의하신 후 회원 가입을 신청하실 수 있으며,
+        네이버는 이에 대한 승낙을 통해 회원 가입 절차를 완료하고 여러분께 네이버 서비스 이용 계정(이하 ‘계정’)을 부여합니다.
+        계정이란 회원이 네이버 서비스에 로그인한 이후 이용하는 각종 서비스 이용 이력을 회원 별로 관리하기 위해 설정한 회원 식별 단위를 말합니다.
+        회원은 자신의 계정을 통해 좀더 다양한 네이버 서비스를 보다 편리하게 이용할 수 있습니다.
+        이와 관련한 상세한 내용은 <em>계정 운영정책</em> 및 고객센터 내 <a href="https://help.naver.com/support/contents/contents.nhn?serviceNo=532&amp;categoryNo=1441" target="_blank">네이버 회원가입 방법</a> 등에서 확인해 주세요.
+    </p>
+    <p class="article__text">
+        네이버는 단체에 속한 여러 구성원들이 공동의 계정으로 네이버 서비스를 함께 이용할 수 있도록 단체회원 계정도 부여하고 있습니다.
+        단체회원 구성원들은 하나의 계정 및 아이디(ID)를 공유하되 각자 개별적으로 설정한 비밀번호를 입력하여 계정에 로그인하고 각종 서비스를 이용하게 됩니다.
+        단체회원은 관리자와 멤버로 구성되며, 관리자는 구성원 전부로부터 권한을 위임 받아 단체회원을 대표하고 단체회원 계정을 운용합니다.<br>
+        따라서 관리자는 단체회원 계정을 통해 별도 약관 또는 기존 약관 개정에 대해 동의하거나 단체회원에서 탈퇴할 수 있고,
+        멤버들의 단체회원 계정 로그인 방법 및 이를 통한 게시물 게재 등 네이버 서비스 이용을 관리(게시물 삭제 포함)할 수 있습니다.
+        본 약관에서 규정한 사항은 원칙적으로 구성원 모두에게 적용되며, 각각의 구성원은 다른 구성원들의 단체회원 계정 및 아이디(ID)를 통한 서비스 이용에 관해 연대책임을 부담합니다.
+    </p>
+</div>
+<div class="article">
+    <h3 class="article__title">여러분이 제공한 콘텐츠를 소중히 다룰 것입니다.</h3>
+    <p class="article__text">
+        네이버는 여러분이 게재한 게시물이 네이버 서비스를 통해 다른 이용자들에게 전달되어 우리 모두의 삶을 더욱 풍요롭게 해줄 것을 기대합니다.
+        게시물은 여러분이 타인 또는 자신이 보게 할 목적으로 네이버 서비스 상에 게재한 부호, 문자, 음성, 음향, 그림, 사진, 동영상, 링크 등으로
+        구성된 각종 콘텐츠 자체 또는 파일을 말합니다.
+    </p>
+    <p class="article__text">
+        네이버는 여러분의 생각과 감정이 표현된 콘텐츠를 소중히 보호할 것을 약속 드립니다.
+        여러분이 제작하여 게재한 게시물에 대한 지식재산권 등의 권리는 당연히 여러분에게 있습니다.
+    </p>
+    <p class="article__text">
+        한편, 네이버 서비스를 통해 여러분이 게재한 게시물을 적법하게 제공하려면 해당 콘텐츠에 대한 저장, 복제, 수정, 공중 송신, 전시, 배포,
+        2차적 저작물 작성(단, 번역에 한함) 등의 이용 권한(기한과 지역 제한에 정함이 없으며, 별도 대가 지급이 없는 라이선스)이 필요합니다.<br>
+        게시물 게재로 여러분은 네이버에게 그러한 권한을 부여하게 되므로, 여러분은 이에 필요한 권리를 보유하고 있어야 합니다.
+    </p>
+    <p class="article__text">
+        네이버는 여러분이 부여해 주신 콘텐츠 이용 권한을 저작권법 등 관련 법령에서 정하는 바에 따라 네이버 서비스 내 노출, 서비스 홍보를 위한 활용,
+        서비스 운영, 개선 및 새로운 서비스 개발을 위한 연구, 웹 접근성 등 법률상 의무 준수, 외부 사이트에서의 검색, 수집 및 링크 허용을 위해서만
+        제한적으로 행사할 것입니다.<br>
+        만약, 그 밖의 목적을 위해 부득이 여러분의 콘텐츠를 이용하고자 할 경우엔 사전에 여러분께 설명을 드리고 동의를 받도록 하겠습니다.
+    </p>
+    <p class="article__text">
+        또한 여러분이 제공한 소중한 콘텐츠는 네이버 서비스를 개선하고 새로운 네이버 서비스를 제공하기 위해 인공지능 분야 기술 등의 연구 개발 목적으로 네이버 및 네이버 계열사에서 사용될 수 있습니다.
+        네이버는 지속적인 연구 개발을 통해 여러분께 좀 더 편리하고 유용한 서비스를 제공해 드릴 수 있도록 최선을 다하겠습니다.
+    </p>
+    <p class="article__text">
+        네이버는 여러분이 자신이 제공한 콘텐츠에 대한 네이버 또는 다른 이용자들의 이용 또는 접근을 보다 쉽게 관리할 수 있도록 다양한 수단을 제공하기 위해 노력하고 있습니다.
+        여러분은 네이버 서비스 내에 콘텐츠 삭제, 비공개 등의 관리기능이 제공되는 경우 이를 통해 직접 타인의 이용 또는 접근을 통제할 수 있고,
+        고객센터를 통해서도 콘텐츠의 삭제, 비공개, 검색결과 제외 등의 조치를 요청할 수 있습니다.<br>
+        다만, 일부 네이버 서비스의 경우 삭제, 비공개 등의 처리가 어려울 수 있으며,
+        이러한 내용은 각 서비스 상의 안내, 공지사항, 고객센터 도움말 등에서 확인해 주시길 부탁 드립니다.
+    </p>
+</div>
+<div class="article">
+    <h3 class="article__title">여러분의 개인정보를 소중히 보호합니다.</h3>
+    <p class="article__text">
+        네이버는 서비스의 원활한 제공을 위하여 회원이 동의한 목적과 범위 내에서만 개인정보를 수집∙이용하며, 개인정보 보호 관련 법령에 따라 안전하게 관리합니다.
+        네이버가 이용자 및 회원에 대해 관련 개인정보를 안전하게 처리하기 위하여 기울이는 노력이나
+        기타 상세한 사항은 <a href="http://policy.naver.com/policy/privacy.html" target="_blank">개인정보 처리방침</a>에서 확인하실 수 있습니다.
+    </p>
+    <p class="article__text">
+        네이버는 여러분이 서비스를 이용하기 위해 일정 기간 동안 로그인 혹은 접속한 기록이 없는 경우, 전자메일, 서비스 내 알림 또는 기타 적절한 전자적 수단을 통해 사전에 안내해 드린 후 여러분의 정보를 파기하거나 분리 보관할 수 있으며,
+        만약 이로 인해 서비스 제공을 위해 필수적인 정보가 부족해질 경우 부득이 관련 서비스 이용계약을 해지할 수 있습니다.
+    </p>
+</div>
 <div class="article">
     <h3 class="article__title">타인의 권리를 존중해 주세요.</h3>
     <p class="article__text">
@@ -637,26 +646,148 @@
 									</span>
                             </li>
                         </ul>
-                        <span class="event_message" style="display:block">네이버에서 제공하는 이벤트/혜택 등 다양한 정보를 휴대전화(네이버앱 알림 또는 문자), 이메일로 받아보실 수 있습니다. 일부 서비스(별도 회원 체계로 운영하거나 네이버 가입 이후 추가 가입하여 이용하는 서비스 등)의 경우, 개별 서비스에 대해 별도 수신 동의를 받을 수 있으며, 이때에도 수신 동의에 대해 별도로 안내하고 동의를 받습니다.</span>
-                        <span class="error" id="agreeMsg" style="display:none">네이버 이용약관과 개인정보 수집 및 이용에 대한 안내 모두 동의해주세요.</span>
-                    </div>
+                        <span class="event_message" style="display:block">네이버에서 제공하는 이벤트/혜택 등 다양한 정보를 휴대전화(네이버앱 알림 또는 문자), 이메일로 받아보실 수 있습니다. 일부 서비스(별도 회원 체계로 운영하거나 네이버 가입 이후 추가 가입하여 이용하는 서비스 등)의 경우, 개별 서비스에 대해 별도 수신 동의를 받을 수 있으며, 이때에도 수신 동의에 대해 별도로 안내하고 동의를 받습니다.</span>                    </div>
                     <!-- //약관동의 -->
 
                     <a name="agreeBottom"></a>
                     <div class="btn_area double">
-                        <span><!-- tg-text=terms_button_cancel --><a href="#" id="btnCancel" class="btn_type btn_default" role="button">취소</a></span>
-                        <span><!-- tg-text=terms_button_agree --><a href="registForm.jsp" id="btnAgree" class="btn_type btn_primary" role="button">확인</a></span>
+                        <span><!-- tg-text=terms_button_cancel --><a href="/KG-naver/index.jsp" id="btnCancel" class="btn_type btn_default" role="button">취소</a></span>
+                        <span><!-- tg-text=terms_button_agree --><a href="/KG-naver/member/registForm.jsp" id="btnAgree" class="btn_type btn_primary" role="button">확인</a></span>
                     </div>
                 </form>
-
-                <div class="group_join">회사, 동아리 등 단체에서 사용할 ID가 필요하세요? <a href="/user2/join/groupJoin?lang=ko_KR" class="btn_group_join">단체 회원 가입</a></div>
-
             </div>
         </div>
     </div>
-
     <!-- //content -->
-    <div id="footer" role="contentinfo">
+</div>
+<!-- //container -->
+
+<script type="text/javascript" src="/KG-naver/js/jquery.js"></script>
+<script type="text/JavaScript">
+    $(document).ready(function() {
+        checkSupportedBorwser();
+
+        $("#chk_all").prop("checked",false);
+        setTerms();
+
+        $("#chk_all").click(function() {
+            location.hash = 'agreeBottom';
+            setTerms();
+        })
+
+        $("#termsService").click(function() {
+            viewTerms();
+        })
+
+        $("#termsPrivacy").click(function() {
+            viewTerms();
+        })
+
+        $("#termsLocation").click(function() {
+            viewTerms();
+        })
+
+        $("#termsEmail").click(function() {
+            viewTerms();
+        })
+
+        $("#btnCancel").click(function(event) {
+            clickcr(this, 'tos.disagree', '', '', event);
+            submitDisagree();
+            return false;
+        })
+
+        $("#btnAgree").click(function(event) {
+            clickcr(this, 'tos.agree', '', '', event);
+            submitAgree();
+            return false;
+        })
+
+        $("#termForChild").click(function() {
+            var agent = "PC";
+            var url = "/user2/V2Join?m=kidGuide";
+
+            if(agent == "M") {
+                location.href = url;
+            } else {
+                window.open(url, "_blank");
+            }
+            return false;
+        })
+
+    });
+
+    function setTerms() {
+        if ($("#chk_all").is(":checked")) {
+            $("#termsService").prop("checked",true);
+            $("#termsPrivacy").prop("checked",true);
+            $("#termsLocation").prop("checked",true);
+            $("#termsEmail").prop("checked",true);
+            $("#agreeMsg").hide();
+        } else {
+            $("#termsService").prop("checked",false);
+            $("#termsPrivacy").prop("checked",false);
+            $("#termsLocation").prop("checked",false);
+            $("#termsEmail").prop("checked",false);
+        }
+
+        return true;
+    }
+
+    function checkSupportedBorwser() {
+        var ua = navigator.userAgent;
+        var msg = "인터넷 익스플로러 8.0 이하 버전은 지원하지 않습니다.";
+
+        if(ua.indexOf("MSIE 6") > 0 || ua.indexOf("MSIE 7") > 0 || ua.indexOf("MSIE 8") > 0)  {
+            alert(msg);
+            location.replace("https://campaign.naver.com/goodbye_ie10/");
+        }
+    }
+
+    function viewTerms() {
+
+        if( !$("#termsService").is(":checked") || !$("#termsPrivacy").is(":checked") || !$("#termsLocation").is(":checked") || !$("#termsEmail").is(":checked")) {
+            $("#chk_all").prop("checked",false);
+        }
+
+        if( $("#termsService").is(":checked") && $("#termsPrivacy").is(":checked") && $("#termsLocation").is(":checked") && $("#termsEmail").is(":checked")) {
+            $("#chk_all").prop("checked",true);
+        }
+
+        return true;
+    }
+
+    function checkTerms() {
+        var res = true;
+
+        if ($("#termsService").is(":checked") == false || $("#termsPrivacy").is(":checked") == false) {
+            $("#agreeMsg").show();
+            res = false;
+        } else {
+            $("#agreeMsg").hide();
+        }
+
+        return res;
+    }
+
+    function submitAgree() {
+        if (checkTerms() != true) {
+            return false;
+        }
+
+        $("#join_form").submit();
+        return true;
+    }
+
+    function submitDisagree() {
+        location.href = "/KG-naver/index.jsp";
+        return true;
+    }
+
+</script>
+
+	<!-- footer -->
+	<div id="footer" role="contentinfo">
 		<ul>
 			<li><a href="http://policy.naver.com/rules/service.html">이용약관</a></li>
 			<li><strong><a href="http://policy.naver.com/policy/privacy.html">개인정보처리방침</a></strong></li>
@@ -671,6 +802,7 @@
 			<span class="all_r">All Rights Reserved.</span>
 		</address>
 	</div>
+	<!-- //footer -->
 </div>
 </body>
 </html>

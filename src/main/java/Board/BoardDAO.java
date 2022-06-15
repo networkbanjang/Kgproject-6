@@ -41,7 +41,7 @@ public class BoardDAO {
 			ps.setString(1, board.getId());
 			ps.setString(2, board.getContent());
 			ps.setString(3, board.getTitle());
-			ps.setString(4, board.getTime());
+			ps.setString(4, board.getPhoto());
 			ps.setString(5, board.getCategory());
 			ps.setInt(6, board.getPoint());
 			ps.setString(7, board.getMinor_v());
@@ -142,7 +142,7 @@ public class BoardDAO {
 				BoardDTO board = new BoardDTO();
 				board.setNum(num);
 				board.setId(rs.getString("id"));
-
+				board.setPhoto(rs.getString("photo"));
 				board.setContent(rs.getString("content"));
 				board.setTitle(rs.getString("title"));
 				board.setCategory(rs.getString("category"));
@@ -507,14 +507,15 @@ public class BoardDAO {
 	}
 
 	public void modify(BoardDTO board) {
-		String sql = "UPDATE naver_view SET content=?, title=? WHERE num=?";
+		String sql = "UPDATE naver_view SET content=?, title=?,photo=? WHERE num=?";
 
 		PreparedStatement ps = null;
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, board.getContent());
 			ps.setString(2, board.getTitle());
-			ps.setInt(3, board.getNum());
+			ps.setString(3, board.getPhoto());
+			ps.setInt(4, board.getNum());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
