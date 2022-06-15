@@ -122,5 +122,11 @@ public class MemberDTO {
 	public void setRank(int rank) {
 		this.rank = rank;
 	}
-	
+	private String firstdate;
+	public String getFirstdate() {
+		return firstdate;
+	}
+	public void setFirstdate(String firstdate) {
+		this.firstdate = firstdate;
+	}
 }

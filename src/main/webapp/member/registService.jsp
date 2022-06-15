@@ -6,7 +6,7 @@
 	request.setCharacterEncoding("UTF-8");
 	String id = request.getParameter("id");
 	String pw = request.getParameter("pswd1");
-	String confirmPw = request.getParameter("pswd12");
+	String confirmPw = request.getParameter("pswd2");
 	String name = request.getParameter("name");
 	String yy = request.getParameter("yy");
 	String mm = request.getParameter("mm");

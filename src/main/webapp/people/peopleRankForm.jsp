@@ -1,3 +1,4 @@
+<%@page import="Board.answerDAO"%>
 <%@page import="member.MemberDAO" %>
 <%@page import="member.MemberDTO" %>
 <%@page import="java.util.ArrayList"%>
@@ -20,6 +21,8 @@
 <%
 MemberDAO memberDao = new MemberDAO();
 ArrayList<MemberDTO> rank = null;
+answerDAO answerDao = new answerDAO();
+int cnt;
 %>
 <div id="wrap" class="wrap wrap_people"> 
 <div id="container" class="container-fluid">
@@ -43,7 +46,6 @@ ArrayList<MemberDTO> rank = null;
 					<a href="#" class="more"><img src="https://ssl.pstatic.net/static/kin/09renewal/blank.gif" alt="더보기" width="12" height="12" class="_nclicks:drb.depth1open"></a>
 					<div class="sub">
 						<ul id="goodByeDirectoryLocation">
-						<li><a href="/KG-naver/people/peopleMainForm.jsp" class="_nclicks:drb.depth1layer,r:0">분야별 지식인</a></li>
 						<li><a href="/KG-naver/people/peoplePartnerForm.jsp" class="_nclicks:drb.depth1layer,r:5">지식파트너</a></li>
 						<li><a href="/KG-naver/people/peopleRankForm.jsp" class="_nclicks:drb.depth1layer,r:7">지식iN 랭킹</a></li>
 						<li><a href="/KG-naver/people/peopleGuideForm.jsp" class="_nclicks:drb.depth1layer,r:8">등급업 가이드</a></li>
@@ -55,7 +57,7 @@ ArrayList<MemberDTO> rank = null;
 				<div class="snb snb_bordered" id="subMenuOfPeople">
 					<h2 class="snb_title">지식iN 사람들</h2>
 					<ul class="snb_list">
-						<li id="kinEliteMenuBtn"><a href="/KG-naver/people/peopleMainForm.jsp" class="_nclicks:lmm.category">분야별 지식인</a></li>
+
 						<li><a href="/KG-naver/people/peoplePartnerForm.jsp">지식파트너</a></li>
 						<li class="is_active" id="kinRankMenuBtn"><a href="/KG-naver/people/peopleRankForm.jsp" class="_nclicks:lmm.rank">지식iN 랭킹</a></li>
 						<li><a href="/KG-naver/people/peopleGuideForm.jsp" class="_nclicks:lmm.levelup">등급업 가이드</a></li>
@@ -93,12 +95,13 @@ ArrayList<MemberDTO> rank = null;
 							<%
 								int i=1;
 							for(MemberDTO people : memberDao.selectRank()) {
+								cnt=answerDao.count(people.getId());
 							%>
 								<tr>
 									<td class="cell--9Q7bj rank_num--1SarQ"><%=i++%></td>
-									<td class="cell--9Q7bj title--W7geH"><a href="" class="nickname--3hDTP" target="_new"><%=people.getNickname()%><span class="user_id--3E3Du">(<%=people.getId() %>)</span></a></td>
+									<td class="cell--9Q7bj title--W7geH"><a href="" class="nickname--3hDTP" target="_new"><%if (people.getNickname()!=null){%><%=people.getNickname()%><%} %><span class="user_id--3E3Du">(<%=people.getId() %>)</span></a></td>
 									<td class="cell--9Q7bj"><%=people.getGrade() %></td>
-									<td class="cell--9Q7bj num--19C4U"><%=people.getAnswer() %></td>
+									<td class="cell--9Q7bj num--19C4U"><%=cnt %></td>
 									<td class="cell--9Q7bj num--19C4U"><%=people.getS_question() %></td>
 								</tr>
 							<%
@@ -114,4 +117,4 @@ ArrayList<MemberDTO> rank = null;
                     	</div>
 </body>
 <%@include file="../footer.jsp" %>
-</html>
+</html>	

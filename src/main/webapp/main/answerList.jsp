@@ -1,11 +1,63 @@
+<%@page import="Board.BoardDAO"%>
+<%@page import="Board.BoardDTO"%>
+<%@page import="hall.PageService"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Board.answerDTO"%>
+<%@page import="Board.answerDAO"%>
 <%@page import="member.MemberDTO"%>
 <%@page import="member.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>    
-<%
+<%	
+	String p_id = request.getParameter("id");
 	MemberDAO memberDao = new MemberDAO();
 	MemberDTO member = memberDao.selectId(id);
+	BoardDAO boardDao = new BoardDAO();
+	ArrayList<answerDTO> answers;
+	ArrayList<answerDTO> answer; // 이건 답변 페이지 리스트
+	answerDAO answerDao = new answerDAO();
+	answers = answerDao.answerList(id);
+	int totalanswer = answerDao.count(p_id);
+	int totalquestion = boardDao.totalquestion(p_id);
+	//현재 페이지 번호
+		int currentPage = 1;
+			try{
+				currentPage = Integer.parseInt(request.getParameter("pageNumber"));
+			}catch(Exception e){
+				currentPage = 1;
+			}
+			
+			if(currentPage < 1)
+				currentPage = 1;
+			
+			//한 페이지에 출력할 페이지의 수
+			int pageBlock = 20;
+			
+			//데이터베이스에서 게시글 범위
+			int end = currentPage * pageBlock;
+			int begin = end + 1 - pageBlock;
+			
+			String data = request.getParameter("data");
+			String mode = request.getParameter("mode");
+			
+			ArrayList<answerDTO> list;
+			// 총 게시글의 수 : list.size()안됨.
+			int totalCount = 0;
+			if(mode != null && mode.equals("search")){
+				if(data == null || data == ""){
+					out.print("<script>alert('검색어를 입력하세요.');history.back();</script>");
+					return;
+				}
+				list = answerDao.answerList(begin, end, data);		
+				totalCount = answerDao.answerCount(data);
+			}else{
+				list = answerDao.answerListAll(begin, end);
+				totalCount = answerDao.count();
+			}
+
+			String url = "/KG-naver/main/answerList.jsp?mode=" + mode + "&id=" + p_id + "&data="+data+"&pageNumber=";
+			String result = PageService.getNavi(url, currentPage, pageBlock, totalCount);
 %>
 <html lang="ko">
 <head>
@@ -311,15 +363,14 @@ var standardReportPopupUrl = "https://srp2.naver.com/report";
 				</dd> <!-- 등급에 따라 strong의 class가 변경됩니다. grade1~15 -->
 				<dt>답변</dt>
 				<dd>
-					<strong><%=member.getAnswer() %></strong> (채택답변
+					<% double s_percent = ((double)member.getS_question()) / totalanswer; %>
+					<strong><%=totalanswer %></strong> (채택답변
 					<%=member.getS_question() %><span class="bar">|</span>답변채택률
-					##%)
+					<%=String.format("%.2f", s_percent*100)%>%)
 				</dd>
 				<dt>질문</dt>
 				<dd>
-					<strong><%=member.getQuestion() %></strong> (채택질문
-					28<span class="bar">|</span>질문채택률
-					##%)
+					<strong><%=totalquestion %></strong>
 				</dd>
 			</dl>
 		</div>
@@ -344,39 +395,16 @@ var standardReportPopupUrl = "https://srp2.naver.com/report";
 <div class="snb snb_bordered snb_mykin">
 	<h2 class="snb_title blind">프로필</h2>
 	<ul class="snb_list">
-		
-		
-		
+		<% if(id.equals(p_id)){ %>
 		<li class="is_active">
-			<a href="answerList.jsp" class="" id="subMenuOfMykin">나의 답변 <span class="num">(<%=member.getAnswer() %>)</span></a>
-			
-			
+			<a href="/KG-naver/main/answerList.jsp?id=<%=p_id %>" class="" id="subMenuOfMykin">나의 답변 <span class="num">(<%=totalanswer %>)</span></a>
 		</li>
-		<li><a href="questionList.jsp">나의 질문 <span class="num">(<%=member.getQuestion() %>)</span></a></li>
-		<!-- <li><a href="/myinfo/userFriendList.naver">나의 친구 <span class="num">(0)</span></a></li>
-		<li><a href="/myinfo/gift/point/history.naver">포인트로 감사 내역<em class="new"><span class="blind">NEW</span></em></a></li>
-		<li><a href="/myinfo/opendicList.naver">나의 오픈사전 <span class="num">(0)</span></a></li>
-		
-			<li><a href="/myinfo/happybeanListAccumulation.naver">해피빈 기부함</a></li>
-		
-		<li class="">
-			<a href="/myinfo/directQuestionList.naver">1:1질문</a>
-			<ul class="sub">
-				<li><a href="/myinfo/directQuestionList.naver">받은 질문 <span class="num">(0)</span></a></li>
-				<li><a href="/myinfo/directQuestionSendList.naver">보낸 질문 <span class="num">(0)</span></a></li>
-			</ul>
+		<li><a href="/KG-naver/main/questionList.jsp?id=<%=p_id %>">나의 질문 <span class="num">(<%=totalquestion %>)</span></a></li>
+		<%}else { %>
+		<li>
+			<a href="/KG-naver/main/answerList.jsp?id=<%=p_id %>" class="" id="subMenuOfMykin">답변 보기<span class="num">(<%=totalanswer %>)</span></a>
 		</li>
-		<li><a href="/myinfo/likeList.naver">나의 표정/궁금/보관지식</a></li>
-		<li><a href="/myinfo/interest.naver">나의 관심질문</a></li>
-		<li><a href="/myinfo/deletedArticleList.naver">나의 삭제 지식 <span class="num">(0)</span></a></li>
-		<li class="">
-			<a href="/myinfo/namecardProfileForm.naver">관리</a>
-			<ul class="sub">
-				<li><a href="/myinfo/namecardProfileForm.naver">기본정보</a></li>
-				<li><a href="/myinfo/tempsaveList.naver">임시저장 <span class="num">(13)</span></a></li>
-				<li><a href="/myinfo/pointHistory.naver" onclick="nhn.Kin.Utility.nClicks('edt*point', '', '', event);">내공</a></li>
-			</ul>
-		</li> -->
+		<%} %>
 	</ul>
 </div>
 			</div>
@@ -384,42 +412,6 @@ var standardReportPopupUrl = "https://srp2.naver.com/report";
 			<div id="content" class="container-fluid-content__right">
 				
 
-
-
-
-
-
-
-
-
-	
-		<!-- <dl class="represent_answer _represent_answer">
-		<dt>
-			<img src="https://ssl.pstatic.net/static/kin/09renewal/tx_represent_answer.gif" width="42" height="12" alt="대표답변"> <a href="#none" class="tooltip_help_button"><img src="https://ssl.pstatic.net/static/kin/09renewal/ico_help.gif" width="14" height="14" alt="도움말"></a>
-		</dt>
-		<dd>
-			<ul>
-				
-				<li>
-					<span></span>
-					<a href="/qna/detail.naver?d1id=13&amp;dirId=130405&amp;docId=103753101">[만화, 애니메이션] re: 그림그릴껀데 좋은 만화캐릭터 추천점</a>&nbsp;
-					
-					 <a href="/myinfo/answerDelegateAction.naver?page=1&amp;isWorry=false&amp;order=writeTime&amp;dirId=130405&amp;docId=103753101&amp;answerNo=4&amp;isNewDelegate=false"><img src="https://ssl.pstatic.net/static/kin/09renewal/btn_delete_list.gif" width="11" height="11" alt="해제" title="해제"></a>
-				</li>
-				
-				<li>
-					<span></span>
-					<a href="/qna/detail.naver?d1id=13&amp;dirId=130405&amp;docId=103766161">[만화, 애니메이션] re: 만화볼수있는 웹싸이트 알려주세요 서치환영(모노...</a>&nbsp;
-					
-					 <a href="/myinfo/answerDelegateAction.naver?page=1&amp;isWorry=false&amp;order=writeTime&amp;dirId=130405&amp;docId=103766161&amp;answerNo=5&amp;isNewDelegate=false"><img src="https://ssl.pstatic.net/static/kin/09renewal/btn_delete_list.gif" width="11" height="11" alt="해제" title="해제"></a>
-				</li>
-				
-				
-			</ul>
-		</dd>
-		</dl> -->
-	
-	
 	<ul class="tab1 _mykin_qna" role="tablist">
 	<li role="tab" class="on" aria-selected="true"><a href="/myinfo/answerList.naver?isWorry=false" class="item">Q&amp;A<span></span></a></li>
 	<!-- <li role="tab" aria-selected="false"><a href="/myinfo/answerList.naver?isWorry=true" class="item">고민Q&amp;A<span></span></a></li>
@@ -434,13 +426,6 @@ var standardReportPopupUrl = "https://srp2.naver.com/report";
 
 
 <dl class="mykin_num mykin_answer">
-	
-	
-	
-		
-			
-			
-		
 		
 		
 		<dt>
@@ -451,7 +436,7 @@ var standardReportPopupUrl = "https://srp2.naver.com/report";
 			
 			
 			
-				<%=member.getAnswer() %>
+				<%=totalanswer %>
 
 		</dd>
 		
@@ -469,8 +454,8 @@ var standardReportPopupUrl = "https://srp2.naver.com/report";
 			</dt>
 			<dd><div class="mykin_gage">
 				<p class="bar">
-				<span class="bar_in" style="width:50%;"></span></p>
-				<span class="value">50%</span></div>
+				<span class="bar_in" style="width:<%=s_percent*100.0%>%;"></span></p>
+				<span class="value"><%=s_percent*100.0%>%</span></div>
 			</dd>
 		
 	
@@ -552,50 +537,6 @@ function selectOrder(order, bestFlagType, isBookmarkList){
 	
 }
 </script>
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-	
-
-
-
-<div id="au_directory_sorting_dir" class="sel_dir _param('KIN,ANSWER,,0,KIN,false,,false,,0,')">
-	<div>
-		<a href="#" class="sel_show">
-			
-			
-				디렉토리별 보기
-			
-			
-		</a>
-		<div class="sel_list"></div>
-		<iframe style="display:none;position:absolute;z-index:-1;top:17px;left:0;" frameborder="0" title="내용없음"></iframe>
-	</div>
-</div>
-
-
-<div id="au_year_sorting" class="sel_dir term">
-	<div class="_root">
-		<a href="#" class="sel_show _yearLink" onclick="nhn.Kin.Utility.nClicks('mya.period', '', '', event);" data-ajax-url="/ajax/getAnswerWriteYearList.naver?isWorry=false">연도별 보기</a>
-		<div class="sel_list _yearList" style="width:70px;"></div>
-		<iframe style="display:none;position:absolute;z-index:-1;top:17px;left:0;width:72px;" frameborder="0" title="내용없음"></iframe>
-	</div>
-</div>
-
 
 
 	<script type="text/template" id="yearListTpl">
@@ -706,10 +647,11 @@ function selectOrder(order, bestFlagType, isBookmarkList){
 		<tr><td colspan="7" class="blank"></td></tr>
     </thead>
     <tbody id="au_board_list">
+    	<%for(answerDTO a : answers){ %>
     	<tr>             	
     		<td><!-- <a href="#" class="book _param('130405,392740384,1')"><span></span></a> --></td>
             <td class="title">
-            	<a href="/qna/mydetail.naver?dirId=130405&amp;docId=392740384&amp;answerNo=1" rel="KIN">질문 제목</a>
+            	<a href="/KG-naver/board/view.jsp?num=<%=a.getSlave() %>" rel="KIN"><%=a.getTitle() %></a>
             </td>
             <td>
                 <a href="#" class="_reg_button _lookUpChildElement('img')"><img src="https://ssl.pstatic.net/static/kin/09renewal/btn_reg.gif" width="43" height="18" alt="등록" class="_reg _param('1,false,writeTime,130405,392740384,1,2')"></a>
@@ -717,13 +659,14 @@ function selectOrder(order, bestFlagType, isBookmarkList){
             <td class="field ls0">
 				<a href="/qna/list.naver">Q&amp;A</a>
 			</td>
-	        <td class="field"><a href="/qna/list.naver?dirId=130405">카테고리</a></td>
+	        <td class="field"><a href="/qna/list.naver?dirId=130405"><%=a.getCategory() %></a></td>
             <td class="field2">
 				<img src="https://ssl.pstatic.net/static/kin/09renewal/blank.gif" width="16" height="20" class="medal_1" title="질문자 채택" alt="질문자 채택">
 			</td>
 			<td class="t_num"><span class="recomm">0</span></td>
-            <td class="t_num tc">작성 일자</td>
+            <td class="t_num tc"><%=a.getTime() %></td>
          </tr>
+         <%} %>
     </tbody>
 </table>
 
@@ -764,22 +707,25 @@ function selectOrder(order, bestFlagType, isBookmarkList){
 <div class="paging space _tag_pager" style="display: none;">
 	<div class="nav" style="display:block;"> <p class="btn"><a href="#" class="pr-prev _pre"><img src="https://ssl.pstatic.net/static/kin/09renewal/btn_nav3_prev.gif" width="23" height="23" alt="이전" title="이전"></a><a href="#" class="pr-next _next"><img src="https://ssl.pstatic.net/static/kin/09renewal/btn_nav3_next.gif" width="22" height="23" alt="다음" title="다음"></a></p></div>
 </div>
-<div class="paginate _default_pager">
-		<a href="/myinfo/answerList.naver?page=1" class="on" title="선택됨">1</a>	 <!-- 페이지 컨트롤 service 생성해서 리스트 페이지 관리하기 -->
+<!-- <div class="paginate _default_pager">
+		<a href="/myinfo/answerList.naver?page=1" class="on" title="선택됨">1</a>	 페이지 컨트롤 service 생성해서 리스트 페이지 관리하기
+</div> -->
+<div id="page_control" style="text-decoration: none; text-align: center;" >
+			<%=result%>
 </div>
 
 	<div class="search">
 	<fieldset>
 		<legend>검색영역</legend>
-		<form name="f" action="answerList.naver" method="get" id="frmSearch">
+		<form name="f" action="/KG-naver/main/answerList.jsp?mode=search" method="get" id="frmSearch">
 			<input type="hidden" name="isSearch" value="true">
 			<input type="hidden" name="isWorry" value="false">
 			
 			<input type="hidden" name="section" value="qna">
 			
 			<input type="hidden" name="sd" value="answer">
-			<input type="text" name="query" title="검색어" class="keyword" value="키워드를 입력해주세요." id="au_search_bar" maxlength="200">
-			<input type="image" alt="검색" title="키워드 검색" src="https://ssl.pstatic.net/static/kin/09renewal/btn_search.gif">
+			<input type="text" name="data" title="검색어" class="keyword" placeholder="제목을 검색해주세요." maxlength="200">
+			<input type="image" src="https://ssl.pstatic.net/static/kin/09renewal/btn_search.gif">
 		</form>
 	</fieldset>
 	</div>

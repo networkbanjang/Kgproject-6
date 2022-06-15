@@ -165,10 +165,58 @@ public class MemberDAO {
 		}
 		return eliteMember;
 	}
+	public void close() {
+		try {
+			if (con != null)
+				con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public void recommend(int bool,String id) {
+		String sql = "UPDATE member SET s_question=? WHERE id=?";
+		
+		PreparedStatement ps = null;
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, bool);
+			ps.setString(2, id);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	
+	public void update(MemberDTO member) {
+		String sql = "UPDATE member SET nickname=?, pic=?, intro=? WHERE id=?";
+		
+		PreparedStatement ps = null;
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, member.getNickname());
+			ps.setString(2, member.getPic());
+			ps.setString(3, member.getIntro());
+			ps.setString(4, member.getId());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	public ArrayList<MemberDTO> selectRank() {
 		ArrayList<MemberDTO> rank = new ArrayList<MemberDTO>();
-		String sql = "select nickname, id, grade, answer, s_question from member order by answer desc";
+		String sql = "select nickname, id, grade, answer, s_question from member order by s_question desc";
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
@@ -195,65 +243,30 @@ public class MemberDAO {
 		}
 		return rank;
 	}
-	
-	public ArrayList<MemberDTO> SelectStudy(String grade, String category) { 
-		ArrayList<MemberDTO> peopleList = new ArrayList<MemberDTO>();
-		String sql = "SELECT member.id, member.grade, member.s_question, member.pic FROM member"
-				+ "LEFT JOIN naver_answer ON member.id = naver_answer.id"
-				+ "JOIN naver_view ON naver_answer.slave = naver_view.num"
-				+ "WHERE member.grade=? AND naver_view.category=?";
+	public ArrayList<MemberDTO> firstAnswer(String id) {
+		ArrayList<MemberDTO> first = new ArrayList<MemberDTO>();
+		String sql = "select * from (select time from naver_answer where id=? order by time) where rownum=1";
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setString(1, grade);
-			ps.setString(2, category);
+			ps.setString(1, id);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				MemberDTO people = new MemberDTO();
-				people.setId(rs.getString("id"));
-				people.setGrade(rs.getString("grade"));
-				people.setS_question(rs.getInt("s_question"));
-				people.setPic(rs.getString("pic"));
-				peopleList.add(people);
+				MemberDTO member = new MemberDTO();
+				member.setFirstdate(rs.getString("time"));
+				first.add(member);
 			}
-		}catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null) rs.close();
-				if (ps != null) ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return peopleList;		
-	}
-	
-	public void recommend(int bool,String id) {
-		String sql = "UPDATE member SET s_question=? WHERE id=?";
-		
-		PreparedStatement ps = null;
-		try {
-			ps = con.prepareStatement(sql);
-			ps.setInt(1, bool);
-			ps.setString(2, id);
-			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			try {
 				if(ps != null) ps.close();
+				if(rs != null) rs.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-	}
-	public void close() {
-		try {
-			con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		return first;
 	}
 }

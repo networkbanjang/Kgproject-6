@@ -4,10 +4,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link href="/project_6/images/tab_icon.png" rel="icon" type="image/x-icon" />
-<%@ include file="../header.jsp" %>
+<%@ include file="/header.jsp" %>
 <%
 	ArrayList<MemberDTO> eliteMember;
-	MemberDAO memberDao = new MemberDAO();
+	MemberDAO memberDao=new MemberDAO();
+
 	eliteMember = memberDao.selectElite();
 //	MemberDTO member = memberDao.selectPoint(); /* -> SELECT s_question from member WHERE id=? ORDER BY DESC */
 /* 	id가 고유값이라... 먼저 id를 가져와서......
@@ -205,76 +206,7 @@ var standardReportPopupUrl = "https://srp2.naver.com/report";
 <div id="container" class="container-fluid">
 	<div class="container-fluid-content hall_end">
 		<div class="container-fluid-content-inner _containerFluidContentInner"><h3 class="blind">명예의전당 영역</h3>
-			
 
-
-
-
-
-
-
-<!-- <div class="Nlnb">
-	<div class="Nlnb_submenu">
-		<div class="Nlnb_submenu_inner">
-			<ul id="subMenuOfHall" class="Nlnb_menu_sublist">	
-	
-		<li class="Nsublist_item is_active">
-			<a href="/hall/index.naver?year=2022&amp;month=4" class="Nitem_link _nclicks:LNB.hofy">
-				<span class="Nitem_link_menu">2022.04</span>
-			</a>
-			
-		</li>
-	
-		<li class="Nsublist_item">
-			<a href="/hall/index.naver?year=2022&amp;month=3" class="Nitem_link _nclicks:LNB.hofy">
-				<span class="Nitem_link_menu">2022.03</span>
-			</a>
-			
-		</li>
-	
-		<li class="Nsublist_item">
-			<a href="/hall/index.naver?year=2022&amp;month=2" class="Nitem_link _nclicks:LNB.hofy">
-				<span class="Nitem_link_menu">2022.02</span>
-			</a>
-			
-		</li>
-	
-		<li class="Nsublist_item">
-			<a href="/hall/index.naver?year=2022&amp;month=1" class="Nitem_link _nclicks:LNB.hofy">
-				<span class="Nitem_link_menu">2022.01</span>
-			</a>
-			
-		</li>
-	
-		<li class="Nsublist_item">
-			<a href="/hall/index.naver?year=2021&amp;month=0" class="Nitem_link _nclicks:LNB.hofy">
-				<span class="Nitem_link_menu">2021</span>
-			</a>
-			
-		</li>
-	
-		<li class="Nsublist_item">
-			<a href="/hall/index.naver?year=2020&amp;month=0" class="Nitem_link _nclicks:LNB.hofy">
-				<span class="Nitem_link_menu">2020</span>
-			</a>
-			
-		</li>
-	
-		<li class="Nsublist_item">
-			<a href="/hall/index.naver?year=2019&amp;month=0" class="Nitem_link _nclicks:LNB.hofy">
-				<span class="Nitem_link_menu">2019</span>
-			</a>
-			
-		</li>
-	
-</ul>
-		</div>
-		<div class="nav_area">
-			<a id="prevActiveDateButton" href="#" class="prev sp_hall is_inactive" onclick="nhn.Kin.Utility.nClicks('LNB.hofymore', '', '', event);">이전</a>
-			<a id="nextActiveDateButton" href="#" class="next sp_hall" onclick="nhn.Kin.Utility.nClicks('LNB.hofymore', '', '', event);">다음</a>
-		</div>
-	</div>
-</div> -->
 <div class="hall_coverwrap" id="contentsOfHall">
 	<div class="Nlnb">
 		<div class="Nlnb_menu" data-type="scroll-x">
@@ -283,15 +215,10 @@ var standardReportPopupUrl = "https://srp2.naver.com/report";
 					<li class="Nlist_item">
 						<a href="index.jsp" class="Nitem_link _nclicks:hfm.home"><span class="Nitem_link_menu">전당홈</span></a>
 					</li>
-					<li class="Nlist_item">
-						<a href="topic.jsp" class="Nitem_link _nclicks:hfm.keyword"><span class="Nitem_link_menu">질문키워드</span></a>
-					</li>
 					<li class="Nlist_item is_active">
 						<a href="eliteUser.jsp" class="Nitem_link _nclicks:hfm.king"><span class="Nitem_link_menu">채택왕</span></a>
 					</li>
-					<li class="Nlist_item">
-						<a href="kinupQna.jsp" class="Nitem_link _nclicks:hfm.qa"><span class="Nitem_link_menu">추천Q&amp;A</span></a>
-					</li>
+
 					<li class="Nlist_item">
 						<a href="commentList.jsp" class="Nitem_link _nclicks:hfm.talk"><span class="Nitem_link_menu">TALK</span><em class="Nitem_link_count _commentCount" style="visibility: visible;">talk 수</em></a>
 					</li>
@@ -512,15 +439,16 @@ jindo.$Fn(function() {
 					if(count == 1){ %>
 				<li class="list_divide first">
 					<div class="list_item top_item<%=count%>">
-							<!-- 내 프로필이 아닌 선택한 아이디?의 프로필로 이동 ex)/project_6/main/profile.jsp?num= -->
-							<a href="/project_6/main/profile.jsp?id=<%=m.getId() %>" class="inner" onclick="nhn.Kin.Utility.nClicks('hfh.kgname', '', '', event);">
+							<!-- 내 프로필이 아닌 선택한 아이디?의 프로필로 이동 ex)/	ject_6/main/profile.jsp?num= -->
+							<a href="/KG-naver/main/profile.jsp?id=<%=m.getId() %>" class="inner" onclick="nhn.Kin.Utility.nClicks('hfh.kgname', '', '', event);">
 								<span class="rank"><em>1</em></span>
 								<div class="thmb_profile">
 									<div class="thmb">
-										
-											<img src="#" alt="프로필이미지"> 
-										
-										
+										<%if (m.getPic()!=null) {%>
+											<img src="/KG-naver/up/<%=m.getId() %>/<%=m.getPic() %>" alt="프로필이미지"> 
+										<%} else{ %>
+										<img src="/KG-naver/images/default.png" alt="프로필이미지"> 
+										<%} %>
 										<span class="mask"></span>
 									</div>
 								</div>
@@ -532,7 +460,7 @@ jindo.$Fn(function() {
 										<span class="writer no_badge"><em class="ellipsis"><%=m.getNickname() %></em></span>
 										<%} %>
 									</div>
-									<p class="desc ellipsis">###</p>
+									<!-- <p class="desc ellipsis">###</p> -->
 									<div class="information_section">
 										<!-- <p class="information_section_item"><strong class="category_title">분야</strong><span class="category_content"><span class="ellipsis">인스타그램</span></span></p> -->
 										<p class="information_section_item"><strong class="category_title value">채택</strong><span class="category_content type_number"><span class="ellipsis"><%=m.getS_question() %></span></span></p>
@@ -559,13 +487,16 @@ jindo.$Fn(function() {
 				<li class="list_divide ">
 					<div class="list_item top_item2">
 						
-							<a href="/project_6/main/profile.jsp?id=<%=m.getId() %>" class="inner" onclick="nhn.Kin.Utility.nClicks('hfh.kgname', '', '', event);">
+							<a href="/KG-naver/main/profile.jsp?id=<%=m.getId() %>" class="inner" onclick="nhn.Kin.Utility.nClicks('hfh.kgname', '', '', event);">
 								<span class="rank"><em>2</em></span>
 								<div class="thmb_profile">
 									<div class="thmb">
 										
-											<img src="https://kin-phinf.pstatic.net/20130118_141/1358489816165888ua_JPEG/%B2%C9.jpg?type=w200" alt="프로필이미지">
-										
+												<%if (m.getPic()!=null) {%>
+											<img src="/KG-naver/up/<%=m.getId() %>/<%=m.getPic() %>" alt="프로필이미지"> 
+										<%} else{ %>
+										<img src="/KG-naver/images/default.png" alt="프로필이미지"> 
+										<%} %>
 										
 										<span class="mask"></span>
 									</div>
@@ -578,7 +509,7 @@ jindo.$Fn(function() {
 										<span class="writer no_badge"><em class="ellipsis"><%=m.getNickname() %></em></span>
 										<%} %>
 									</div>
-									<p class="desc ellipsis">##</p>
+									<!-- <p class="desc ellipsis">##</p> -->
 									<div class="information_section">
 										<!-- <p class="information_section_item"><strong class="category_title">분야</strong><span class="category_content"><span class="ellipsis">택배</span></span></p> -->
 										<p class="information_section_item"><strong class="category_title value">채택</strong><span class="category_content type_number"><span class="ellipsis"><%=m.getS_question() %></span></span></p>
@@ -605,14 +536,15 @@ jindo.$Fn(function() {
 				<li class="list_divide last">
 					<div class="list_item top_item3">
 						
-							<a href="/project_6/main/profile.jsp?id=<%=m.getId() %>" class="inner" onclick="nhn.Kin.Utility.nClicks('hfh.kgname', '', '', event);">
+							<a href="/KG-naver/main/profile.jsp?id=<%=m.getId() %>" class="inner" onclick="nhn.Kin.Utility.nClicks('hfh.kgname', '', '', event);">
 								<span class="rank"><em>3</em></span>
 								<div class="thmb_profile">
 									<div class="thmb">
-										
-											<img src="https://kin-phinf.pstatic.net/20220502_101/1651474839476YzdRM_JPEG/image.jpg?type=w200" alt="프로필이미지">
-										
-										
+											<%if (m.getPic()!=null) {%>
+											<img src="/KG-naver/up/<%=m.getId() %>/<%=m.getPic() %>" alt="프로필이미지"> 
+										<%} else{ %>
+										<img src="/KG-naver/images/default.png" alt="프로필이미지"> 
+										<%} %>
 										<span class="mask"></span>
 									</div>
 								</div>
@@ -624,7 +556,7 @@ jindo.$Fn(function() {
 										<span class="writer no_badge"><em class="ellipsis"><%=m.getNickname() %></em></span>
 										<%} %>
 									</div>
-									<p class="desc ellipsis">##</p>
+									<!-- <p class="desc ellipsis">##</p> -->
 									<div class="information_section">
 										<!-- <p class="information_section_item"><strong class="category_title">분야</strong><span class="category_content"><span class="ellipsis">기타</span></span></p> -->
 										<p class="information_section_item"><strong class="category_title value">채택</strong><span class="category_content type_number"><span class="ellipsis"><%=m.getS_question() %></span></span></p>
@@ -662,17 +594,19 @@ jindo.$Fn(function() {
 					for(MemberDTO m : eliteMember) {
 						if(m.getRank() > 3) {
 							if(count_four % 3 == 1) {%>
-						<%-- <%for(int i = 4; i <= 100; i+=3){ %> --%>
 							<li class="list_divide  first ">
 								<div class="list_item">
 									
-										<a href="/project_6/main/profile.jsp?id=<%=m.getId() %>" class="inner" onclick="nhn.Kin.Utility.nClicks('hfk.name', '', '', event);">
+										<a href="/KG-naver/main/profile.jsp?id=<%=m.getId() %>" class="inner" onclick="nhn.Kin.Utility.nClicks('hfk.name', '', '', event);">
 											<span class="rank"><em><%=count_four %></em></span>
 											<div class="thmb_profile">
 												<div class="thmb">
 													
-														<img src="https://kin-phinf.pstatic.net/20210916_81/1631751509427P114U_JPEG/1631751509010.jpg?type=w200" alt="프로필이미지">
-													
+															<%if (m.getPic()!=null) {%>
+											<img src="/KG-naver/up/<%=m.getId() %>/<%=m.getPic() %>" alt="프로필이미지"> 
+										<%} else{ %>
+										<img src="/KG-naver/images/default.png" alt="프로필이미지"> 
+										<%} %>
 													
 													<span class="mask"></span>
 												</div>
@@ -714,13 +648,16 @@ jindo.$Fn(function() {
 							<li class="list_divide  ">
 								<div class="list_item">
 									
-										<a href="/profile/index.naver?u=k%2F1EzpqqLYWZi5OiY9ypFPliv0idPEy5mOPXKKQRwLQ%3D" class="inner" onclick="nhn.Kin.Utility.nClicks('hfk.name', '', '', event);">
+										<a href="/KG-naver/main/profile.jsp?id=<%=m.getId() %>" class="inner" onclick="nhn.Kin.Utility.nClicks('hfk.name', '', '', event);">
 											<span class="rank"><em><%=count_four %></em></span>
 											<div class="thmb_profile">
 												<div class="thmb">
 													
-														<img src="https://kin-phinf.pstatic.net/20220310_227/1646858415389UAETd_JPEG/1646858415207.jpeg?type=w200" alt="프로필이미지">
-													
+														<%if (m.getPic()!=null) {%>
+											<img src="/KG-naver/up/<%=m.getId() %>/<%=m.getPic() %>" alt="프로필이미지"> 
+										<%} else{ %>
+										<img src="/KG-naver/images/default.png" alt="프로필이미지"> 
+										<%} %>
 													
 													<span class="mask"></span>
 												</div>
@@ -761,14 +698,16 @@ jindo.$Fn(function() {
 							<li class="list_divide  last ">
 								<div class="list_item">
 									
-										<a href="/profile/index.naver?u=Nz5XnogniyXqScPWCrcAlQaJ0BxHEm0%2BR%2BNh9RJ2vtM%3D" class="inner" onclick="nhn.Kin.Utility.nClicks('hfk.name', '', '', event);">
+										<a href="/KG-naver/main/profile.jsp?id=<%=m.getId() %>" class="inner" onclick="nhn.Kin.Utility.nClicks('hfk.name', '', '', event);">
 											<span class="rank"><em><%=count_four %></em></span>
 											<div class="thmb_profile">
 												<div class="thmb">
 													
-														<img src="https://kin-phinf.pstatic.net/20210928_95/1632832434606Uv8So_JPEG/1632832434509.jpg?type=w200" alt="프로필이미지">
-													
-													
+														<%if (m.getPic()!=null) {%>
+											<img src="/KG-naver/up/<%=m.getId() %>/<%=m.getPic() %>" alt="프로필이미지"> 
+										<%} else{ %>
+										<img src="/KG-naver/images/default.png" alt="프로필이미지"> 
+										<%} %>
 													<span class="mask"></span>
 												</div>
 											</div>
@@ -882,7 +821,7 @@ jindo.$Fn(function() {
 		<script type="text/javascript" src="https://ssl.pstatic.net/static.kin/static/pc/20220511141354/js/min/kin.hall.elite_user_list.js"></script>
 
 </div> 
-
-<%@ include file="../footer.jsp" %>
+<%memberDao.close(); %>
+<%@ include file="/footer.jsp" %>
 </body>
 </html>

@@ -55,7 +55,6 @@ ArrayList<PartnerDTO> partners = null;
 				<div class="snb snb_bordered" id="subMenuOfPeople">
 					<h2 class="snb_title">지식iN 사람들</h2>
 					<ul class="snb_list">
-						<li id="kinEliteMenuBtn"><a href="/KG-naver/people/peopleMainForm.jsp" class="_nclicks:lmm.category">분야별 지식인</a></li>
 						<li class="is_active"><a href="/KG-naver/people/peoplePartnerForm.jsp">지식파트너</a></li>
 						<li id="kinRankMenuBtn"><a href="/KG-naver/people/peopleRankForm.jsp" class="_nclicks:lmm.rank">지식iN 랭킹</a></li>
 						<li><a href="/KG-naver/people/peopleGuideForm.jsp" class="_nclicks:lmm.levelup">등급업 가이드</a></li>

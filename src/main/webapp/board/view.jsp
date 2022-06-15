@@ -114,14 +114,14 @@
 				<tr>
 					<td rowspan="2" class="profile">
 					<%if(member.getPic() == null) { %>
-					<img class="profile" src="/KG-naver/images/default.png">
+						<a href="/KG-naver/main/profile.jsp?id=<%=a.getId()%>"><img class="profile" src="/KG-naver/images/default.png"></a>
 					<%} else{%>
-						<img class="profile" src="/KG-naver/images/banner1.png">
+							<a href="/KG-naver/main/profile.jsp?id=<%=a.getId()%>"><img class="profile" src="/KG-naver/images/banner1.png"></a>
 					<%} %>
 					</td>
 					<td class="answer_subject">
 					<%if (a.getRecommend()==1){ %> <img src="/KG-naver/images/check.png"><%} %>
-					<%=a.getId() %>님의 답변</td>
+				<%=a.getId() %>님의 답변</td>
 				</tr>
 		
 				<tr>

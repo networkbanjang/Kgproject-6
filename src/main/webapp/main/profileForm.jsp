@@ -4,12 +4,17 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>    
 <%
+	if(id == null || id == ""){
+		response.sendRedirect("/KG-naver/index.jsp");
+		return;
+	}
 	MemberDAO memberDao = new MemberDAO();
 	MemberDTO member = memberDao.selectId(id);
+	
 %>
 <html lang="ko">
 <head>
-
+<!-- <script src="//code.jquery.com/jquery-3.3.1.min.js"></script> 라디오 비활성화를 위해 jquery사용 -->
 <link rel="stylesheet" type="text/css" href="https://ssl.pstatic.net/static.kin/static/pc/20220511141354/css/min/common.css">
 <link rel="stylesheet" type="text/css" href="https://ssl.pstatic.net/static.kin/static/pc/20220511141354/css/min/components.css">
 <link rel="stylesheet" type="text/css" href="https://ssl.pstatic.net/static.kin/static/pc/20220511141354/css/min/other.css">
@@ -22,170 +27,27 @@
 	기본정보,프로필 : 지식iN
 </title>
 
-<script type="text/javascript">
-
-if ( typeof window.nhn  == "undefined" ) window.nhn = {};
-if ( typeof window.naver  == "undefined" ) window.naver = {};
-nhn.isLogin = true;
-nhn.isJunior = ("N"=="Y");
-nhn.isKinUser = true;
-nhn.isPortableDevice = false;
-nhn.jsDir = 'https://ssl.pstatic.net/static.kin/static/pc/20220511141354/js/min';
-
-var g_ssc = ("kin.my" == "") ? "kin.temp" : "kin.my";
-var ccsrv="cc.naver.com";
-
-
-var kinRos = {
-	bIsNoticeDisplay : ("false" == "" || "false" == "false") ? false : true,
-	bIsActionNoticeDisplay : ("false" == "" || "false" == "false") ? false : true
-
-};
-
-
-var standardReportPopupUrl = "https://srp2.naver.com/report";
-</script>
-
 <script src="https://ssl.pstatic.net/static.gn/js/clickcrD.js" id="gnb_clickcrD" charset="utf-8"></script>
+<!-- <script>
+	$(document).ready(function(){
+		 
+	    // 라디오버튼 클릭시 이벤트 발생
+	    $("input:radio[name=useNickname]").click(function(){
+	 
+	        if($("input[name=useNickname]:checked").val() == "true"){
+	            $("input:text[name=nickname]").attr("disabled",false);
+	            // radio 버튼의 value 값이 1이라면 활성화
+	 
+	        }else if($("input[name=useNickname]:checked").val() == "false"){
+	              $("input:text[name=nickname]").attr("disabled",true);
+	            // radio 버튼의 value 값이 0이라면 비활성화
+	        }
+	    });
+	});
+</script> -->
 </head>
 <body>
 <div id="wrap" class="wrap wrap_my"> 
-<script type="text/javascript">
-	
-	$Fn(function() {
-		new naver.kin.LNB({
-			'questionType' : ''
-		});
-	}).attach(window, 'load');
-
-	var GNB_BRIGHTNESS_VALUE = {
-		DARK_ICON : 0,
-		DARK_ICON_AND_TRANSPARENCY : 1,
-		BRIGHT_ICON_AND_TRANSPARENCY : 2,
-		BRIGHT_ICON : 3
-	};
-	
-	var GNB_ITEM_HIDE_OPTION_BIT_VALUE = {
-		DEFAULT : 0,
-		HIDE_LOGIN_BTN : 1,
-		HIDE_USER_LAYER : 2,
-		HIDE_NAVER_ME_AREA : 4,
-		HIDE_MAIL_ALARM_AREA : 8,
-		HIDE_PROFILE_IMAGE : 16,
-		SHOW_BENEFIT_FOR_STAFF_MEMBER : 32
-	};
-
-	
-	var smartSearch = "";
-	
-	var gnb_service = "kin";
-	
-	var gnb_logout = encodeURIComponent("https://nid.naver.com/nidlogin.logout");
-	
-	var gnb_login = encodeURIComponent(location.href || 'https://kin.naver.com');
-	
-	var gnb_template = "gnb_utf8";
-	
-	var gnb_item_hide_option = GNB_ITEM_HIDE_OPTION_BIT_VALUE.DEFAULT;
-	
-	
-	
-	
-
-	$Fn(function() {
-		
-		getGNB();
-		
-		var bIsGnbClicked = false;
-		
-		
-		$Fn(function (we) {
-			if (!bIsGnbClicked) {
-				gnbAllLayerClose();
-			}
-			
-			bIsGnbClicked = false;
-		}, this).attach(document.body, 'click');
-		
-		$Fn(function(we) {
-			bIsGnbClicked = true;
-		}, this).attach($('gnb'), 'click');
-		
-		
-		try {
-			$('autoFrame').src = '/static/reatcmp.html?v=4.1';
-		} catch(e) {
-		}
-		
-		smartSearch = new nhn.AjaxSuggestUS('nx_query', 'autoFrame', {
-			url : 'https://ac.search.naver.com/nx/ac',
-			cookieName : 'NaverSuggestUse',
-			listbox : '_resultBox',
-			sFromName : 'topSearch',
-			triangleBtn : 'triangleBtn',
-			sListMaxLength : 55,
-			listMaxCount : 15,
-			request_type : 'jsonp',
-			request_data : {
-				q : '{query}',
-				st : '100',
-				r_format : 'json',
-				t_koreng : '1',
-				q_enc : 'UTF-8',
-				r_enc : 'UTF-8',
-				r_unicode : '0',
-				r_escape : '1',
-				frm : 'kin'
-			},
-			sTriangleUpOn : 'https://ssl.pstatic.net/static/common/snb/090513/bu_arrow_up.gif',
-			sTriangleUpOff : 'https://ssl.pstatic.net/sstatic/search/mypocket/v3/btn_atcmp_off_op2.gif',
-			sTriangleDownOn : 'https://ssl.pstatic.net/static/common/snb/090513/bu_arrow_down.gif',
-			sTriangleDownOff : 'https://ssl.pstatic.net/static/common/snb/090513/bu_arrow_down3.gif'
-		}).attach({
-			actSubmit : function() {
-				try {
-					top.selectAction(this._elForm);
-				} catch(e) {
-					try {
-						selectAction(this._elForm);
-					} catch(e) {
-					}
-				}
-
-				this._elForm.submit();
-			}
-		});
-		
-		var expertEntryBanner = $$.getSingle("div.gnb_eXpertLogo div.banner");
-		if (!!expertEntryBanner) {
-			var cookie = new $Cookie();
-
-			$Fn(function () {
-				$Element(expertEntryBanner).hide();
-
-				var newDisabledUntil = new Date().getTime() + (3 * 1000 * 24 * 60 * 60);
-				cookie.set("kin_expert_entry_banner_disabled_until", newDisabledUntil, 5);
-			}).attach($$.getSingle("div.gnb_eXpertLogo div.banner button.buttonCancel"), 'click');
-
-			var disabledUntilTimestamp = new Number(cookie.get("kin_expert_entry_banner_disabled_until"));
-			if (!isNaN(disabledUntilTimestamp)) {
-				if (new Date().getTime() > disabledUntilTimestamp) {
-					cookie.remove("kin_expert_entry_banner_disabled_until");
-					$Element(expertEntryBanner).show();
-				}
-			} else {
-				$Element(expertEntryBanner).show();
-			}
-		}
-		
-
-		if (typeof nhn.Kin.ChatMenu !== "undefined") {
-			window.oChatMenu = new nhn.Kin.ChatMenu();
-		}
-	}).attach(window, 'load');
-</script>
-
-
 
 <div id="container" class="container-fluid">
 	<div class="container-fluid-content">
@@ -196,40 +58,10 @@ var standardReportPopupUrl = "https://srp2.naver.com/report";
 <ul class="location" id="au_location">
 	<li><a href="/index.naver">홈</a></li>
 	<li>
-		
-		
-			<a href="/myinfo/index.naver">프로필</a>
-		
+		<a href="/myinfo/index.naver">프로필</a>
 	</li>
-	
-		
-		
-			<li class="last">기본정보</li>
-		
-	
+	<li class="last">기본정보</li>	
 </ul>
-<!-- 프로모션 배너 -->
-
-
-
-
-
-
-
-
-<style type="text/css">
-.banner_kincommon {position:relative; float:right; width:190px; margin:-40px 0 0 0; z-index:23;}
-.banner_kincommon img {vertical-align:top;}
-</style>
-
-
-			
-
-
-
-
-
-
 
 
 <h2 class="blind">프로필</h2>
@@ -338,30 +170,7 @@ var standardReportPopupUrl = "https://srp2.naver.com/report";
 			
 		</li>
 		<li><a href="questionList.jsp">나의 질문 <span class="num">(<%=member.getQuestion() %>)</span></a></li>
-		<!-- <li><a href="/myinfo/userFriendList.naver">나의 친구 <span class="num">(0)</span></a></li>
-		<li><a href="/myinfo/gift/point/history.naver">포인트로 감사 내역<em class="new"><span class="blind">NEW</span></em></a></li>
-		<li><a href="/myinfo/opendicList.naver">나의 오픈사전 <span class="num">(0)</span></a></li>
-		
-			<li><a href="/myinfo/happybeanListAccumulation.naver">해피빈 기부함</a></li>
-		
-		<li class="">
-			<a href="/myinfo/directQuestionList.naver">1:1질문</a>
-			<ul class="sub">
-				<li><a href="/myinfo/directQuestionList.naver">받은 질문 <span class="num">(0)</span></a></li>
-				<li><a href="/myinfo/directQuestionSendList.naver">보낸 질문 <span class="num">(0)</span></a></li>
-			</ul>
-		</li>
-		<li><a href="/myinfo/likeList.naver">나의 표정/궁금/보관지식</a></li>
-		<li><a href="/myinfo/interest.naver">나의 관심질문</a></li>
-		<li><a href="/myinfo/deletedArticleList.naver">나의 삭제 지식 <span class="num">(0)</span></a></li>
-		<li class="is_active">
-			<a href="/myinfo/namecardProfileForm.naver">관리</a>
-			<ul class="sub">
-				<li class="is_active"><a href="/myinfo/namecardProfileForm.naver">기본정보</a></li>
-				<li><a href="/myinfo/tempsaveList.naver">임시저장 <span class="num">(13)</span></a></li>
-				<li><a href="/myinfo/pointHistory.naver" onclick="nhn.Kin.Utility.nClicks('edt*point', '', '', event);">내공</a></li>
-			</ul>
-		</li> -->
+
 	</ul>
 </div>
 			</div>
@@ -371,8 +180,6 @@ var standardReportPopupUrl = "https://srp2.naver.com/report";
 <div class="sp_common_tab myinfo_tab">
 	<ul>
 		<li><a href="#" class="on" onclick="nhn.Kin.Utility.nClicks('.profile', '', '', event);">프로필 관리</a></li>
-		<li><a href="/myinfo/licenseSettingForm.naver" onclick="nhn.Kin.Utility.nClicks('.license', '', '', event);">취득 자격 관리</a></li>
-		<li><a href="/myinfo/notifySettingForm.naver" onclick="nhn.Kin.Utility.nClicks('.alarm', '', '', event);">서비스 설정</a></li>
 	</ul>
 </div>
 
@@ -382,7 +189,7 @@ var standardReportPopupUrl = "https://srp2.naver.com/report";
 
 
 
-<form name="f" action="namecardProfileAction.naver" method="post">
+<form name="f" action="/KG-naver/main/profileFormService.jsp" method="post" enctype="multipart/form-data">
 <input type="hidden" name="photoUrl" id="photoUrl" value="">
 <input type="hidden" name="cropPhotoUrl" id="cropPhotoUrl" value="">
 <input type="hidden" name="photoType" id="photoType" value="avatar">
@@ -407,32 +214,38 @@ var standardReportPopupUrl = "https://srp2.naver.com/report";
 			<td role="presentation">
 				<ul class="set_name">
 					<li>
-						<!-- 파트너일 경우 무조건 별명 사용 안함으로 고정 -->
-						<input type="radio" class="input_chk" id="set_nick1" name="useNickname" value="false" checked="">
+						<!-- 별명 입력하는 곳 -->
+						<input type="radio" name="useNickname" value="false" checked>
 						<label for="set_nick1">별명 사용 안함</label>
 					</li>
 					<li>
-						<input type="radio" class="input_chk" id="set_nick2" name="useNickname" value="true">
+						<input type="radio" name="useNickname" value="true">
 						<label for="set_nick2">별명 사용</label><span class="name_desc2">답변할 때 별명과 아이디가 함께 표시됩니다. 예) 지식도령 (gil_dong_hong)</span>
 					</li>
 				</ul>
 				<div class="nick">
 					
-					
-						<input type="text" name="nickname" id="nickname" class="input_text _input_nickname" style="width:229px;" title="별명 입력" placeholder="별명 입력" aria-disabled="false">
-					
+						<%if(member.getNickname() == null){ %>
+						<input type="text" name="nickname" class="input_text _input_nickname" style="width:229px;" title="별명 입력" placeholder="별명 입력" aria-disabled="false">
+						<%}else { %>
+						<input type="text" name="nickname" class="input_text _input_nickname" style="width:229px;" title="별명 입력" value="<%=member.getNickname() %>" aria-disabled="false">
+						<%} %>
 					<span class="byte _byte">0/20 byte</span>
 					<p class="paragraph">한글 1~10자, 영문 대소문자 2~20자, 숫자를 사용할 수 있습니다. (혼용가능)</p>
 				</div>
 			</td>
 		</tr>
-		<tr role="presentation"><td role="presentation" colspan="2" class="line"></td></tr>
+		<tr role="presentation">
+		<td role="presentation" colspan="2" class="line"></td>
+		</tr>
 		<tr role="presentation">
 			<th role="presentation" scope="row">프로필사진</th>
 			<td role="presentation">
-				<div class="upload">
-					<a href="#"><img src="https://ssl.pstatic.net/static/kin/09renewal/btn_upload_profilephoto2.gif" width="100" height="22" alt="프로필 사진 올리기" class="btn _upload_popup_btn"></a>
-					<p class="paragraph"><span>프로필 사진을 올리시면 내공 30을 드립니다.</span></p>
+				<div>
+					<input type="file" name="upfile" class="upfile">
+					<!-- <img src="https://ssl.pstatic.net/static/kin/09renewal/btn_upload_profilephoto2.gif" width="100" height="22" alt="프로필 사진 올리기" class="btn _upload_popup_btn"> -->
+					
+					<p class="paragraph"><span >프로필 사진을 올려보세요 :)</span></p>
 				</div>
 				<ul class="set_photo _set_photo" id="photo" style="display:none">
 					<li>
@@ -463,28 +276,12 @@ var standardReportPopupUrl = "https://srp2.naver.com/report";
 						<p class="paragraph">이용자가 정보를 열람할 때 참고 할 수 있습니다.</p>
 					</div>
 					<div class="introduce_area">
-						<p class="tit2"><label for="summaryIntroduction">한줄 소개</label></p>
-						<input type="text" class="input_text _input_text_summary" maxlength="30" name="summaryIntroduction" id="summaryIntroduction" style="width:574px;" value="30자 이내로 작성해주세요." aria-disabled="false">
-						
-						<p class="byte _byte">0/30</p>
-					</div>
-					<div class="introduce_area">
-						<p class="tit2"><label for="position">소속 (근무지)</label> / <label for="occupation">직위(직업)</label></p>
-						<div class="introduce_half">
-							
-							<input type="text" class="input_text _input_text_position" name="position" id="position" maxlength="20" value="소속 또는 근무처" aria-disabled="false">
-							<p class="byte _byte">0/20</p>
-						</div>
-						<div class="introduce_half">
-							
-							<input type="text" class="input_text _input_text_occupation" maxlength="10" name="occupation" id="occupation" value="직업" aria-disabled="false">
-							<p class="byte _byte">0/10</p>
-						</div>
-					</div>
-					<div class="introduce_area">
 						<p class="tit2"><label for="introduction">상세 소개</label></p>
-						
-						<textarea cols="75" rows="5" class="my_intro _my_intro" style="width:574px; height:86px;" name="introduction" id="introduction" aria-disabled="false">200자 이내로 작성해 주세요</textarea>
+						<%if(member.getIntro() == null){ %>
+						<textarea cols="75" rows="5" class="my_intro _my_intro" style="width:574px; height:86px;" name="introduction" id="introduction" aria-disabled="false" placeholder="200자 이내로 작성해 주세요"></textarea>
+						<%}else{ %>
+						<textarea cols="75" rows="5" class="my_intro _my_intro" style="width:574px; height:86px;" name="introduction" id="introduction" aria-disabled="false"><%=member.getIntro()%></textarea>
+						<%} %>
 						<p class="byte _byte">0/200</p>
 					</div>
 					<ul class="introduce_info_area">
@@ -619,34 +416,16 @@ var standardReportPopupUrl = "https://srp2.naver.com/report";
 	
 		<p class="agree_info_text">입력하신 별명, 사진, 소속(근무처), 직업, 주요경력은 지식iN 및 네이버 서비스 내  프로필 공개를 목적으로 하며, <br><strong class="text_bold">언제든지 직접 삭제할 수 있고, 탈퇴 시에는 바로 파기됩니다.</strong></p>
 		<div class="agree_box">
-			<label><input type="checkbox" id="agreeCheck"><strong class="agree_text _agree">동의합니다.</strong></label>
+			<label><input type="checkbox" id="agreeCheck" name="agreeCheck"><strong class="agree_text _agree">동의합니다.</strong></label>
 		 </div>
 	
 
 	<div class="sub_qna_btn_area _sub_qna_btn_area">
-		<button type="button" class="question_wrap__button type_primary btn_namecard_submit _submit">확인</button>
+		<button type="submit" class="question_wrap__button type_primary btn_namecard_submit _submit">확인</button>
 	</div>
 </fieldset>
 </form>
 
-<script type="text/template" id="delegate_answer_list_tpl">
-	{if result.length > 0}
-		<p class="paragraph3">현재 설정된 대표답변 : {=result.length}건 <a href="#" onclick="nhn.Kin.Utility.popup('/popup/delegateAnswers.naver', 'expertiseCancelAnswer', \{width:720,height:750\});return false;" target="_blank" class="set_ans2"><img src="https://ssl.pstatic.net/static/kin/09renewal/btn_set_ans.gif" width="78" height="22" alt="대표답변 설정"></a></p>
-		<ul class="represent_anwser" id="au_represent_anwser">
-		{for answer in result}
-			<li>
-		 		<div class="sel"><a href="/qna/detail.naver?d1id={=answer.d1Id}&dirId={=answer.dirId}&docId={=answer.docId}" target="_blank">{=answer.title}</a></div>
-				<span class="cate"><a href="/qna/list.naver?dirId={=answer.dirId}" target="_blank">{=answer.dirName}</a></span>
-			</li>
-		{/for}
-		</ul>
-		<p class="paragraph">설정된 대표답변이 {=result.length}건이고 다른 답변으로 변경을 원하시면, 기존 설정된 대표답변을 해제하셔야 합니다.</p>
-	{else}
-		<p class="paragraph3">설정된 대표답변이 없습니다.</p>
-		<p class="paragraph">대표답변 설정을 이용하여 나의 활동을 보여줄 수 있는 답변을 설정해보세요</p>
-		<a href="#" onclick="nhn.Kin.Utility.popup('/popup/delegateAnswers.naver', 'expertiseCancelAnswer', \{width:720,height:750\});return false;" target="_blank" class="set_ans"><img src="https://ssl.pstatic.net/static/kin/09renewal/btn_set_ans.gif" width="78" height="22" alt="대표답변 설정"></a>
-	{/if}
-</script>
 <script type="text/javascript" src="https://ssl.pstatic.net/static.kin/static/pc/20220511141354/js/min/jindo_component.all.js"></script>
 <script type="text/javascript" src="https://ssl.pstatic.net/static.kin/static/pc/20220511141354/js/min/nhn.Kin.Userinfo.NameCardProfilePm.js"></script>
 

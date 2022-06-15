@@ -16,17 +16,10 @@
 <body>
 <div id="wrap">
 
-	<!-- 스킵네비게이션 : 웹접근성대응-->
-<div id="u_skip">
-    <a href="#content" onclick="document.getElementById('content').tabIndex=-1;document.getElementById('content').focus();return false;"><span>본문으로 바로가기</span></a>
-</div>
-<!-- //스킵네비게이션 -->
 <!-- header -->
 <div id="header" role="banner">
-    <h1><a href="http://www.naver.com" class="h_logo"><span class="blind">NAVER</span></a></h1>
+    <h1><a href="/KG-naver/index.jsp" class="h_logo"><span class="blind">NAVER</span></a></h1>
 </div>
-<!-- //header -->
-<!-- container -->
 <div id="container" role="main">
     <!-- content -->
     <div id="content">

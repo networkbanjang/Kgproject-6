@@ -4,9 +4,8 @@
 <%@page import="member.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<%@ include file="../header.jsp" %>
 <%
+	String id = (String)session.getAttribute("id");	
 
 	MemberDAO memberDao = new MemberDAO();
 	MemberDTO member = memberDao.selectId(id);

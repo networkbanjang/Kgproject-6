@@ -25,8 +25,6 @@
 	String subject = multi.getParameter("subject");
 	String category = multi.getParameter("category");
 	String content = multi.getParameter("editordata");
-	String originalscore = multi.getParameter("score");
-	int score=Integer.parseInt(originalscore);
 	String nick = multi.getParameter("nick");
 	String children = multi.getParameter("children");
 	String children_answer = multi.getParameter("children_answer");
@@ -42,7 +40,6 @@ return;}
 	board.setTitle(subject);
 	board.setContent(content);
 	board.setCategory(category);
-	board.setPoint(score);
 	board.setTime(sdf.format(date));
 	board.setId(id);
 	board.setPhoto(upimage);

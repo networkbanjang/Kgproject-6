@@ -598,4 +598,138 @@ public class BoardDAO {
 		}
 		return cnt;
 	}
-}
+	//----------------------------------------
+	public ArrayList<BoardDTO> questionList(int begin, int end, String data) {
+		String sql = "SELECT B.* FROM (SELECT rownum rn,A.*  FROM (SELECT * FROM  naver_view WHERE title like ? ORDER BY num DESC)A)B WHERE rn BETWEEN ? and ?";
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<BoardDTO> list = new ArrayList<>();
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, "%"+data+"%");
+			ps.setInt(2, begin);
+			ps.setInt(3, end);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				BoardDTO board = new BoardDTO();
+				board.setId(rs.getString("id"));
+				board.setContent(rs.getString("content"));
+				board.setTitle(rs.getString("title"));
+				board.setCategory(rs.getString("category"));
+				board.setPoint(rs.getInt("point"));
+				board.setMinor_v(rs.getString("minor_v"));
+				board.setMinor_an(rs.getString("minor_an"));
+				board.setHit(rs.getInt("hit"));
+				board.setNick(rs.getString("nick"));
+				board.setTime(rs.getString("time"));
+				board.setNum(rs.getInt("num"));
+				list.add(board);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	
+	public int questionCount(String data) {
+		String sql = "SELECT count(*) as cnt FROM naver_view WHERE title like=?";
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int cnt = 0;
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, "%"+data+"%");
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				cnt = rs.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return cnt;
+	}
+	
+	public ArrayList<BoardDTO> questionListAll(int begin, int end) {
+		String sql = "SELECT B.* FROM (SELECT rownum rn, A.* FROM (SELECT * FROM  naver_view ORDER BY num DESC)A)B WHERE rn BETWEEN ? and ?";
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		ArrayList<BoardDTO> list = new ArrayList<>();
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, begin);
+			ps.setInt(2, end);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				BoardDTO board = new BoardDTO();
+				board.setId(rs.getString("id"));
+				board.setContent(rs.getString("content"));
+				board.setTitle(rs.getString("title"));
+				board.setCategory(rs.getString("category"));
+				board.setPoint(rs.getInt("point"));
+				board.setMinor_v(rs.getString("minor_v"));
+				board.setMinor_an(rs.getString("minor_an"));
+				board.setHit(rs.getInt("hit"));
+				board.setNick(rs.getString("nick"));
+				board.setTime(rs.getString("time"));
+				board.setNum(rs.getInt("num"));
+				list.add(board);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+
+	}
+	public int totalquestion(String id) {
+		String sql = "SELECT count(*) as cnt FROM naver_view WHERE id=?";
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int cnt = 0;
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				cnt = rs.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return cnt;
+	}
+}	

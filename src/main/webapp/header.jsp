@@ -16,7 +16,6 @@
 <link rel="stylesheet" type="text/css" href="https://ssl.pstatic.net/static.kin/static/pc/20220511141354/css/min/main.css">
 <link rel="stylesheet" type="text/css" href="https://ssl.pstatic.net/static.kin/static/pc/20220511141354/css/min/c3p.datalab.theme.css">
 
-<script type="text/javascript" src="https://ssl.pstatic.net/static.kin/static/pc/20220511141354/js/min/kin.js"></script>
 
 
 <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.2">
@@ -517,14 +516,14 @@ a.gnb_service_all:hover, a.gnb_service_all:visited, a.gnb_service_all:active, a.
 					<a href="/KG-naver/index.jsp" role="menuitem" class="item" id="au_lnb_home" tabindex="0" onclick="nhn.Kin.Utility.nClicks('LNB.home', '', '', event);" aria-current="page"><em>홈</em></a>
 				</li>
 				<li class="menu" role="presentation">
-					<a href="/KG-naver/question_list.jsp" role="menuitem" class="item" aria-haspopup="true" aria-expanded="false" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.qna', '', '', event);"><em>Q&amp;A</em></a>
+					<a href="/KG-naver/question_list2.jsp" role="menuitem" class="item" aria-haspopup="true" aria-expanded="false" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.qna', '', '', event);"><em>Q&amp;A</em></a>
 				</li>
 				<li class="menu" role="presentation">
 					<a href="/KG-naver/question_list.jsp" role="menuitem" class="item" tabindex="-1" onclick="nhn.Kin.Utility.nClicks('LNB.answer', '', '', event);"><em>답변하기</em></a>
 				</li>
 
 				<li class="menu" role="presentation">
-					<a href="people/peopleMainForm.jsp" role="menuitem" tabindex="-1" class="item" id="peopleLnbBtn" onclick="nhn.Kin.Utility.nClicks('LNB.people', '', '', event);"><em>사람들</em></a>
+			<a href="/KG-naver/people/peopleRankForm.jsp" role="menuitem" tabindex="-1" class="item" id="peopleLnbBtn" onclick="nhn.Kin.Utility.nClicks('LNB.people', '', '', event);"><em>사람들</em></a>
 				</li>
 
 				<li class="menu" role="presentation">
@@ -546,7 +545,7 @@ a.gnb_service_all:hover, a.gnb_service_all:visited, a.gnb_service_all:active, a.
 				
 				
 			</ul>
-			
+			<%memberDao_1.close(); %>
 				
 					
 					<%if(id == null){ %>
@@ -554,7 +553,6 @@ a.gnb_service_all:hover, a.gnb_service_all:visited, a.gnb_service_all:active, a.
 					<%}else{ %>
 					<a href="/KG-naver/board/write.jsp" class="nav__button_question _clickcode:LNB.q"role="button"><span class="btn_inner"><i class="sp_gnb icon_pencil"></i>질문하기</span></a>
 					<%} %>
-					<%memberDao_1.close(); %>
 		</div>
 	</div>
 </div>

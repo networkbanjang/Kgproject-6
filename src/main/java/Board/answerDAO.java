@@ -266,4 +266,169 @@ public int count() {
 	}
 	return cnt;
 }
+//내가 추가한 것
+public ArrayList<answerDTO> answerList(String id){
+	String sql = "select naver_view.title, naver_view.category, naver_view.num, naver_answer.content, naver_answer.recommend, naver_view.time from naver_view join naver_answer on naver_view.num = naver_answer.slave where naver_answer.id=?";
+	ArrayList<answerDTO> answers = new ArrayList<answerDTO>();
+	PreparedStatement ps = null;
+	ResultSet rs = null;
+	try {
+		ps = con.prepareStatement(sql);
+		ps.setString(1, id);
+		rs = ps.executeQuery();
+		while(rs.next()) {
+			answerDTO answer = new answerDTO();
+			answer.setTitle(rs.getString("title"));
+			answer.setCategory(rs.getString("category"));
+			answer.setSlave(rs.getInt("num"));
+			answer.setContent(rs.getString("content"));
+			answer.setRecommend(rs.getInt("recommend"));
+			answer.setTime(rs.getString("time"));
+			answers.add(answer);
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}finally {
+		try {
+			if(ps != null) ps.close();
+			if(rs != null) rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	return answers;
+}
+
+//--------------------------my answer list ---------------------------------------
+
+	public ArrayList<answerDTO> answerList(int begin, int end, String data) {
+		String sql = "SELECT B.* FROM (SELECT rownum rn,A.*  FROM (SELECT * FROM  naver_answer WHERE title like ? ORDER BY num DESC)A)B WHERE rn BETWEEN ? and ?";
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<answerDTO> list = new ArrayList<>();
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, "%"+data+"%");
+			ps.setInt(2, begin);
+			ps.setInt(3, end);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				answerDTO answer = new answerDTO();
+				answer.setContent(rs.getString("content"));
+				answer.setPhoto(rs.getString("photo"));
+				answer.setFile_root(rs.getString("file_root"));
+				answer.setTime(rs.getString("time"));
+				answer.setPubl(rs.getString("publ"));
+				answer.setSlave(rs.getInt("slave"));
+				answer.setRecommend(rs.getInt("recommend"));
+				answer.setId(rs.getString("id"));
+				list.add(answer);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	
+	public int answerCount(String data) {
+		String sql = "SELECT count(*) as cnt FROM naver_answer WHERE title like=?";
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int cnt = 0;
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, "%"+data+"%");
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				cnt = rs.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return cnt;
+	}
+	
+	public ArrayList<answerDTO> answerListAll(int begin, int end) {
+		String sql = "SELECT B.* FROM (SELECT rownum rn, A.* FROM (SELECT * FROM  naver_answer ORDER BY num DESC)A)B WHERE rn BETWEEN ? and ?";
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		ArrayList<answerDTO> list = new ArrayList<>();
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, begin);
+			ps.setInt(2, end);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				answerDTO answer = new answerDTO();
+				answer.setContent(rs.getString("content"));
+				answer.setPhoto(rs.getString("photo"));
+				answer.setFile_root(rs.getString("file_root"));
+				answer.setTime(rs.getString("time"));
+				answer.setPubl(rs.getString("publ"));
+				answer.setSlave(rs.getInt("slave"));
+				answer.setRecommend(rs.getInt("recommend"));
+				answer.setId(rs.getString("id"));
+				list.add(answer);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+
+	}
+	
+	public int count(String id) {
+		String sql = "SELECT count(*) as cnt FROM naver_answer where id=?";
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int cnt = 0;
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				cnt = rs.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return cnt;
+	}
 }

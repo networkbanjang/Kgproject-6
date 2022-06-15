@@ -78,15 +78,11 @@ var standardReportPopupUrl = "https://srp2.naver.com/report";
 					<li class="Nlist_item">
 						<a href="index.jsp" class="Nitem_link _nclicks:hfm.home"><span class="Nitem_link_menu">전당홈</span></a>
 					</li>
-					<li class="Nlist_item">
-						<a href="topic.jsp" class="Nitem_link _nclicks:hfm.keyword"><span class="Nitem_link_menu">질문키워드</span></a>
-					</li>
+
 					<li class="Nlist_item">
 						<a href="eliteUser.jsp" class="Nitem_link _nclicks:hfm.king"><span class="Nitem_link_menu">채택왕</span></a>
 					</li>
-					<li class="Nlist_item">
-						<a href="kinupQna.jsp" class="Nitem_link _nclicks:hfm.qa"><span class="Nitem_link_menu">추천Q&amp;A</span></a>
-					</li>
+
 					<li class="Nlist_item is_active">
 						<a href="commentList.jsp" class="Nitem_link _nclicks:hfm.talk"><span class="Nitem_link_menu">TALK</span><em class="Nitem_link_count _commentCount" style="visibility: visible;">talk 수</em></a>
 					</li>
@@ -237,7 +233,7 @@ String result="";
 												<span class="u_cbox_name_area">
 													<span class="u_cbox_nick_area">
 														<%if(member.getNickname() == null){ %>
-														<span class="u_cbox_nick"><%=l.getId() %></span>
+														<span class="u_cbox_nick">	<a href="/KG-naver/main/profile.jsp?id=<%=l.getId()%>"><%=l.getId() %></a></span>
 														<%}%> 
 													</span>
 													<span>
