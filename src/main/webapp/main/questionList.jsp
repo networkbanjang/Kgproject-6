@@ -489,17 +489,7 @@
 </div>
 
 	<div class="search">
-	<fieldset>
-		<legend>검색영역</legend>
-		<form name="f" action="/KG-naver/main/questionList.jsp?mode=search" method="get" id="frmSearch">
-			<input type="hidden" name="isSearch" value="true">
-			<input type="hidden" name="isWorry" value="false">
-			<input type="hidden" name="section" value="qna">
-			<input type="hidden" name="sd" value="question">
-			<input type="text" name="data" title="검색어" class="keyword" placeholder="제목을 검색해주세요." maxlength="200">
-			<input type="image" src="https://ssl.pstatic.net/static/kin/09renewal/btn_search.gif">
-		</form>
-	</fieldset>
+	
 	<div class="btn_array_r">
 		<a href="/KG-naver/board/write.jsp" class="_clickcode:myq.question"><img src="https://ssl.pstatic.net/static/kin/09renewal/btn_question.gif" width="92" height="30" alt="질문하기"></a>
 	</div>

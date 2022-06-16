@@ -17,7 +17,7 @@
 	ArrayList<answerDTO> answers;
 	ArrayList<answerDTO> answer; // 이건 답변 페이지 리스트
 	answerDAO answerDao = new answerDAO();
-	answers = answerDao.answerList(id);
+	answers = answerDao.answerList(p_id);
 	int totalanswer = answerDao.count(p_id);
 	int totalquestion = boardDao.totalquestion(p_id);
 	//현재 페이지 번호
@@ -71,7 +71,7 @@
 
 <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.2">
 <title>
-	<%=id %> 님의 나의 답변, 프로필 : 지식iN
+	<%=p_id %> 님의 나의 답변, 프로필 : 지식iN
 </title>
 
 <script type="text/javascript">
@@ -313,7 +313,7 @@ var standardReportPopupUrl = "https://srp2.naver.com/report";
 			<div class="profile_info">
 				<div class="profile_name">
 					<a href="/profile/index.naver?u=%2BfOAdRVnRFqhn3BYvJIhXW6aA4yJLUU7JxpNv%2FsRBbM%3D">
-						<strong class="profile_user"><%=id %></strong>
+						<strong class="profile_user"><%=p_id %></strong>
 					</a>
 					
 				</div>
@@ -455,7 +455,7 @@ var standardReportPopupUrl = "https://srp2.naver.com/report";
 			<dd><div class="mykin_gage">
 				<p class="bar">
 				<span class="bar_in" style="width:<%=s_percent*100.0%>%;"></span></p>
-				<span class="value"><%=s_percent*100.0%>%</span></div>
+				<span class="value"><%=String.format("%.2f", s_percent*100)%>%</span></div>
 			</dd>
 		
 	
@@ -715,19 +715,7 @@ function selectOrder(order, bestFlagType, isBookmarkList){
 </div>
 
 	<div class="search">
-	<fieldset>
-		<legend>검색영역</legend>
-		<form name="f" action="/KG-naver/main/answerList.jsp?mode=search" method="get" id="frmSearch">
-			<input type="hidden" name="isSearch" value="true">
-			<input type="hidden" name="isWorry" value="false">
-			
-			<input type="hidden" name="section" value="qna">
-			
-			<input type="hidden" name="sd" value="answer">
-			<input type="text" name="data" title="검색어" class="keyword" placeholder="제목을 검색해주세요." maxlength="200">
-			<input type="image" src="https://ssl.pstatic.net/static/kin/09renewal/btn_search.gif">
-		</form>
-	</fieldset>
+
 	</div>
 	<script type="text/javascript" src="https://ssl.pstatic.net/static.kin/static/pc/20220511141354/js/min/nhn.Kin.Userinfo.SearchBar.js"></script>
 

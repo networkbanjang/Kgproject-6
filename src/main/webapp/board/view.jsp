@@ -92,7 +92,7 @@
 					<td class="question_cate"><%=board.getCategory()%></td>
 				</tr>
 				<tr>
-					<td class="question_etc"><%=board.getNick()%></td>
+					<td class="question_etc"><%=board.getId()%></td>
 					<td class="question_etc"><%=board.getTime()%></td>
 					<td class="question_etc">조회수: <%=board.getHit()%></td>
 				</tr>
@@ -113,15 +113,21 @@
 
 				<tr>
 					<td rowspan="2" class="profile">
-					<%if(member.getPic() == null) { %>
+					<%if (a.getPubl().equals("pri")) {%>
+					<img class="profile" src="/KG-naver/images/default.png">
+					<%}else if(member.getPic() == null) { %>
 						<a href="/KG-naver/main/profile.jsp?id=<%=a.getId()%>"><img class="profile" src="/KG-naver/images/default.png"></a>
-					<%} else{%>
+					<%}	else{%>
 							<a href="/KG-naver/main/profile.jsp?id=<%=a.getId()%>"><img class="profile" src="/KG-naver/up/<%=a.getId() %>/<%=member.getPic() %>"></a>
 					<%} %>
 					</td>
 					<td class="answer_subject">
 					<%if (a.getRecommend()==1){ %> <img src="/KG-naver/images/check.png"><%} %>
+				<%if (a.getPubl().equals("pri")) {%>
+				익명 </td>
+				<%} else{%>
 				<%=a.getId() %>님의 답변</td>
+				<%} %>
 				</tr>
 		
 				<tr>
@@ -131,9 +137,12 @@
 					<td class="answer_score">익명</td>
 					<%
 					} else {
+						if (member.getNickname() == null){
 					%>
 					<td class="answer_score"><%=a.getId()%></td>
-				
+				<%} else{ %>
+				<td class="answer_score"><%=member.getNickname()%></td>
+				<%} %>
 					<td >채택된 답변 수:<%=member.getS_question() %></td>
 				</tr>
 			</table>

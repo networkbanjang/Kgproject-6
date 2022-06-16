@@ -530,7 +530,7 @@ first = memberDao.firstAnswer(p_id);
 		<li><a href="/KG-naver/main/questionList.jsp?id=<%=p_id %>">나의 질문 <span class="num">(<%=totalquestion %>)</span></a></li>
 		<%}else { %>
 		<li>
-			<a href="/KG-naver/main/answerList.jsp?id=<%=p_id %>" class="" id="subMenuOfMykin">답변 보기<span class="num">(<%=member.getAnswer() %>)</span></a>
+			<a href="/KG-naver/main/answerList.jsp?id=<%=p_id %>" class="" id="subMenuOfMykin">답변 보기<span class="num">(<%=totalanswer %>)</span></a>
 		</li>
 		<%} %>
 	</ul>
@@ -743,7 +743,7 @@ first = memberDao.firstAnswer(p_id);
             
             
                 <img src="https://ssl.pstatic.net/static/kin/09renewal/h_write_answer.gif" width="67" height="14" alt="작성한 답변">
-                <span class="eng">(<%=member.getAnswer() %>)</span>
+                <span class="eng">(<%=totalanswer %>)</span>
                 <p class="desc">목록에는 공개된 Q&amp;A 답변만 노출됩니다.</p>
             
         </h4>
@@ -780,7 +780,7 @@ first = memberDao.firstAnswer(p_id);
                             <dl class="dlist_qna">
                                 <dt>
                                     <span class="ico_q"><img src="https://ssl.pstatic.net/static/kin/09renewal/blank.gif" width="18" height="14" alt="질문"></span>
-                                    <a href="/KG-naver/board/view.jsp?num=<%=a.getNum() %>" onclick="nhn.Kin.Utility.nClicks('myh.', '1061203_421628983', '1', event);"><%=a.getTitle() %></a>
+                                    <a href="/KG-naver/board/view.jsp?num=<%=a.getSlave() %>" onclick="nhn.Kin.Utility.nClicks('myh.', '1061203_421628983', '1', event);"><%=a.getTitle() %></a>
                                     
                                 </dt>
                                 <dd>
@@ -807,7 +807,7 @@ first = memberDao.firstAnswer(p_id);
         </table>
         
         
-            <span class="more"><a href="/KG-naver/main/questionList.jsp?id=<%=p_id%>">더보기</a></span>
+            <span class="more"><a href="/KG-naver/main/answerList.jsp?id=<%=p_id%>">더보기</a></span>
         
     </div>
 			</div>
