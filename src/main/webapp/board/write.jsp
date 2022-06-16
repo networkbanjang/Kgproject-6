@@ -6,15 +6,10 @@
 <meta charset="UTF-8">
 <title>네이버 지식IN</title>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
 
 
@@ -26,105 +21,89 @@
 	href="/KG-naver/css/summernote/summernote-lite.css">
 
 
-<script>
-function uploadSummernoteImageFile(file, editor) {
-	data = new FormData();
-	data.append("file", file);
-	$.ajax({
-		data : data,
-		type : "POST",
-		url : "/uploadSummernoteImageFile",
-		contentType : false,
-		processData : false,
-		success : function(data) {
-        	//항상 업로드된 파일의 url이 있어야 한다.
-			$(editor).summernote('insertImage', data.url);
-		}
-	});
-}
-</script>
+
 </head>
 <body>
 	<%@include file="../header.jsp"%>
-	<div class="question">
-		<form method="post" action="writeService.jsp" enctype="multipart/form-data" name="f">
-			<table>
-				<tr id="write_row2">
-					<td class="col1"><img src="../images/question.png"></td>
-					<td class="col2"><input type="text" name="subject"
-						class="col2_input"></td>
-				</tr>
-				<tr id="write_row3">
-					<td class="col1"></td>
-					<td class="col3">카테고리 선택 
-					<select name="category" >
-							<option id="study" value="교육,학문">교육,학문</option>
-							<option id="computer" value="컴퓨터 통신">컴퓨터 통신</option>
-							<option id="game" value="게임">게임</option>
-							<option id="art" value="엔터테이먼트,예술">엔터테이먼트,예술</option>
-							<option id="life" value="생활">생활</option>
-							<option id="health" value="건강">건강</option>
-							<option id="social" value="사회,정치">사회,정치</option>
-							<option id="economy" value="경제">경제</option>
-							<option id="taravel" value="여행">여행</option>
-							<option id="sports" value="스포츠.레져">스포츠.레져</option>
-							<option id="shoping" value="쇼핑">쇼핑</option>
-							<option id="junior" value="쥬니버">쥬니버 Q&A</option>
-							<option id="place" value="지역,플레이스">지역&플레이스</option>
-							<option id="worry" value="고민">고민Q&A</option>
-					</select>
-					</td>
-				</tr>
-			</table>
-			<br>
-			<div class="container">
-				<textarea class="summernote" name="editordata"></textarea>
-			</div>
-			<div id="config">
-				<table class="config_table">
-					<tr>
-						<th>추가 내공 :</th>
-						<td class="plus"><select name="score">
-								<option id="zero" value="0">미설정</option>
-								<option id="10" value="10">10</option>
-								<option id="20" value="20">20</option>
-								<option id="30" value="30">30</option>
-								<option id="50" value="50">50</option>
-								<option id="100" value="100">100</option>
-						</select></td>
+<div id="allques">
+		<div class="question_sec">
+			<form method="post" action="writeService.jsp"
+				enctype="multipart/form-data" name="f" class="question_se">
+				<table class="write_table">
+					<tr id="write_row2">
+						<td class="col1"><img src="../images/question.png"></td>
+						<td class="col2"><input type="text" name="subject"
+							class="col2_input"></td>
 					</tr>
-					<tr>
-						<th class="pub">별명 :</th>
-						<td><select name="nick">
-								<option id="pub" value="pub">공개</option>
-								<option id="pri" value="pri">비공개</option>
-						</select></td>
-						<th class="pub">미성년자열람 :</th>
-						<td><select name="children">
-								<option id="children" value="children">허용</option>
-								<option id="adult" value="adult">비허용</option>
-						</select></td>
-						<th class="pub">만 14세미만 답변 :</th>
-						<td><select name="children_answer">
-								<option id="children_answer" value="children_answer">허용</option>
-								<option id="adult_answer" value="adult_answer">비허용</option>
-						</select></td>
+					<tr id="write_row3">
+						<td class="col1"></td>
+						<td class="col3">카테고리 선택 <select name="category">
+								<option id="study" value="교육,학문">교육,학문</option>
+								<option id="computer" value="컴퓨터 통신">컴퓨터 통신</option>
+								<option id="game" value="게임">게임</option>
+								<option id="art" value="엔터테이먼트,예술">엔터테이먼트,예술</option>
+								<option id="life" value="생활">생활</option>
+								<option id="health" value="건강">건강</option>
+								<option id="social" value="사회,정치">사회,정치</option>
+								<option id="economy" value="경제">경제</option>
+								<option id="taravel" value="여행">여행</option>
+								<option id="sports" value="스포츠.레져">스포츠.레져</option>
+								<option id="shoping" value="쇼핑">쇼핑</option>
+								<option id="junior" value="쥬니버">쥬니버 Q&A</option>
+								<option id="place" value="지역,플레이스">지역&플레이스</option>
+								<option id="worry" value="고민">고민Q&A</option>
+						</select>
+						</td>
 					</tr>
 				</table>
-				<div id="center_button">
-					<input type="image" src="/KG-naver/images/ok.png">
+				<br>
+				<div class="write_container">
+					<textarea class="summernote" name="editordata"></textarea>
 				</div>
-			</div>
+				<div class="file_upload">
+					<table>
+						<tr>
+							<th>이미지 첨부 :</th>
+							<td><input type="file" accept=".gif, .jpg, .png"
+								name="upimage"></td>
+						</tr>
+					</table>
+				</div>
+				<div id="config">
+					<table class="config_table">
+						<tr>
+							<th class="pub">별명 :</th>
+							<td><select name="nick">
+									<option id="pub" value="pub">공개</option>
+									<option id="pri" value="pri">비공개</option>
+							</select></td>
+							<th class="pub">미성년자열람 :</th>
+							<td><select name="children">
+									<option id="children" value="children">허용</option>
+									<option id="adult" value="adult">비허용</option>
+							</select></td>
+							<th class="pub">만 14세미만 답변 :</th>
+							<td><select name="children_answer">
+									<option id="children_answer" value="children_answer">허용</option>
+									<option id="adult_answer" value="adult_answer">비허용</option>
+							</select></td>
 
-		</form>
-	</div>
+						</tr>
 
+					</table>
+					<div class="center_button">
+						<input type="image" src="/KG-naver/images/ok.png">
+					</div>
+				</div>
 
-
+			</form>
+		</div>
+</div>
 	<script>
 		$('.summernote').summernote(
 				{ // 에디터 높이
 					height : 450,
+					width : 900,
 					lang : "ko-KR",
 					toolbar : [
 							// 글꼴 설정
@@ -144,8 +123,6 @@ function uploadSummernoteImageFile(file, editor) {
 							[ 'para', [ 'ul', 'ol', 'paragraph' ] ],
 							// 줄간격
 							[ 'height', [ 'height' ] ],
-							// 그림
-							[ 'insert', [ 'picture' ] ],
 							// 코드보기, 확대해서보기, 도움말
 							[ 'view', [ 'codeview', 'fullscreen', 'help' ] ] ],
 					// 추가한 글꼴
@@ -154,8 +131,7 @@ function uploadSummernoteImageFile(file, editor) {
 							'바탕체' ],
 					// 추가한 폰트사이즈
 					fontSizes : [ '8', '9', '10', '11', '12', '14', '16', '18',
-							'20', '22', '24', '28', '30', '36', '50', '72' ]
-				
+							'20', '22', '24', '28', '30', '36', '50', '72' ],
 
 				});
 	</script>

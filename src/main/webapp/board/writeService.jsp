@@ -12,16 +12,9 @@
 <body>
 <%
 	request.setCharacterEncoding("utf-8");
-	String id= "tmddud73";
-	//String id = request.getParameter("subject");
-	//String category = request.getParameter("catagory");
-	//String content = request.getParameter("editordata");
-	
-	//out.print(id);
-	//out.print(category);
-	//out.print(content);
-	
-	String saveFolder = "C:\\javas\\upload\\"+id;
+	String id= (String)session.getAttribute("id");
+
+	String saveFolder = "C:\\Kraken\\Kgproject-6\\src\\main\\webapp\\up\\"+id;
 	File file = new File(saveFolder);
 	if(file.exists() == false)
 		file.mkdirs();
@@ -32,12 +25,14 @@
 	String subject = multi.getParameter("subject");
 	String category = multi.getParameter("category");
 	String content = multi.getParameter("editordata");
-	String originalscore = multi.getParameter("score");
-	int score=Integer.parseInt(originalscore);
 	String nick = multi.getParameter("nick");
 	String children = multi.getParameter("children");
 	String children_answer = multi.getParameter("children_answer");
-	
+	String upimage = multi.getOriginalFileName("upimage");
+
+	if(subject == "" || subject.equals(""))
+	{out.print("<script>alert('제목을 입력해주세요'); history.back();</script>") ;
+return;}
 	BoardDTO board = new BoardDTO();
 	
 	Date date = new Date();
@@ -45,13 +40,14 @@
 	board.setTitle(subject);
 	board.setContent(content);
 	board.setCategory(category);
-	board.setPoint(score);
 	board.setTime(sdf.format(date));
+	board.setId(id);
+	board.setPhoto(upimage);
 	
 	if(nick.equals("pri")){
 		board.setNick("비공개");
 	}else{
-		board.setNick("임시닉네임");
+		board.setNick((String)session.getAttribute("nickname"));
 	}
 	if(children.equals("adult")){
 		board.setMinor_v("1");

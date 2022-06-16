@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 </head>
 <body>
+	<%@include file="../header.jsp"%>
 	<% 
 	request.setCharacterEncoding("utf-8");
 	String originalnum = request.getParameter("answernum") ;

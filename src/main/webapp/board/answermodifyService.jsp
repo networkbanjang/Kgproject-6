@@ -16,9 +16,9 @@
 <%
 
 request.setCharacterEncoding("utf-8");
-String id= "tmddud73";
+String id= (String)session.getAttribute("id");
 
-String saveFolder = "C:\\javas\\upload\\"+id;
+String saveFolder = "C:\\Kraken\\Kgproject-6\\src\\main\\webapp\\up\\"+id;
 File file = new File(saveFolder);
 if(file.exists() == false)
 	file.mkdirs();
@@ -34,13 +34,15 @@ String publ=multi.getParameter("pubid");
 
 String tmp = request.getParameter("num") ;
 String originalanswernum=request.getParameter("answernum");
-
+String upfile = multi.getOriginalFileName("upfile");
 int answernum=Integer.parseInt(originalanswernum);
 answerDAO answerDao = new answerDAO();
 answerDTO answer= answerDao.selectNum(answernum);
 
+
 answer.setContent(content);
 answer.setPubl(publ);
+answer.setFile_root(upfile);
 answerDao.modify(answer);
 answerDao.close();
 %>

@@ -29,56 +29,61 @@
 
 
 <script>
-function uploadSummernoteImageFile(file, editor) {
-	data = new FormData();
-	data.append("file", file);
-	$.ajax({
-		data : data,
-		type : "POST",
-		url : "/uploadSummernoteImageFile",
-		contentType : false,
-		processData : false,
-		success : function(data) {
-        	//항상 업로드된 파일의 url이 있어야 한다.
-			$(editor).summernote('insertImage', data.url);
-		}
-	});
-}
+	function uploadSummernoteImageFile(file, editor) {
+		data = new FormData();
+		data.append("file", file);
+		$.ajax({
+			data : data,
+			type : "POST",
+			url : "/uploadSummernoteImageFile",
+			contentType : false,
+			processData : false,
+			success : function(data) {
+				//항상 업로드된 파일의 url이 있어야 한다.
+				$(editor).summernote('insertImage', data.url);
+			}
+		});
+	}
 </script>
 </head>
 <body>
-	<%@include file="../header.jsp"
-	
-	%>
+	<%@include file="../header.jsp"%>
 	<%
-	
 	request.setCharacterEncoding("utf-8");
-	String originalnum = request.getParameter("num") ;
-	int num=Integer.parseInt(originalnum);
-	
-	BoardDAO boardDao=new BoardDAO(); 
-	BoardDTO board=boardDao.selectNum(num);
-	%>
-	<div class="question">
-		<form method="post" action="modifyService.jsp?num=<%=num %>" enctype="multipart/form-data" name="f">
-			<table>
-				<tr id="write_row2">
-					<td class="col1"><img src="../images/question.png"></td>
-					<td class="col2"><input type="text" name="subject" value="<%=board.getTitle() %>"
-						class="col2_input"></td>
-				</tr>
+	String originalnum = request.getParameter("num");
+	int num = Integer.parseInt(originalnum);
 
-			</table>
+	BoardDAO boardDao = new BoardDAO();
+	BoardDTO board = boardDao.selectNum(num);
+	%>
+	<div class="question_sector">
+		<form method="post" action="modifyService.jsp?num=<%=num%>"
+			enctype="multipart/form-data" name="f">
+			<div class="modisub">
+				<table>
+					<tr id="write_row2">
+						<td class="col1"><img src="../images/question.png"></td>
+						<td class="col2"><input type="text" name="subject"
+							value="<%=board.getTitle()%>" class="col2_input"></td>
+					</tr>
+
+				</table>
+			</div>
 			<br>
 			<div class="container">
-				<textarea class="summernote" name="editordata"><%=board.getContent() %></textarea>
+				<textarea class="summernote" name="editordata"><%=board.getContent()%></textarea>
 			</div>
-			<div id="config">
-
-
-				<div id="center_button">
-					<input type="image" src="/KG-naver/images/ok.png">
-				</div>
+			<div class="modi_upload">
+				<table>
+					<tr>
+						<th>이미지 첨부 :</th>
+						<td><input type="file" accept=".gif, .jpg, .png"
+							name="upimage"></td>
+					</tr>
+				</table>
+			</div>
+			<div id="center_button">
+				<input type="image" src="/KG-naver/images/ok.png">
 			</div>
 
 		</form>
@@ -90,6 +95,7 @@ function uploadSummernoteImageFile(file, editor) {
 		$('.summernote').summernote(
 				{ // 에디터 높이
 					height : 450,
+					width : 800,
 					lang : "ko-KR",
 					toolbar : [
 							// 글꼴 설정
@@ -120,7 +126,6 @@ function uploadSummernoteImageFile(file, editor) {
 					// 추가한 폰트사이즈
 					fontSizes : [ '8', '9', '10', '11', '12', '14', '16', '18',
 							'20', '22', '24', '28', '30', '36', '50', '72' ]
-				
 
 				});
 	</script>

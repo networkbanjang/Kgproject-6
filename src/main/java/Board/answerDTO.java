@@ -9,6 +9,12 @@ public class answerDTO {
 	String publ;
 	int slave;
 	int recommend;
+	String id;
+	int c_answer;
+	
+	String title;
+	String category;
+	
 	public int getNum() {
 		return num;
 	}
@@ -63,6 +69,24 @@ public class answerDTO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	String id;
+	public int getC_answer() {
+		return c_answer;
+	}
+	public void setC_answer(int c_answer) {
+		this.c_answer = c_answer;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
 
 }

@@ -11,9 +11,10 @@
 <html>
 <meta charset="UTF-8">
 <body>
+<%@include file="../header.jsp"%>
 <%
 	request.setCharacterEncoding("utf-8");
-	String id= "tmddud73";
+
 	//String id = request.getParameter("subject");
 	//String category = request.getParameter("catagory");
 	//String content = request.getParameter("editordata");

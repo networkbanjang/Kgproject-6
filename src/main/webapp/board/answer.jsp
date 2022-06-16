@@ -28,16 +28,19 @@
 	href="/KG-naver/css/summernote/summernote-lite.css">
 
 
-<script>
 
-</script>
 </head>
 <body>
 	<%@include file="../header.jsp"%>
 <% String originalnum = request.getParameter("num") ;
 	int num=Integer.parseInt(originalnum);
 	BoardDAO boardDao = new BoardDAO();
-	BoardDTO board = boardDao.selectNum(num); %>
+	BoardDTO board = boardDao.selectNum(num); 
+	
+	if (board.getId().equals(id)){
+		out.print("	<script>alert('본인의 질문에 본인이 답변 할 수 없습니다.'); location.href='/KG-naver/index.jsp';</script>");
+	}
+	%>
 	<div class="qustion_sector">
 		<table class="question_table">
 			<tr>
@@ -68,7 +71,7 @@
 					<tr>
 						<th>파일첨부 :</th>
 						<td class="plus">
-							<input type="file">
+							<input type="file" name="upfile">
 						</td>
 					</tr>
 					<tr>
@@ -80,7 +83,7 @@
 
 					</tr>
 				</table>
-				<div id="center_button">
+				<div class="center_button">
 					<input type="image" src="/KG-naver/images/answer.png">
 				</div>
 			</div>
@@ -118,8 +121,7 @@
 							[ 'para', [ 'ul', 'ol', 'paragraph' ] ],
 							// 줄간격
 							[ 'height', [ 'height' ] ],
-							// 그림
-							[ 'insert', [ 'picture' ] ],
+
 							// 코드보기, 확대해서보기, 도움말
 							[ 'view', [ 'codeview', 'fullscreen', 'help' ] ] ],
 					// 추가한 글꼴

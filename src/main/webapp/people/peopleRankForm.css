@@ -1,0 +1,201 @@
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+table {
+    border-collapse: separate;
+    text-indent: initial;
+    border-spacing: 2px;
+}
+
+.container-fluid-content__right {
+    position: relative;
+    float: right;
+}
+.wrap_people .container-fluid-content__right {
+    width: 800px;
+}
+.title--dh21k {
+    position: relative;
+    margin: 31px 0 25px 0;
+    padding-bottom: 14px;
+    background: url(https://ssl.pstatic.net/static/kin/09renewal/bg_bar.gif) left bottom no-repeat;
+}
+.title--dh21k img {
+    vertical-align: top;
+}
+.subtitle--eXFAA {
+    color: #888;
+    font-size: 12px;
+    font-weight: normal;
+    vertical-align: bottom;
+    margin-left: 10px;
+}
+.area_tab--2rinG {
+    clear: both;
+    position: relative;
+    background: url(https://ssl.pstatic.net/static/kin/09renewal/bg_pattern_x5.gif) left bottom repeat-x;
+    zoom: 1;
+}
+.tab--DKkrW {
+    float: left;
+}
+a {
+    color: #000;
+    text-decoration: none;
+}
+.tab_link--4GbPh {
+    position: relative;
+    display: block;
+    height: 33px;
+}
+.tab_link--4GbPh.kin--3YOJF {
+    width: 83px;
+}
+.tab_link--4GbPh.opendic--e0U4H {
+    width: 92px;
+}
+.tab_image--xK5TH {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 33px;
+    cursor: pointer;
+    background: url(https://ssl.pstatic.net/static/kin/09renewal/tab_kin_ranking2.gif) no-repeat;
+}
+.tab_link--4GbPh.kin--3YOJF .tab_image--xK5TH {
+    background-position: 0 -35px;
+}
+.tab_link--4GbPh.is_active--vrAdw.kin--3YOJF .tab_image--xK5TH {
+    background-position: 0 0;
+}
+.tab_link--4GbPh.opendic--e0U4H .tab_image--xK5TH {
+    background-position: -83px 0;
+}
+.area_sort--17gRl {
+    position: relative;
+    height: 22px;
+    margin: 40px 0 11px;
+    z-index: 16;
+}
+.sort_item--cIg6X {
+    float: left;
+    padding-right: 8px;
+}
+.sort_link--yVTgs {
+    font-size: 12px;
+    line-height: 13px;
+    color: #666;
+    text-decoration: none;
+}
+.sort_item--cIg6X.is_active--1XZ5e .sort_link--yVTgs {
+    font-weight: bold;
+    color: #00c73c;
+}
+
+.table--32Ucw {
+    clear: both;
+    position: relative;
+    z-index: 12;
+    width: 100%;
+}
+col {
+    display: table-column;
+}
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+.head--1FF04 {
+    padding: 12px 0 11px;
+    background: none;
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+    font-size: 11px;
+    color: #585858;
+    font-weight: normal;
+    text-align: left;
+}
+.head--1FF04.title--W7geH {
+    text-align: center;
+}
+.head--1FF04:first-child {
+    padding-left: 23px;
+}
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+.row--3rMXu {
+    border-bottom: 1px solid #f3f3f3;
+}
+.cell--9Q7bj {
+    padding: 9px 0 8px;
+    font-size: 11px;
+    line-height: 18px;
+    color: #848484;
+}
+.cell--9Q7bj.rank_num--1SarQ {
+    padding-left: 22px;
+}
+.cell--9Q7bj.title--W7geH {
+    word-break: break-all;
+    word-wrap: break-word;
+    font-size: 12px;
+    white-space: normal;
+}
+.nickname--3hDTP {
+    word-break: break-all;
+    word-wrap: break-word;
+    padding-right: 2px;
+    border-right: 1px solid #fff;
+    color: #303030;
+    font-weight: bold;
+    white-space: normal;
+}
+.nickname--3hDTP {
+    word-break: break-all;
+    word-wrap: break-word;
+    padding-right: 2px;
+    border-right: 1px solid #fff;
+    color: #303030;
+    font-weight: bold;
+    white-space: normal;
+}
+.user_id--3E3Du {
+    font-weight: normal;
+}
+.interview_link--cDqTa {
+    float: right;
+    margin-right: 50px;
+    font-weight: normal;
+    font-size: 11px;
+    color: #26b049;
+}
+.arrow_right--ICL9H {
+    display: inline-block;
+    width: 5px;
+    height: 9px;
+    background-position: -68px -295px;
+    vertical-align: -1px;
+    margin-left:35px;
+    margin-top:-15px;
+} 

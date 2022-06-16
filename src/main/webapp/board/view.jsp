@@ -1,3 +1,5 @@
+<%@page import="member.MemberDAO"%>
+<%@page import="member.MemberDTO"%>
 <%@page import="Page.PageService"%>
 <%@page import="Board.replyDTO"%>
 <%@page import="Board.replyDAO"%>
@@ -18,12 +20,19 @@
 
 </head>
 <body>
-	<%
+	<%@include file="../header.jsp"%>
+	<%if(id == null){
+		response.sendRedirect("/KG-naver/member/loginForm.jsp");
+	}
 	String originalnum = request.getParameter("num");
 	int num = Integer.parseInt(originalnum);
 	BoardDAO boardDao = new BoardDAO();
 	BoardDTO board = boardDao.selectNum(num);
 	String hitcheck = request.getParameter("answernum");
+	MemberDTO member;
+	MemberDAO memberDao= new MemberDAO();
+	String savefolder = "/KG-naver/up/"+board.getId()+"/"+board.getPhoto();
+
 	if (hitcheck == null || hitcheck.equals("null")) {
 		int hit = board.getHit() + 1;
 		boardDao.hitUP(num, hit);
@@ -35,7 +44,7 @@
 	<%
 	answerDAO answerDao = new answerDAO();
 	ArrayList<answerDTO> answer = answerDao.answer_list(num);
-	ArrayList<BoardDTO> hitDesc = answerDao.hitDesc();
+	ArrayList<BoardDTO> hitDesc = answerDao.hitDesc(1,4);
 	ArrayList<answerDTO> count;
 	%>
 
@@ -56,18 +65,26 @@
 	int end = replynumber * 10;
 	int begin = end + 1 - 10;
 	%>
-	<%@include file="../header.jsp"%>
+
 	<div class=all>
 		<div class="qustion_sector">
 			<table class="question_table">
 				<tr>
 					<td><sapn class="aha">아하</sapn></td>
 					<td class="question_subject" colspan="2"><%=board.getTitle()%></td>
+					<%if (id.equals(board.getId())) {%>
 					<td class="question_demo"><a href="delete.jsp?num=<%=board.getNum()%>"><span class="question_delete">질문삭제</span> </a>
 					
 					<a href="modify.jsp?num=<%=board.getNum()%>"><span class="question_modify"> 질문수정</span></td></a>
+					<%} %>
 				</tr>
+									<% if (board.getPhoto() != null) { %>
+					<tr>
+					<td class="question_content" colspan="3"><img src=<%=savefolder %>></td>
+					</tr>
+					<%} %>
 				<tr>
+
 					<td class="question_content" colspan="3"><%=board.getContent()%></td>
 				</tr>
 
@@ -75,7 +92,7 @@
 					<td class="question_cate"><%=board.getCategory()%></td>
 				</tr>
 				<tr>
-					<td class="question_etc"><%=board.getNick()%></td>
+					<td class="question_etc"><%=board.getId()%></td>
 					<td class="question_etc"><%=board.getTime()%></td>
 					<td class="question_etc">조회수: <%=board.getHit()%></td>
 				</tr>
@@ -88,15 +105,31 @@
 					class="answer_reg">답변하기</div></a>
 		</div>
 		<div class="answer_sector">
-			<table class="answer_title">
-				<%
+						<%
 				for (answerDTO a : answer) {
+					member=memberDao.selectId(a.getId());
 				%>
+			<table class="answer_title">
+
 				<tr>
-					<td rowspan="2" class="profile"><img class="profile"
-						src="/KG-naver/images/banner1.png"></td>
-					<td class="answer_subject">닉네임님의 답변</td>
+					<td rowspan="2" class="profile">
+					<%if (a.getPubl().equals("pri")) {%>
+					<img class="profile" src="/KG-naver/images/default.png">
+					<%}else if(member.getPic() == null) { %>
+						<a href="/KG-naver/main/profile.jsp?id=<%=a.getId()%>"><img class="profile" src="/KG-naver/images/default.png"></a>
+					<%}	else{%>
+							<a href="/KG-naver/main/profile.jsp?id=<%=a.getId()%>"><img class="profile" src="/KG-naver/up/<%=a.getId() %>/<%=member.getPic() %>"></a>
+					<%} %>
+					</td>
+					<td class="answer_subject">
+					<%if (a.getRecommend()==1){ %> <img src="/KG-naver/images/check.png"><%} %>
+				<%if (a.getPubl().equals("pri")) {%>
+				익명 </td>
+				<%} else{%>
+				<%=a.getId() %>님의 답변</td>
+				<%} %>
 				</tr>
+		
 				<tr>
 					<%
 					if (a.getPubl().equals("pri")) {
@@ -104,22 +137,36 @@
 					<td class="answer_score">익명</td>
 					<%
 					} else {
+						if (member.getNickname() == null){
 					%>
 					<td class="answer_score"><%=a.getId()%></td>
-					<%
-					}
-					%>
-					<td class="answer_etc"><pre>채택답변수 7,669    받은감사수 22</pre></td>
+				<%} else{ %>
+				<td class="answer_score"><%=member.getNickname()%></td>
+				<%} %>
+					<td >채택된 답변 수:<%=member.getS_question() %></td>
 				</tr>
 			</table>
+				<%
+					}
+					%>
 			<table class="answer_conetent">
+				<%if (a.getFile_root() != null) {
+					String fileroot=a.getFile_root();
+					%> 
+				<tr>
+					 <a class="filefile" href="fileDown.jsp?filename=<%=fileroot%>&writeid=<%=a.getId()%>">첨부파일: <%=a.getFile_root() %></a></td>
+				</tr>
+				<%} %>
 				<tr>
 					<td class="content_main" colspan="3"><span><%=a.getContent()%></span></td>
 				</tr>
 
 				<tr>
 					<td class="content_etc"><%=a.getTime()%></td>
-					<td class="content_etc">♡좋아요 <%=a.getRecommend()%></td>
+					<%if (a.getRecommend() ==0 && id.equals(board.getId())) {%>
+					<td class="content_etc"><a href="recommend.jsp?num=<%=a.getNum()%>&recommend=<%=a.getRecommend()%>&check=<%=board.getId()%>&tmp=<%=num%>&user=<%=a.getId()%>">♡채택하기</a></td><%} 
+					else if (a.getRecommend() ==1 && id.equals(board.getId())){%>
+					<td class="content_etc"><a href="recommend.jsp?num=<%=a.getNum()%>&recommend=<%=a.getRecommend()%>&check=<%=board.getId()%>&tmp=<%=num%>&user=<%=a.getId()%>">♥채택취소</a></td><%} %>
 					<td class="content_etc"><a
 						href="view.jsp?num=<%=num%>&answernum=<%=a.getNum()%>"> <%
  reply_count = replyDao.listselect(a.getNum());
@@ -129,8 +176,10 @@
 				</tr>
 
 				<br>
+				<%if (id.equals(a.getId())) { %>
 				<a href="answerDelete.jsp?num=<%=num%>&answernum=<%=a.getNum()%>"><span class="delete_sector">삭제하기</span></a>
 				<a href="answerModify.jsp?num=<%=num%>&answernum=<%=a.getNum()%>"><span class="modify_sector">수정하기</span></a>
+				<%} %>
 			</table>
 			<br>
 			<%
@@ -148,7 +197,7 @@
 
 
 							<td><input type="text" class="re_textbar" name="reply"
-								id="reply" placeholder="개인정보를 공유 및 요청하거나 어쩌구저쩌구 저쩌구저쩌구"></td>
+								id="reply" placeholder="개인정보를 공유 및 요청하거나, 명예훼손,무단광고 불법정보 유포시 모니터링 후 삭제될 수있으며 이에대한 민형사상 책임은 게시자에게 있습니다."></td>
 							<td><input class="res" type="image"
 								src="/KG-naver/images/ok2.png"></td>
 
@@ -165,12 +214,14 @@
 			for (replyDTO re : reply) {
 			%>
 			<div class="c-opinion__item">
-				<span class="List-nick"><%=re.getId()%> </span> <a
+				<span class="List-nick"><%=re.getId()%> </span> 
+				<%if (id.equals(re.getId())){ %>
+				<a
 					href="replydelete.jsp?num=<%=num%>&answernum=<%=answernum%>&replynum=<%=re.getNum()%>"
 					class="_deleteBtn"><img height="9" width="9"
 					src="https://ssl.pstatic.net/static/kin/09renewal/btn_delete_list2.gif"
 					class="del"></a>
-
+<%} %>
 				<div class="list-text">
 					<p><%=re.getContent()%></p>
 				</div>
@@ -271,6 +322,7 @@
 		answerDao.close();
 		boardDao.close();
 		replyDao.close();
+		memberDao.close();
 		%>
 		<%@
 	include file="../footer.jsp"%>

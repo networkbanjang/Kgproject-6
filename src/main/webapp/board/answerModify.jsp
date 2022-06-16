@@ -77,7 +77,7 @@
 					<tr>
 						<th>파일첨부 :</th>
 						<td class="plus">
-							<input type="file">
+							<input type="file" name="upfile">
 						</td>
 					</tr>
 					<tr>
@@ -89,7 +89,7 @@
 
 					</tr>
 				</table>
-				<div id="center_button">
+				<div class="center_button">
 					<input type="image" src="/KG-naver/images/answer.png">
 				</div>
 			</div>
